@@ -14,6 +14,7 @@
 #import "IDItemViewController.h"
 #import "IDKindViewController.h"
 #import "IDNotesViewController.h"
+#import "MessageViewController.h"
 
 static NSString *const kClassesKey =  @"classes";
 
@@ -58,6 +59,10 @@ static NSString *const kClassesKey =  @"classes";
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
 						  @"IDContactViewController", @"IDBorrowViewController", nil], kClassesKey,
+						 nil],
+						[NSDictionary dictionaryWithObjectsAndKeys:
+						 [NSArray arrayWithObjects:
+						  @"MessageViewController", nil], kClassesKey,
 						 nil],
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
@@ -149,9 +154,12 @@ static NSString *const kClassesKey =  @"classes";
             cell.imageView.image = [UIImage imageNamed:@"lend.png"];
         }
     
+    } else if ([name isEqualToString:@"MessageViewController"]) {
+        // Contact the contact
+        cell.textLabel.text = NSLocalizedString(@"Send a message / Call", @"Send a message / Call");
+        
     } else if ([name isEqualToString:@"IDKindViewController"]) {
         // Type of item
-        // TODO : afficher icône type vêtement + label
         cell.textLabel.text = NSLocalizedString(@"Kind of item", @"Kind of item");
         cell.detailTextLabel.text = NSLocalizedString(data.itemType, data.itemType);
         cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", data.itemType, @".png"]];;
@@ -164,7 +172,6 @@ static NSString *const kClassesKey =  @"classes";
 
     } else if ([name isEqualToString:@"IDNotesViewController"]) {
         // Notes
-        // TODO : tester avec de longues notes
         cell.textLabel.text = NSLocalizedString(@"Notes", @"Notes");
         cell.detailTextLabel.text = data.notes;
         cell.imageView.image = nil;
@@ -203,6 +210,15 @@ static NSString *const kClassesKey =  @"classes";
     } else if ([name isEqualToString:@"IDBorrowViewController"]) {
         // Borrowed / Lent
         IDBorrowViewController *detailViewController = [[IDBorrowViewController alloc] initWithNibName:@"IDBorrowViewController" bundle:nil];
+        
+        detailViewController.data = data;
+        
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+        
+    } else if ([name isEqualToString:@"MessageViewController"]) {
+        // Message / Call
+        MessageViewController *detailViewController = [[MessageViewController alloc] initWithNibName:@"MessageViewController" bundle:nil];
         
         detailViewController.data = data;
         

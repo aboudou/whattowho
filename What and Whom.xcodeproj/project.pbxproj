@@ -55,6 +55,9 @@
 		3BA924A31350C56E003B8F84 /* IDNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */; };
 		3BA924A81350C8F8003B8F84 /* IDDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA924A61350C8F8003B8F84 /* IDDateViewController.m */; };
 		3BA924AA1350CB41003B8F84 /* IDDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA924AC1350CB41003B8F84 /* IDDateViewController.xib */; };
+		3BAB7BD31382AD2C00722549 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB7BD11382AD2C00722549 /* MessageViewController.m */; };
+		3BAB7BD41382AD2C00722549 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB7BD21382AD2C00722549 /* MessageViewController.xib */; };
+		3BAB7BD61382B1D600722549 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAB7BD51382B1D600722549 /* MessageUI.framework */; };
 		3BDA7FDA134D824B00E2C923 /* IDBorrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */; };
 		3BDA7FDB134D824B00E2C923 /* IDBorrowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */; };
 		3BE7CE28134E16E800D2E250 /* IDItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE7CE26134E16E800D2E250 /* IDItemViewController.m */; };
@@ -128,6 +131,10 @@
 		3BA924A61350C8F8003B8F84 /* IDDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDDateViewController.m; sourceTree = "<group>"; };
 		3BA924AB1350CB41003B8F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDDateViewController.xib; sourceTree = "<group>"; };
 		3BA924AD1350CB46003B8F84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDDateViewController.xib; sourceTree = "<group>"; };
+		3BAB7BD01382AD2C00722549 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		3BAB7BD11382AD2C00722549 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		3BAB7BD21382AD2C00722549 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewController.xib; path = "What and Whom/MessageViewController.xib"; sourceTree = "<group>"; };
+		3BAB7BD51382B1D600722549 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBorrowViewController.h; sourceTree = "<group>"; };
 		3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDBorrowViewController.m; sourceTree = "<group>"; };
 		3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDBorrowViewController.xib; path = "What and Whom/IDBorrowViewController.xib"; sourceTree = "<group>"; };
@@ -147,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BAB7BD61382B1D600722549 /* MessageUI.framework in Frameworks */,
 				3B94D8481348521C00D0BDEA /* AddressBook.framework in Frameworks */,
 				3B94D8491348521C00D0BDEA /* AddressBookUI.framework in Frameworks */,
 				3B04C29E13479B6900A37E9A /* UIKit.framework in Frameworks */,
@@ -181,10 +189,11 @@
 			children = (
 				3B94D8461348521C00D0BDEA /* AddressBook.framework */,
 				3B94D8471348521C00D0BDEA /* AddressBookUI.framework */,
-				3B04C29D13479B6900A37E9A /* UIKit.framework */,
-				3B04C29F13479B6900A37E9A /* Foundation.framework */,
-				3B04C2A113479B6900A37E9A /* CoreGraphics.framework */,
 				3B04C2A313479B6900A37E9A /* CoreData.framework */,
+				3B04C2A113479B6900A37E9A /* CoreGraphics.framework */,
+				3B04C29F13479B6900A37E9A /* Foundation.framework */,
+				3BAB7BD51382B1D600722549 /* MessageUI.framework */,
+				3B04C29D13479B6900A37E9A /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 				3B6A6B35134A016100AC3394 /* ItemViewController.xib */,
 				3B3A9D981350A2B500569D04 /* iTunesArtwork */,
 				3B04C2B413479B6900A37E9A /* MainWindow.xib */,
+				3BAB7BD21382AD2C00722549 /* MessageViewController.xib */,
 				3B04C2BA13479B6900A37E9A /* RootViewController.xib */,
 				3B04C2B113479B6900A37E9A /* What_and_Whom.xcdatamodeld */,
 				3B04C2A713479B6900A37E9A /* What and Whom-Info.plist */,
@@ -252,6 +262,8 @@
 				3BA924A01350C56E003B8F84 /* IDNotesViewController.m */,
 				3B6A6B2D134A00DE00AC3394 /* ItemViewController.h */,
 				3B6A6B2E134A00DE00AC3394 /* ItemViewController.m */,
+				3BAB7BD01382AD2C00722549 /* MessageViewController.h */,
+				3BAB7BD11382AD2C00722549 /* MessageViewController.m */,
 				3B04C2B713479B6900A37E9A /* RootViewController.h */,
 				3B04C2B813479B6900A37E9A /* RootViewController.m */,
 				3B04C2AE13479B6900A37E9A /* What_and_WhomAppDelegate.h */,
@@ -376,6 +388,7 @@
 				3B3A9DA01350A2BE00569D04 /* Icon@2x.png in Resources */,
 				3BA924A31350C56E003B8F84 /* IDNotesViewController.xib in Resources */,
 				3BA924AA1350CB41003B8F84 /* IDDateViewController.xib in Resources */,
+				3BAB7BD41382AD2C00722549 /* MessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +410,7 @@
 				3BE7CE28134E16E800D2E250 /* IDItemViewController.m in Sources */,
 				3BA924A21350C56E003B8F84 /* IDNotesViewController.m in Sources */,
 				3BA924A81350C8F8003B8F84 /* IDDateViewController.m in Sources */,
+				3BAB7BD31382AD2C00722549 /* MessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
