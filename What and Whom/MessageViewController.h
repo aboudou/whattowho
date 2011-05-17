@@ -10,7 +10,7 @@
 #import "Data.h"
 #import <MessageUI/MessageUI.h>
 
-@interface MessageViewController : UITableViewController <MFMessageComposeViewControllerDelegate> {
+@interface MessageViewController : UITableViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate> {
     Data *data;
     NSMutableArray *_viewControllers;
 }

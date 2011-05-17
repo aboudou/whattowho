@@ -62,33 +62,39 @@ static NSString *const kTitleKey =  @"title";
             phoneNumbers = (NSArray*)ABMultiValueCopyArrayOfAllValues(phoneNumberProperty);
             CFRelease(phoneNumberProperty);
 
-            // Add phone numbers if the device can send text messages
-            if([MFMessageComposeViewController canSendText]) {
-                [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             phoneNumbers, kClassesKey, NSLocalizedString(@"text", @"text"), kTitleKey,
-                                             nil]];
-            }
+            if ([phoneNumbers count] != 0) {
+                // Add phone numbers if the device can send text messages
+                if([MFMessageComposeViewController canSendText]) {
+                    [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 phoneNumbers, kClassesKey, NSLocalizedString(@"text", @"text"), kTitleKey,
+                                                 nil]];
+                }
     
-            // Add phone numbers if the device can make phone calls
-            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://+11111"]]) {
-                [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             phoneNumbers, kClassesKey, NSLocalizedString(@"phone", @"phone"), kTitleKey,
-                                             nil]];
+                // Add phone numbers if the device can make phone calls
+                if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://+11111"]]) {
+                    [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 phoneNumbers, kClassesKey, NSLocalizedString(@"phone", @"phone"), kTitleKey,
+                                                 nil]];
+                }
             }
         
             [phoneNumbers release];
             
             // Add emails
-            ABMutableMultiValueRef multiEmail = ABRecordCopyValue(person, kABPersonEmailProperty);
-            NSMutableArray *emails = [[NSMutableArray alloc] init];
-            for (int i = 0; i < ABMultiValueGetCount(multiEmail); i++) {
-                NSString *anEmail = [(NSString*)ABMultiValueCopyValueAtIndex(multiEmail, i) autorelease];
-                [emails addObject:anEmail];
+            if([MFMailComposeViewController canSendMail]) {
+                ABMutableMultiValueRef multiEmail = ABRecordCopyValue(person, kABPersonEmailProperty);
+                NSMutableArray *emails = [[NSMutableArray alloc] init];
+                for (int i = 0; i < ABMultiValueGetCount(multiEmail); i++) {
+                    NSString *anEmail = [(NSString*)ABMultiValueCopyValueAtIndex(multiEmail, i) autorelease];
+                    [emails addObject:anEmail];
+                }
+                if ([emails count] != 0) {
+                    [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                 emails, kClassesKey, NSLocalizedString(@"email", @"email"), kTitleKey,
+                                                 nil]];
+                }
+                [emails release];
             }
-            [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         emails, kClassesKey, NSLocalizedString(@"email", @"email"), kTitleKey,
-                                         nil]];
-            [emails release];
         }
     }
     
@@ -190,13 +196,17 @@ static NSString *const kTitleKey =  @"title";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
     
     } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"email")]) {
-        NSLog(@"Send email");
+        MFMailComposeViewController *controller = [[[MFMailComposeViewController alloc] init] autorelease];
+        [controller setMessageBody:@"" isHTML:NO];
+		[controller setToRecipients:[NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil]];
+		controller.mailComposeDelegate = self;
+		[self presentModalViewController:controller animated:YES];
         
     }
         
 }
 
-#pragma mark - Message composeur delegate
+#pragma mark - Message composer delegate
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     UIAlertView *alert;
     
@@ -223,4 +233,35 @@ static NSString *const kTitleKey =  @"title";
     
 	[self dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark - Mail composer delegate
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    UIAlertView *alert;
+
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            
+            break;
+            
+        case MFMailComposeResultSaved:
+            
+            break;
+            
+        case MFMailComposeResultSent:
+            
+            break;
+            
+        case MFMailComposeResultFailed:
+            
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"What to Who") message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+			[alert release];
+			
+            break;
+            
+    }
+    
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 @end
