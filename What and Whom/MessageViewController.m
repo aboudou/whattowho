@@ -71,7 +71,7 @@ static NSString *const kTitleKey =  @"title";
             }
     
             // Add phone numbers if the device can make phone calls
-            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel:+11111"]]) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://+11111"]]) {
                 [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                              phoneNumbers, kClassesKey, NSLocalizedString(@"phone", @"phone"), kTitleKey,
                                              nil]];
@@ -151,8 +151,6 @@ static NSString *const kTitleKey =  @"title";
 {
     static NSString *CellIdentifier = @"Cell";
     
-    // TODO : détecter la section pour indiquer le type d'action (téléphone / sms / email / rien)
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -179,13 +177,19 @@ static NSString *const kTitleKey =  @"title";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
+
+    if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"text", @"text")]) {
+        NSLog(@"Send text message");
+
+    } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"phone")]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
+    
+    } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"email")]) {
+        NSLog(@"Send email");
+        
+    }
+        
 }
 
 @end
