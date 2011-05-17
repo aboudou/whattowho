@@ -7,7 +7,6 @@
 //
 
 #import "MessageViewController.h"
-#import <MessageUI/MessageUI.h>
 
 static NSString *const kClassesKey =  @"classes";
 static NSString *const kTitleKey =  @"title";
@@ -89,6 +88,7 @@ static NSString *const kTitleKey =  @"title";
             [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                          emails, kClassesKey, NSLocalizedString(@"email", @"email"), kTitleKey,
                                          nil]];
+            [emails release];
         }
     }
     
@@ -180,7 +180,11 @@ static NSString *const kTitleKey =  @"title";
     NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
 
     if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"text", @"text")]) {
-        NSLog(@"Send text message");
+        MFMessageComposeViewController *controller = [[[MFMessageComposeViewController alloc] init] autorelease];
+        controller.body = @"";
+		controller.recipients = [NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil];
+		controller.messageComposeDelegate = self;
+		[self presentModalViewController:controller animated:YES];
 
     } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"phone")]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
@@ -192,4 +196,31 @@ static NSString *const kTitleKey =  @"title";
         
 }
 
+#pragma mark - Message composeur delegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    UIAlertView *alert;
+    
+	switch (result) {
+		case MessageComposeResultFailed:
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"What to Who") message:NSLocalizedString(@"Unknown error", @"Unknown error") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+			[alert release];
+			
+            break;
+
+		case MessageComposeResultCancelled:
+            
+			break;
+            
+		case MessageComposeResultSent:
+            
+			break;
+
+		default:
+
+			break;
+	}
+    
+	[self dismissModalViewControllerAnimated:YES];
+}
 @end
