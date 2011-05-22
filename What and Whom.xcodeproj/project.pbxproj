@@ -108,6 +108,7 @@
 		3B0EB0821348D42C002C937F /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		3B0EB08A1348E206002C937F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "What and Whom/Default.png"; sourceTree = "<group>"; };
 		3B0EB08B1348E206002C937F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "What and Whom/Default@2x.png"; sourceTree = "<group>"; };
+		3B2FDB781389001B0036B5F9 /* What_and_Whom 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "What_and_Whom 2.xcdatamodel"; sourceTree = "<group>"; };
 		3B3427CD134DC3E400F22C98 /* movie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = movie.png; path = "What and Whom/movie.png"; sourceTree = "<group>"; };
 		3B3427CE134DC3E400F22C98 /* movie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "movie@2x.png"; path = "What and Whom/movie@2x.png"; sourceTree = "<group>"; };
 		3B3A9D981350A2B500569D04 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = "What and Whom/iTunesArtwork"; sourceTree = "<group>"; };
@@ -582,9 +583,10 @@
 		3B04C2B113479B6900A37E9A /* What_and_Whom.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3B2FDB781389001B0036B5F9 /* What_and_Whom 2.xcdatamodel */,
 				3B04C2B213479B6900A37E9A /* What_and_Whom.xcdatamodel */,
 			);
-			currentVersion = 3B04C2B213479B6900A37E9A /* What_and_Whom.xcdatamodel */;
+			currentVersion = 3B2FDB781389001B0036B5F9 /* What_and_Whom 2.xcdatamodel */;
 			name = What_and_Whom.xcdatamodeld;
 			path = "What and Whom/What_and_Whom.xcdatamodeld";
 			sourceTree = "<group>";

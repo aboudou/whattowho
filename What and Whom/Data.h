@@ -16,7 +16,7 @@
 @private
 }
 @property (nonatomic, retain) NSDate * startDate;
-@property (nonatomic, retain) NSDate * endDate;
+@property (nonatomic, retain) NSData * dueDate;
 @property (nonatomic, retain) NSString * itemName;
 @property (nonatomic, retain) NSString * itemType;
 @property (nonatomic, retain) NSString * notes;

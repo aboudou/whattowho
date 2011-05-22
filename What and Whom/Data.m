@@ -11,7 +11,7 @@
 
 @implementation Data
 @dynamic startDate;
-@dynamic endDate;
+@dynamic dueDate;
 @dynamic itemName;
 @dynamic itemType;
 @dynamic notes;
