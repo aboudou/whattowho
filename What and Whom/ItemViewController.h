@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Data.h"
+#import "Kal.h"
 
 @interface ItemViewController : UITableViewController <ABPeoplePickerNavigationControllerDelegate> {
     Data *data;
     NSArray *_viewControllers;
+    
+    KalViewController *startKal;
 }
 
 @property(nonatomic, retain) Data *data;

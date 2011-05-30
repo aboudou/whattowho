@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "IDBorrowViewController.h"
-#import "IDDateViewController.h"
 #import "IDItemViewController.h"
 #import "IDKindViewController.h"
 #import "IDNotesViewController.h"
@@ -91,6 +90,12 @@ static NSString *const kClassesKey =  @"classes";
 {
     [super viewWillAppear:animated];
     self.title = data.itemName;
+    
+    if (startKal != nil) {
+        data.startDate = startKal.selectedDate;
+        startKal = nil;
+    }
+    
     
     [self.tableView reloadData];
 }
@@ -203,7 +208,7 @@ static NSString *const kClassesKey =  @"classes";
         // Whom
         ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
         picker.peoplePickerDelegate = self;
-        
+
         [self presentModalViewController:picker animated:YES];
         [picker release];
         
@@ -254,13 +259,15 @@ static NSString *const kClassesKey =  @"classes";
         
     } else if ([name isEqualToString:@"IDDateViewController"]) {
         // Date
-        IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController" bundle:nil];
+        startKal = [[[KalViewController alloc] initWithSelectedDate:data.startDate] autorelease];
+        startKal.title = NSLocalizedString(@"Date", @"Date");
         
-        detailViewController.data = data;
+        startKal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Today", @"Today") style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)] autorelease];
+
+        startKal.delegate = self;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
-        
+        [self.navigationController pushViewController:startKal animated:YES];
+
     }
 }
 
@@ -290,6 +297,14 @@ static NSString *const kClassesKey =  @"classes";
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier{
     return NO;
+}
+
+#pragma mark - Misc. methods
+
+// Action handler for the navigation bar's right bar button item.
+- (void)showAndSelectToday
+{
+    [startKal showAndSelectDate:[NSDate date]];
 }
 
 @end
