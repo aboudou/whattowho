@@ -57,9 +57,8 @@ static NSString *const kTitleKey =  @"title";
         ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, abId);
 
         if (person != nil) {
-            NSArray* phoneNumbers = [[NSMutableArray alloc] init];
             ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(person, kABPersonPhoneProperty);
-            phoneNumbers = (NSArray*)ABMultiValueCopyArrayOfAllValues(phoneNumberProperty);
+            NSArray* phoneNumbers = (NSArray*)ABMultiValueCopyArrayOfAllValues(phoneNumberProperty);
             CFRelease(phoneNumberProperty);
 
             if ([phoneNumbers count] != 0) {
@@ -88,6 +87,7 @@ static NSString *const kTitleKey =  @"title";
                     NSString *anEmail = [(NSString*)ABMultiValueCopyValueAtIndex(multiEmail, i) autorelease];
                     [emails addObject:anEmail];
                 }
+                CFRelease(multiEmail);
                 if ([emails count] != 0) {
                     [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  emails, kClassesKey, NSLocalizedString(@"email", @"email"), kTitleKey,
@@ -96,6 +96,8 @@ static NSString *const kTitleKey =  @"title";
                 [emails release];
             }
         }
+        
+        CFRelease(addressBook);
     }
     
     // Case of an empty list

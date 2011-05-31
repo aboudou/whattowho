@@ -28,11 +28,16 @@
     ABAddressBookRef addressBook = ABAddressBookCreate();
     ABRecordID abId = (ABRecordID)[self.idAddressBook intValue];
     ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,abId);
-    
-    if (person != nil)
-        return [(NSString *)ABRecordCopyCompositeName(person) autorelease];
-    else 
+
+    if (person != nil) {
+        NSString *name = [(NSString *)ABRecordCopyCompositeName(person) autorelease];
+        CFRelease(addressBook);
+        return name;
+    } else { 
+        CFRelease(addressBook);
         return NSLocalizedString(@"Unknown", @"Unknown contact");
+    }
+    
 }
 
 - (UIImage *) contactPicture {
@@ -41,13 +46,20 @@
     ABRecordID abId = (ABRecordID)[self.idAddressBook intValue];
     ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,abId);
     
-    if (person != nil && ABPersonHasImageData(person))
-        if ( &ABPersonCopyImageDataWithFormat != nil )
-            return [UIImage imageWithData:(NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
-        else 
-            return [UIImage imageWithData:(NSData *)ABPersonCopyImageData(person)];
-    else 
+    if (person != nil && ABPersonHasImageData(person)) {
+        if ( &ABPersonCopyImageDataWithFormat != nil ) {
+            UIImage *image = [UIImage imageWithData:[(NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail) autorelease]];
+            CFRelease(addressBook);
+            return image;
+        } else { 
+            UIImage *image = [UIImage imageWithData:[(NSData *)(NSData *)ABPersonCopyImageData(person) autorelease]];
+            CFRelease(addressBook);
+            return image;
+        }
+    } else { 
+        CFRelease(addressBook);
         return nil;
+    }
 }
 
 
