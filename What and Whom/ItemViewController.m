@@ -15,6 +15,7 @@
 #import "IDItemViewController.h"
 #import "IDKindViewController.h"
 #import "IDNotesViewController.h"
+#import "IDPhotoViewController.h"
 #import "MessageViewController.h"
 
 static NSString *const kClassesKey =  @"classes";
@@ -67,7 +68,7 @@ static NSString *const kClassesKey =  @"classes";
 						 nil],
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
-						  @"IDKindViewController", @"IDItemViewController", nil], kClassesKey,
+						  @"IDKindViewController", @"IDItemViewController", @"IDPhotoViewController", nil], kClassesKey,
 						 nil],
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
@@ -75,7 +76,7 @@ static NSString *const kClassesKey =  @"classes";
 						 nil],
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
-						  @"IDDateViewController", @"IDDueDateViewController", nil], kClassesKey,
+						  @"IDDateViewController", /*@"IDDueDateViewController",*/ nil], kClassesKey,
 						 nil],
 						nil];
     
@@ -171,6 +172,11 @@ static NSString *const kClassesKey =  @"classes";
         cell.detailTextLabel.text = data.itemName;
         cell.imageView.image = nil;
 
+    } else if ([name isEqualToString:@"IDPhotoViewController"]) {
+        // Photo
+        cell.textLabel.text = NSLocalizedString(@"Photo", @"Photo");
+        cell.imageView.image = nil;
+        
     } else if ([name isEqualToString:@"IDNotesViewController"]) {
         // Notes
         cell.textLabel.text = NSLocalizedString(@"Notes", @"Notes");
@@ -249,6 +255,15 @@ static NSString *const kClassesKey =  @"classes";
     } else if ([name isEqualToString:@"IDItemViewController"]) {
         // Item
         IDItemViewController *detailViewController = [[IDItemViewController alloc] initWithNibName:@"IDItemViewController" bundle:nil];
+        
+        detailViewController.data = data;
+        
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+        
+    } else if ([name isEqualToString:@"IDPhotoViewController"]) {
+        // Photo
+        IDPhotoViewController *detailViewController = [[IDPhotoViewController alloc] initWithNibName:@"IDPhotoViewController" bundle:nil];
         
         detailViewController.data = data;
         
