@@ -60,6 +60,8 @@
 		3BAB7BD61382B1D600722549 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAB7BD51382B1D600722549 /* MessageUI.framework */; };
 		3BDA7FDA134D824B00E2C923 /* IDBorrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */; };
 		3BDA7FDB134D824B00E2C923 /* IDBorrowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */; };
+		3BDC2BD5139A1ED100AF05AC /* IDDueDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */; };
+		3BDC2BD8139A23D800AF05AC /* IDDueDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDC2BDA139A23D800AF05AC /* IDDueDateViewController.xib */; };
 		3BE7CE28134E16E800D2E250 /* IDItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE7CE26134E16E800D2E250 /* IDItemViewController.m */; };
 		3BE7CE2B134E174000D2E250 /* IDItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BE7CE2D134E174000D2E250 /* IDItemViewController.xib */; };
 		3BEDDC49134DB554003E72E1 /* IDKindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDDC47134DB554003E72E1 /* IDKindViewController.m */; };
@@ -139,6 +141,10 @@
 		3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBorrowViewController.h; sourceTree = "<group>"; };
 		3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDBorrowViewController.m; sourceTree = "<group>"; };
 		3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDBorrowViewController.xib; path = "What and Whom/IDBorrowViewController.xib"; sourceTree = "<group>"; };
+		3BDC2BD2139A1ED100AF05AC /* IDDueDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDDueDateViewController.h; sourceTree = "<group>"; };
+		3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDDueDateViewController.m; sourceTree = "<group>"; };
+		3BDC2BD9139A23D800AF05AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDDueDateViewController.xib; sourceTree = "<group>"; };
+		3BDC2BDB139A23DF00AF05AC /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDDueDateViewController.xib; sourceTree = "<group>"; };
 		3BE7CE25134E16E800D2E250 /* IDItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDItemViewController.h; sourceTree = "<group>"; };
 		3BE7CE26134E16E800D2E250 /* IDItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDItemViewController.m; sourceTree = "<group>"; };
 		3BE7CE2C134E174000D2E250 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDItemViewController.xib; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 				3B3A9D9D1350A2BE00569D04 /* Icon@2x.png */,
 				3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */,
 				3BA924AC1350CB41003B8F84 /* IDDateViewController.xib */,
+				3BDC2BDA139A23D800AF05AC /* IDDueDateViewController.xib */,
 				3BE7CE2D134E174000D2E250 /* IDItemViewController.xib */,
 				3BEDDC48134DB554003E72E1 /* IDKindViewController.xib */,
 				3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */,
@@ -255,6 +262,8 @@
 				3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */,
 				3BA924A51350C8F8003B8F84 /* IDDateViewController.h */,
 				3BA924A61350C8F8003B8F84 /* IDDateViewController.m */,
+				3BDC2BD2139A1ED100AF05AC /* IDDueDateViewController.h */,
+				3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */,
 				3BE7CE25134E16E800D2E250 /* IDItemViewController.h */,
 				3BE7CE26134E16E800D2E250 /* IDItemViewController.m */,
 				3BEDDC46134DB554003E72E1 /* IDKindViewController.h */,
@@ -390,6 +399,7 @@
 				3BA924A31350C56E003B8F84 /* IDNotesViewController.xib in Resources */,
 				3BA924AA1350CB41003B8F84 /* IDDateViewController.xib in Resources */,
 				3BAB7BD41382AD2C00722549 /* MessageViewController.xib in Resources */,
+				3BDC2BD8139A23D800AF05AC /* IDDueDateViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +422,7 @@
 				3BA924A21350C56E003B8F84 /* IDNotesViewController.m in Sources */,
 				3BA924A81350C8F8003B8F84 /* IDDateViewController.m in Sources */,
 				3BAB7BD31382AD2C00722549 /* MessageViewController.m in Sources */,
+				3BDC2BD5139A1ED100AF05AC /* IDDueDateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +485,16 @@
 				3BA924AD1350CB46003B8F84 /* fr */,
 			);
 			name = IDDateViewController.xib;
+			path = "What and Whom";
+			sourceTree = "<group>";
+		};
+		3BDC2BDA139A23D800AF05AC /* IDDueDateViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BDC2BD9139A23D800AF05AC /* en */,
+				3BDC2BDB139A23DF00AF05AC /* fr */,
+			);
+			name = IDDueDateViewController.xib;
 			path = "What and Whom";
 			sourceTree = "<group>";
 		};

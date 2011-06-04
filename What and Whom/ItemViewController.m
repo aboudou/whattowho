@@ -11,6 +11,7 @@
 
 #import "IDBorrowViewController.h"
 #import "IDDateViewController.h"
+#import "IDDueDateViewController.h"
 #import "IDItemViewController.h"
 #import "IDKindViewController.h"
 #import "IDNotesViewController.h"
@@ -275,7 +276,12 @@ static NSString *const kClassesKey =  @"classes";
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
         // Due date
 
-#warning Récupérer la date de la notification
+        IDDueDateViewController *detailViewController = [[IDDueDateViewController alloc] initWithNibName:@"IDDueDateViewController" bundle:nil];
+        
+        detailViewController.data = data;
+        
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
     }
 }
 
