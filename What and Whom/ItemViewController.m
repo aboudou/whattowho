@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "IDBorrowViewController.h"
+#import "IDDateViewController.h"
 #import "IDItemViewController.h"
 #import "IDKindViewController.h"
 #import "IDNotesViewController.h"
@@ -34,8 +35,6 @@ static NSString *const kClassesKey =  @"classes";
 {
     [data release];
     [_viewControllers release];
-    [startKal release];
-    [dueKal release];
     
     [super dealloc];
 }
@@ -75,7 +74,7 @@ static NSString *const kClassesKey =  @"classes";
 						 nil],
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
-						  @"IDStartDateViewController", @"IDDueDateViewController", nil], kClassesKey,
+						  @"IDDateViewController", @"IDDueDateViewController", nil], kClassesKey,
 						 nil],
 						nil];
     
@@ -92,17 +91,6 @@ static NSString *const kClassesKey =  @"classes";
 {
     [super viewWillAppear:animated];
     self.title = data.itemName;
-    
-    if (startKal != nil) {
-        data.startDate = startKal.selectedDate;
-        startKal = nil;
-    }
-    if (dueKal != nil) {
-#warning Créer la notification si date du calendrier non nulle, sinon supprimer la notification
-        // data.startDate = dueKal.selectedDate;
-        dueKal = nil;
-    }
-    
     
     [self.tableView reloadData];
 }
@@ -188,7 +176,7 @@ static NSString *const kClassesKey =  @"classes";
         cell.detailTextLabel.text = data.notes;
         cell.imageView.image = nil;
     
-    } else if ([name isEqualToString:@"IDStartDateViewController"]) {
+    } else if ([name isEqualToString:@"IDDateViewController"]) {
         // Start date
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd MMMM yyyy"];
@@ -226,7 +214,7 @@ static NSString *const kClassesKey =  @"classes";
         // Whom
         ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
         picker.peoplePickerDelegate = self;
-
+        
         [self presentModalViewController:picker animated:YES];
         [picker release];
         
@@ -275,31 +263,19 @@ static NSString *const kClassesKey =  @"classes";
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
         
-    } else if ([name isEqualToString:@"IDStartDateViewController"]) {
-        // Start date
-        startKal = [[[KalViewController alloc] initWithSelectedDate:data.startDate] autorelease];
-        startKal.title = NSLocalizedString(@"Date", @"Date");
+    } else if ([name isEqualToString:@"IDDateViewController"]) {
+        // Date
+        IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController" bundle:nil];
         
-        startKal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Today", @"Today") style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectTodayStartKal)] autorelease];
-
-        startKal.delegate = self;
+        detailViewController.data = data;
         
-        [self.navigationController pushViewController:startKal animated:YES];
-
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+        
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
         // Due date
 
 #warning Récupérer la date de la notification
-        
-        dueKal = [[[KalViewController alloc] init] autorelease];
-        dueKal.title = NSLocalizedString(@"Due date", @"Due date");
-        
-        dueKal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Today", @"Today") style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectTodayStartKal)] autorelease];
-        
-        dueKal.delegate = self;
-        
-        [self.navigationController pushViewController:dueKal animated:YES];
-        
     }
 }
 
@@ -329,18 +305,6 @@ static NSString *const kClassesKey =  @"classes";
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier{
     return NO;
-}
-
-#pragma mark - Misc. methods
-
-// Action handler for the navigation bar's right bar button item (start kal)
-- (void)showAndSelectTodayStartKal {
-    [startKal showAndSelectDate:[NSDate date]];
-}
-
-// Action handler for the navigation bar's right bar button item (due kal)
-- (void)showAndSelectTodayDueKal {
-    [dueKal showAndSelectDate:[NSDate date]];
 }
 
 @end
