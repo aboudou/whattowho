@@ -34,6 +34,8 @@ static NSString *const kClassesKey =  @"classes";
 {
     [data release];
     [_viewControllers release];
+    [startKal release];
+    [dueKal release];
     
     [super dealloc];
 }
@@ -73,7 +75,7 @@ static NSString *const kClassesKey =  @"classes";
 						 nil],
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
-						  @"IDDateViewController", nil], kClassesKey,
+						  @"IDStartDateViewController", @"IDDueDateViewController", nil], kClassesKey,
 						 nil],
 						nil];
     
@@ -94,6 +96,11 @@ static NSString *const kClassesKey =  @"classes";
     if (startKal != nil) {
         data.startDate = startKal.selectedDate;
         startKal = nil;
+    }
+    if (dueKal != nil) {
+#warning Créer la notification si date du calendrier non nulle, sinon supprimer la notification
+        // data.startDate = dueKal.selectedDate;
+        dueKal = nil;
     }
     
     
@@ -181,15 +188,26 @@ static NSString *const kClassesKey =  @"classes";
         cell.detailTextLabel.text = data.notes;
         cell.imageView.image = nil;
     
-    } else if ([name isEqualToString:@"IDDateViewController"]) {
-        // Date
+    } else if ([name isEqualToString:@"IDStartDateViewController"]) {
+        // Start date
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd MMMM yyyy"];
         cell.detailTextLabel.text = [dateFormat stringFromDate:data.startDate];
-        cell.textLabel.text = @"Date";
+        cell.textLabel.text = NSLocalizedString(@"Date", @"Date");
         [dateFormat release];
         cell.imageView.image = nil;
         
+    } else if ([name isEqualToString:@"IDDueDateViewController"]) {
+        // Due date
+#warning Récupérer la date de la notification
+        /* 
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd MMMM yyyy"];
+        cell.detailTextLabel.text = [dateFormat stringFromDate:data.startDate];
+         [dateFormat release];
+         */
+        cell.textLabel.text = NSLocalizedString(@"Due date", @"Due date");
+        cell.imageView.image = nil;
     }
     
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -257,17 +275,31 @@ static NSString *const kClassesKey =  @"classes";
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
         
-    } else if ([name isEqualToString:@"IDDateViewController"]) {
-        // Date
+    } else if ([name isEqualToString:@"IDStartDateViewController"]) {
+        // Start date
         startKal = [[[KalViewController alloc] initWithSelectedDate:data.startDate] autorelease];
         startKal.title = NSLocalizedString(@"Date", @"Date");
         
-        startKal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Today", @"Today") style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectToday)] autorelease];
+        startKal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Today", @"Today") style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectTodayStartKal)] autorelease];
 
         startKal.delegate = self;
         
         [self.navigationController pushViewController:startKal animated:YES];
 
+    } else if ([name isEqualToString:@"IDDueDateViewController"]) {
+        // Due date
+
+#warning Récupérer la date de la notification
+        
+        dueKal = [[[KalViewController alloc] init] autorelease];
+        dueKal.title = NSLocalizedString(@"Due date", @"Due date");
+        
+        dueKal.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Today", @"Today") style:UIBarButtonItemStyleBordered target:self action:@selector(showAndSelectTodayStartKal)] autorelease];
+        
+        dueKal.delegate = self;
+        
+        [self.navigationController pushViewController:dueKal animated:YES];
+        
     }
 }
 
@@ -301,10 +333,14 @@ static NSString *const kClassesKey =  @"classes";
 
 #pragma mark - Misc. methods
 
-// Action handler for the navigation bar's right bar button item.
-- (void)showAndSelectToday
-{
+// Action handler for the navigation bar's right bar button item (start kal)
+- (void)showAndSelectTodayStartKal {
     [startKal showAndSelectDate:[NSDate date]];
+}
+
+// Action handler for the navigation bar's right bar button item (due kal)
+- (void)showAndSelectTodayDueKal {
+    [dueKal showAndSelectDate:[NSDate date]];
 }
 
 @end

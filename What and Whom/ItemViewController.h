@@ -15,6 +15,7 @@
     NSArray *_viewControllers;
     
     KalViewController *startKal;
+    KalViewController *dueKal;
 }
 
 @property(nonatomic, retain) Data *data;
