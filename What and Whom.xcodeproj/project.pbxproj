@@ -19,7 +19,6 @@
 		3B04C2B913479B6900A37E9A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B04C2B813479B6900A37E9A /* RootViewController.m */; };
 		3B04C2BC13479B6900A37E9A /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B04C2BA13479B6900A37E9A /* RootViewController.xib */; };
 		3B04C2CF13479F8D00A37E9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B04C2CD13479F8D00A37E9A /* Localizable.strings */; };
-		3B04C2D113479FA700A37E9A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B04C2CD13479F8D00A37E9A /* Localizable.strings */; };
 		3B06FE06134DF61D004398FD /* game.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B06FE04134DF61D004398FD /* game.png */; };
 		3B06FE07134DF61D004398FD /* game@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B06FE05134DF61D004398FD /* game@2x.png */; };
 		3B06FE0B134DF8B4004398FD /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B06FE09134DF8B4004398FD /* book.png */; };
@@ -345,6 +344,9 @@
 /* Begin PBXProject section */
 		3B04C29013479B6800A37E9A /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 3B04C29313479B6800A37E9A /* Build configuration list for PBXProject "What and Whom" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -372,7 +374,6 @@
 				3B04C2B613479B6900A37E9A /* MainWindow.xib in Resources */,
 				3B04C2BC13479B6900A37E9A /* RootViewController.xib in Resources */,
 				3B04C2CF13479F8D00A37E9A /* Localizable.strings in Resources */,
-				3B04C2D113479FA700A37E9A /* Localizable.strings in Resources */,
 				3B0EB08D1348E206002C937F /* Default.png in Resources */,
 				3B0EB08E1348E206002C937F /* Default@2x.png in Resources */,
 				3B73DA0E1349983E0017A43A /* borrow.png in Resources */,
@@ -542,6 +543,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -557,6 +559,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Arnaud Boudou";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
