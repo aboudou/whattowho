@@ -18,6 +18,8 @@
 
 @synthesize managedObjectContext=__managedObjectContext;
 
+@synthesize detailViewController;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,15 +80,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -113,12 +106,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController_iPad" bundle:nil];
+        
+        itemViewController.data = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], itemViewController, nil];
+        self.splitViewController.viewControllers = viewControllers;
+        [viewControllers release];
+        [itemViewController release];
+    } else {
+        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
+        
+        itemViewController.data = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    itemViewController.data = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    [self.navigationController pushViewController:itemViewController animated:YES];
-    [itemViewController release];
+        [self.navigationController pushViewController:itemViewController animated:YES];
+        [itemViewController release];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -311,5 +314,12 @@
     [self.tableView reloadData];
 }
  */
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
+   return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 @end

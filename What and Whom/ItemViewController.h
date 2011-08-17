@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Data.h"
+#import "DetailWrapperViewController.h"
 
-@interface ItemViewController : UITableViewController <ABPeoplePickerNavigationControllerDelegate> {
+@interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate> {
     Data *data;
-    NSArray *_viewControllers;
+    
 }
 
 @property(nonatomic, retain) Data *data;

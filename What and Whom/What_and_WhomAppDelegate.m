@@ -23,11 +23,19 @@
 
 @synthesize navigationController=_navigationController;
 
+@synthesize splitViewController = _splitViewController;
+@synthesize rootViewController = _rootViewController;
+@synthesize detailViewController = _detailViewController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     // Add the navigation controller's view to the window and display.
-    self.window.rootViewController = self.navigationController;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.window.rootViewController = self.splitViewController;
+    } else {
+        self.window.rootViewController = self.navigationController;
+    }
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -77,13 +85,21 @@
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
     [_navigationController release];
+    [_splitViewController release];
+    [_rootViewController release];
+    [_detailViewController release];
     [super dealloc];
 }
 
 - (void)awakeFromNib
 {
-    RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
-    rootViewController.managedObjectContext = self.managedObjectContext;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.rootViewController.managedObjectContext = self.managedObjectContext;
+    } else {
+        RootViewController *rootViewController = (RootViewController *)[self.navigationController topViewController];
+        rootViewController.managedObjectContext = self.managedObjectContext;
+    }
+
 }
 
 - (void)saveContext

@@ -51,11 +51,16 @@ static NSString *const kClassesKey =  @"classes";
 
 #pragma mark - View lifecycle
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.title = data.itemName;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.navItem.title = data.itemName;
+    } else {
+        self.title = data.itemName;
+    }
     
     _viewControllers = [[NSArray alloc] initWithObjects:
 						[NSDictionary dictionaryWithObjectsAndKeys:
@@ -79,7 +84,7 @@ static NSString *const kClassesKey =  @"classes";
 						  @"IDDateViewController", /*@"IDDueDateViewController",*/ nil], kClassesKey,
 						 nil],
 						nil];
-    
+
 }
 
 - (void)viewDidUnload
@@ -109,7 +114,9 @@ static NSString *const kClassesKey =  @"classes";
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -300,6 +307,13 @@ static NSString *const kClassesKey =  @"classes";
     }
 }
 
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    // In the simplest, most efficient, case, reload the table view.
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 
 - (void)peoplePickerNavigationControllerDidCancel:
@@ -327,5 +341,6 @@ static NSString *const kClassesKey =  @"classes";
                               identifier:(ABMultiValueIdentifier)identifier{
     return NO;
 }
+
 
 @end

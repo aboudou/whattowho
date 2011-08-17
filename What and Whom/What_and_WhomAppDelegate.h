@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemViewController.h"
+
+@class RootViewController;
 
 @interface What_and_WhomAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -18,9 +21,13 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
+@property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
+@property (nonatomic, retain) IBOutlet ItemViewController *detailViewController;
+
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end
