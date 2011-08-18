@@ -173,8 +173,6 @@
 - (void)insertNewObject
 {
     
-    ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
-    
     // Create a new instance of the entity managed by the fetched results controller.
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -193,11 +191,24 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+
     
-    itemViewController.data = newManagedObject;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController_iPad" bundle:nil];
+        
+        itemViewController.data = newManagedObject;
+        NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], itemViewController, nil];
+        self.splitViewController.viewControllers = viewControllers;
+        [viewControllers release];
+        [itemViewController release];
+    } else {
+        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
     
-    [self.navigationController pushViewController:itemViewController animated:YES];
-    [itemViewController release];
+        itemViewController.data = newManagedObject;
+    
+        [self.navigationController pushViewController:itemViewController animated:YES];
+        [itemViewController release];
+    }
 
 }
 

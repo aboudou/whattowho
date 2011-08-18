@@ -58,7 +58,7 @@ static NSString *const kTitleKey =  @"title";
         if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
             self.navItem.leftBarButtonItem  = nil;
         } else {
-            self.navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Items", @"Items") style:UIBarButtonItemStyleBordered target:self action:@selector(showItems:)];
+            self.navItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Items", @"Items") style:UIBarButtonItemStyleBordered target:self action:@selector(showItems:)] autorelease];
         }
 
     }
@@ -109,7 +109,7 @@ static NSString *const kTitleKey =  @"title";
         if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
             self.navItem.leftBarButtonItem  = nil;
         } else {
-            self.navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Items", @"Items") style:UIBarButtonItemStyleBordered target:self action:@selector(showItems:)];
+            self.navItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Items", @"Items") style:UIBarButtonItemStyleBordered target:self action:@selector(showItems:)] autorelease];
         }
     }
 }
