@@ -57,6 +57,7 @@
 		3B73DA13134999450017A43A /* lend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA11134999450017A43A /* lend@2x.png */; };
 		3B94D8481348521C00D0BDEA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8461348521C00D0BDEA /* AddressBook.framework */; };
 		3B94D8491348521C00D0BDEA /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8471348521C00D0BDEA /* AddressBookUI.framework */; };
+		3B9A749E13FEC993001001EA /* IDPhotoViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A74A013FEC993001001EA /* IDPhotoViewController_iPad.xib */; };
 		3BA924A21350C56E003B8F84 /* IDNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA924A01350C56E003B8F84 /* IDNotesViewController.m */; };
 		3BA924A31350C56E003B8F84 /* IDNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */; };
 		3BA924A81350C8F8003B8F84 /* IDDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA924A61350C8F8003B8F84 /* IDDateViewController.m */; };
@@ -146,6 +147,8 @@
 		3B73DA11134999450017A43A /* lend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lend@2x.png"; path = "What and Whom/lend@2x.png"; sourceTree = "<group>"; };
 		3B94D8461348521C00D0BDEA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3B94D8471348521C00D0BDEA /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		3B9A749F13FEC993001001EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDPhotoViewController_iPad.xib; sourceTree = "<group>"; };
+		3B9A74A113FEC999001001EA /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDPhotoViewController_iPad.xib; sourceTree = "<group>"; };
 		3BA9249F1350C56E003B8F84 /* IDNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDNotesViewController.h; sourceTree = "<group>"; };
 		3BA924A01350C56E003B8F84 /* IDNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDNotesViewController.m; sourceTree = "<group>"; };
 		3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDNotesViewController.xib; path = "What and Whom/IDNotesViewController.xib"; sourceTree = "<group>"; };
@@ -314,6 +317,7 @@
 				3B2F5D2413FBF9CC009EC3FB /* DetailWrapperViewController.h */,
 				3B2F5D2513FBF9CC009EC3FB /* DetailWrapperViewController.m */,
 				3B43309313FC0A01005D02F3 /* DetailWrapperViewController.xib */,
+				3B9A74A013FEC993001001EA /* IDPhotoViewController_iPad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -443,6 +447,7 @@
 				3B43309113FC0A01005D02F3 /* DetailWrapperViewController.xib in Resources */,
 				3B43309613FC1441005D02F3 /* Default-Portrait~ipad.png in Resources */,
 				3B43309813FC1444005D02F3 /* Default-Landscape~ipad.png in Resources */,
+				3B9A749E13FEC993001001EA /* IDPhotoViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +554,15 @@
 			);
 			name = ItemViewController.xib;
 			path = "What and Whom";
+			sourceTree = "<group>";
+		};
+		3B9A74A013FEC993001001EA /* IDPhotoViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B9A749F13FEC993001001EA /* en */,
+				3B9A74A113FEC999001001EA /* fr */,
+			);
+			name = IDPhotoViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 		3BA924AC1350CB41003B8F84 /* IDDateViewController.xib */ = {

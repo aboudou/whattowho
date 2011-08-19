@@ -10,11 +10,16 @@
 #import "Data.h"
 #import "DetailWrapperViewController.h"
 
-@interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate> {
+@interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate, UIPopoverControllerDelegate> {
     Data *data;
     
+    UIPopoverController *popoverController;
 }
 
-@property(nonatomic, retain) Data *data;
+@property (nonatomic, retain) Data *data;
+
+@property (nonatomic, retain) UIPopoverController *popoverController;
+
+- (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame;
 
 @end

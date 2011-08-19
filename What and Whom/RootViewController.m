@@ -175,6 +175,11 @@ NSIndexPath *selectedIndexPath;
 {
     [__fetchedResultsController release];
     [__managedObjectContext release];
+    [popoverController release];
+    [splitViewController release];
+    [detailViewController release];
+    [rootPopoverButtonItem release];
+    
     [super dealloc];
 }
 

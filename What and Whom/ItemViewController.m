@@ -23,6 +23,7 @@ static NSString *const kClassesKey =  @"classes";
 @implementation ItemViewController
 
 @synthesize data;
+@synthesize popoverController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,6 +38,7 @@ static NSString *const kClassesKey =  @"classes";
 {
     [data release];
     [_viewControllers release];
+    [popoverController release];
     
     [super dealloc];
 }
@@ -218,6 +220,8 @@ static NSString *const kClassesKey =  @"classes";
 
     NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
     
+    CGRect aFrame = [self.tableView rectForRowAtIndexPath:indexPath];
+    
     if ([name isEqualToString:@"IDContactViewController"]) {
         // Whom
         ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
@@ -232,7 +236,11 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
         
     } else if ([name isEqualToString:@"MessageViewController"]) {
@@ -241,7 +249,11 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
         
     } else if ([name isEqualToString:@"IDKindViewController"]) {
@@ -250,7 +262,11 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
         
     } else if ([name isEqualToString:@"IDItemViewController"]) {
@@ -259,17 +275,33 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
         
     } else if ([name isEqualToString:@"IDPhotoViewController"]) {
         // Photo
-        IDPhotoViewController *detailViewController = [[IDPhotoViewController alloc] initWithNibName:@"IDPhotoViewController" bundle:nil];
-        
-        detailViewController.data = data;
-        
-        [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            IDPhotoViewController *detailViewController = [[IDPhotoViewController alloc] initWithNibName:@"IDPhotoViewController_iPad" bundle:nil];
+            
+            detailViewController.data = data;
+            
+            detailViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            [self presentModalViewController:detailViewController animated:YES];
+
+            [detailViewController release];
+        } else {
+            IDPhotoViewController *detailViewController = [[IDPhotoViewController alloc] initWithNibName:@"IDPhotoViewController" bundle:nil];
+            
+            detailViewController.data = data;
+            
+            [self.navigationController pushViewController:detailViewController animated:YES];
+
+            [detailViewController release];
+        }
         
     } else if ([name isEqualToString:@"IDNotesViewController"]) {
         // Notes
@@ -277,7 +309,11 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
         
     } else if ([name isEqualToString:@"IDDateViewController"]) {
@@ -286,7 +322,11 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
         
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
@@ -296,7 +336,11 @@ static NSString *const kClassesKey =  @"classes";
         
         detailViewController.data = data;
         
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [self managePopover:detailViewController frame:aFrame];
+        } else {
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         [detailViewController release];
     }
 }
@@ -327,6 +371,29 @@ static NSString *const kClassesKey =  @"classes";
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier{
     return NO;
+}
+
+
+#pragma mark - UIPopoverControllerDelegate
+- (void)popoverControllerDidDismissPopover: (UIPopoverController *)p_popoverController {
+    // Force la mise à jour des données avant de rafraichir la vue courante
+    [p_popoverController.contentViewController viewWillDisappear:YES];
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - Misc. methods
+- (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame {
+    if(![popoverController isPopoverVisible]){
+        // Popover is not visible
+        popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+        [popoverController setPopoverContentSize: CGSizeMake(320.0, 480.0) animated:YES];
+        popoverController.delegate = self;
+        [popoverController presentPopoverFromRect:aFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [popoverController dismissPopoverAnimated:YES];
+        popoverController = nil;
+    }
 }
 
 @end

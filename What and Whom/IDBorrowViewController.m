@@ -7,6 +7,7 @@
 //
 
 #import "IDBorrowViewController.h"
+#import "ItemViewController.h"
 
 static NSString *const kDataKey =  @"data";
 
@@ -84,7 +85,9 @@ static NSString *const kDataKey =  @"data";
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -130,7 +133,6 @@ static NSString *const kDataKey =  @"data";
         } else {
             cell.accessoryType = 0;
         }
-        
     }
     
 	

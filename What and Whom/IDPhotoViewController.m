@@ -12,7 +12,8 @@
 
 @implementation IDPhotoViewController
 
-@synthesize data, imageView, photoBg, addButton, removeButton;
+@synthesize data, imageView, photoBg, addButton, doneButton;
+@synthesize popoverController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,8 +29,9 @@
     [data release];
     [imageView release];
     [photoBg release];
+    [popoverController release];
     [addButton release];
-    [removeButton release];
+    [doneButton release];
     
     [super dealloc];
 }
@@ -56,12 +58,6 @@
     
     if (data.photo != nil) {
         self.imageView.image = [[[UIImage alloc] initWithData:data.photo] autorelease];
-        /*
-        [[photoBg layer] setCornerRadius:8.0f];
-        [[photoBg layer] setMasksToBounds:YES];
-        [[photoBg layer] setBorderWidth:1.0f];
-        [photoBg setBackgroundColor:[UIColor blackColor]];
-        */
         self.imageView.backgroundColor = [UIColor blackColor];
     }
 }
@@ -85,7 +81,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -93,6 +91,13 @@
 
 -(IBAction)addButtonPressed:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        // Hide popover if visible.
+        if([popoverController isPopoverVisible]){
+            [popoverController dismissPopoverAnimated:YES];
+            popoverController = nil;
+        }
+        
         // Un appareil photo est disponible, on laisse le choix de la source
         UIActionSheet *photoSourceSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Add a photo", @"Title for photo source sheet") 
                                                                       delegate:self 
@@ -101,7 +106,11 @@
                                                              otherButtonTitles:NSLocalizedString(@"Take new photo", "Photo from camera button on photo source sheet"), 
                                            NSLocalizedString(@"Choose existing photo", "Photo from library on photo source sheet"), 
                                            nil, nil];
-        [photoSourceSheet showInView:self.view];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [photoSourceSheet showFromBarButtonItem:sender animated:YES];
+        } else {
+            [photoSourceSheet showInView:self.view];
+        }
         [photoSourceSheet release];
     } else {
         // Pas d'appareil photo, on va directement dans la bibliothèque d'images
@@ -110,7 +119,19 @@
         picker.delegate = self;
         picker.allowsEditing = YES;
         
-        [self presentModalViewController:picker animated:YES];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            if(![popoverController isPopoverVisible]){
+                // Popover is not visible
+                popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
+                [popoverController setPopoverContentSize: CGSizeMake(320.0, 480.0) animated:YES];
+                [popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            }else{
+                [popoverController dismissPopoverAnimated:YES];
+                popoverController = nil;
+            }
+        } else {
+            [self presentModalViewController:picker animated:YES];
+        }
     }
 }
 
@@ -120,6 +141,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(IBAction)doneButtonPressed:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 #pragma mark -
 #pragma mark UIImagePickerControllerDelegate functions
@@ -127,8 +152,22 @@
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
     self.data.photo = UIImagePNGRepresentation(image);
-    
-    [self dismissModalViewControllerAnimated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            [self dismissModalViewControllerAnimated:YES];
+        } else {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+        self.imageView.image = image;
+        
+        if (data.photo != nil) {
+            self.imageView.image = [[[UIImage alloc] initWithData:data.photo] autorelease];
+            self.imageView.backgroundColor = [UIColor blackColor];
+        }
+
+    } else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
     [picker release];
 }
 
@@ -152,6 +191,29 @@
             return;
     }
     
-    [self presentModalViewController:picker animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            [self presentModalViewController:picker animated:YES];
+        } else {
+            if(![popoverController isPopoverVisible]){
+                // Popover is not visible
+                popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
+                [popoverController setPopoverContentSize: CGSizeMake(320.0, 480.0) animated:YES];
+                [popoverController presentPopoverFromBarButtonItem:self.addButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            }else{
+                [popoverController dismissPopoverAnimated:YES];
+                popoverController = nil;
+            }
+        }
+        
+        if (data.photo != nil) {
+            self.imageView.image = [[[UIImage alloc] initWithData:data.photo] autorelease];
+            self.imageView.backgroundColor = [UIColor blackColor];
+        }
+
+    } else {
+        [self presentModalViewController:picker animated:YES];
+    }
+
 }
 @end
