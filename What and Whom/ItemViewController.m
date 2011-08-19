@@ -98,7 +98,7 @@ static NSString *const kClassesKey =  @"classes";
 {
     [super viewWillAppear:animated];
     self.title = data.itemName;
-    
+        
     [self.tableView reloadData];
 }
 
@@ -110,14 +110,6 @@ static NSString *const kClassesKey =  @"classes";
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        return YES;
-    }
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
@@ -212,7 +204,9 @@ static NSString *const kClassesKey =  @"classes";
         cell.imageView.image = nil;
     }
     
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 	
     return cell;
 }
@@ -334,6 +328,5 @@ static NSString *const kClassesKey =  @"classes";
                               identifier:(ABMultiValueIdentifier)identifier{
     return NO;
 }
-
 
 @end

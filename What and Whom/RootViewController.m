@@ -20,6 +20,10 @@
 
 @synthesize detailViewController;
 
+@synthesize splitViewController, rootPopoverButtonItem, popoverController;
+
+NSIndexPath *selectedIndexPath;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,13 +33,21 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
+
+    // Do not unselect items on viewWillAppear for iPad
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.clearsSelectionOnViewWillAppear = NO;
+    } else {
+        self.clearsSelectionOnViewWillAppear = YES;
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -107,13 +119,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController_iPad" bundle:nil];
+        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"DetailWrapperViewController" bundle:nil];
         
         itemViewController.data = [self.fetchedResultsController objectAtIndexPath:indexPath];
         NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], itemViewController, nil];
         self.splitViewController.viewControllers = viewControllers;
         [viewControllers release];
+        
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+        
+        // Configure the new view controller's popover button (after the view has been displayed and its toolbar/navigation bar has been created).
+        if (rootPopoverButtonItem != nil) {
+            [itemViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+        }
+
         [itemViewController release];
+
     } else {
         ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
         
@@ -122,6 +145,8 @@
         [self.navigationController pushViewController:itemViewController animated:YES];
         [itemViewController release];
     }
+    selectedIndexPath = indexPath;
+
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -158,7 +183,9 @@
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = (NSString *)[[managedObject valueForKey:@"itemName"] description];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 
     NSNumber *emprunt = (NSNumber *)[[managedObject valueForKey:@"borrow"] description];
     if ([emprunt intValue] == 1) {
@@ -194,12 +221,26 @@
 
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController_iPad" bundle:nil];
+        ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"DetailWrapperViewController" bundle:nil];
         
         itemViewController.data = newManagedObject;
         NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], itemViewController, nil];
         self.splitViewController.viewControllers = viewControllers;
         [viewControllers release];
+        
+        // Select in tableview new created item
+        [self.tableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
+        // Hide popover if needed
+        if (popoverController != nil) {
+            [popoverController dismissPopoverAnimated:YES];
+        }
+        
+        // Configure the new view controller's popover button (after the view has been displayed and its toolbar/navigation bar has been created).
+        if (rootPopoverButtonItem != nil) {
+            [itemViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+        }
+
         [itemViewController release];
     } else {
         ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
@@ -294,19 +335,48 @@
             
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            selectedIndexPath = newIndexPath;
             break;
             
         case NSFetchedResultsChangeDelete:
+            
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                if([selectedIndexPath isEqual:indexPath]) {
+                    DetailWrapperViewController *detailWrapperViewController = [[DetailWrapperViewController alloc] initWithNibName:@"DetailWrapperViewController" bundle:nil];
+                
+                    NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], detailWrapperViewController, nil];
+                    self.splitViewController.viewControllers = viewControllers;
+                    [viewControllers release];
+
+                    if (rootPopoverButtonItem != nil) {
+                        [detailWrapperViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+                    }
+                    
+                    [detailWrapperViewController release];
+                }
+                
+                if (popoverController != nil) {
+                    [popoverController dismissPopoverAnimated:YES];
+                }
+                
+            }
+            [tableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+
+
             break;
             
         case NSFetchedResultsChangeUpdate:
             [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            selectedIndexPath = indexPath;
             break;
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            selectedIndexPath = newIndexPath;
             break;
     }
 }
@@ -314,6 +384,8 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+
+    [self.tableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 /*
@@ -331,6 +403,22 @@
         return YES;
     }
    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)splitViewController:(UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController:(UIPopoverController*)pc {
+    barButtonItem.title = NSLocalizedString(@"Items", @"Items");
+    popoverController = pc;
+    self.rootPopoverButtonItem = barButtonItem;
+    DetailWrapperViewController *detailWrapperViewController = [splitViewController.viewControllers objectAtIndex:1];
+    [detailWrapperViewController showRootPopoverButtonItem:rootPopoverButtonItem];
+}
+
+- (void)splitViewController:(UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    // Nil out references to the popover controller and the popover button, and tell the detail view controller to hide the button.
+    DetailWrapperViewController *detailWrapperViewController = [splitViewController.viewControllers objectAtIndex:1];
+    [detailWrapperViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
+    popoverController = nil;
+    self.rootPopoverButtonItem = nil;
 }
 
 @end

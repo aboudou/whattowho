@@ -7,6 +7,7 @@
 //
 
 #import "DetailWrapperViewController.h"
+#import "RootViewController.h"
 
 static NSString *const kClassesKey =  @"classes";
 static NSString *const kTitleKey =  @"title";
@@ -38,12 +39,6 @@ static NSString *const kTitleKey =  @"title";
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-   
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         NSArray *nibObjs = [[NSBundle mainBundle] loadNibNamed:@"DetailWrapperViewController" owner:self options:nil];
         UIView *aView = [nibObjs objectAtIndex:0];
@@ -54,13 +49,6 @@ static NSString *const kTitleKey =  @"title";
                                      [NSArray arrayWithObjects:
                                       NSLocalizedString(@"No selected item", @"No selected item"), nil], kClassesKey, @"", kTitleKey,
                                      nil]];
-
-        if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight) {
-            self.navItem.leftBarButtonItem  = nil;
-        } else {
-            self.navItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Items", @"Items") style:UIBarButtonItemStyleBordered target:self action:@selector(showItems:)] autorelease];
-        }
-
     }
 }
 
@@ -101,17 +89,24 @@ static NSString *const kTitleKey =  @"title";
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return YES;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-            self.navItem.leftBarButtonItem  = nil;
-        } else {
-            self.navItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Items", @"Items") style:UIBarButtonItemStyleBordered target:self action:@selector(showItems:)] autorelease];
-        }
-    }
+#pragma mark -
+#pragma mark Managing the popover
+
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    //[navBar.topItem setLeftBarButtonItem:barButtonItem animated:NO];
+    self.navItem.leftBarButtonItem = barButtonItem;
+}
+
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    //[navBar.topItem setLeftBarButtonItem:nil animated:NO];
+    self.navItem.leftBarButtonItem = nil;
 }
 
 
@@ -150,11 +145,6 @@ static NSString *const kTitleKey =  @"title";
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-}
-
-#pragma mark - UI methods
--(IBAction) showItems:(id)sender {
-    NSLog(@"Show items");
 }
 
 @end
