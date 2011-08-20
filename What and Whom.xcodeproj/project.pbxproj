@@ -59,6 +59,8 @@
 		3B82303913FF95B8004993E3 /* IDDueDateViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B82303B13FF95B8004993E3 /* IDDueDateViewController_iPad.xib */; };
 		3B82304213FF9BE2004993E3 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */; };
 		3B82304313FF9BE2004993E3 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */; };
+		3B82304613FFA0DA004993E3 /* money.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304413FFA0DA004993E3 /* money.png */; };
+		3B82304713FFA0DA004993E3 /* money@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304513FFA0DA004993E3 /* money@2x.png */; };
 		3B94D8481348521C00D0BDEA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8461348521C00D0BDEA /* AddressBook.framework */; };
 		3B94D8491348521C00D0BDEA /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8471348521C00D0BDEA /* AddressBookUI.framework */; };
 		3B9A749E13FEC993001001EA /* IDPhotoViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A74A013FEC993001001EA /* IDPhotoViewController_iPad.xib */; };
@@ -157,6 +159,8 @@
 		3B82303C13FF95BD004993E3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDDueDateViewController_iPad.xib; sourceTree = "<group>"; };
 		3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "What and Whom/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "What and Whom/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		3B82304413FFA0DA004993E3 /* money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = money.png; path = "What and Whom/money.png"; sourceTree = "<group>"; };
+		3B82304513FFA0DA004993E3 /* money@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "money@2x.png"; path = "What and Whom/money@2x.png"; sourceTree = "<group>"; };
 		3B94D8461348521C00D0BDEA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3B94D8471348521C00D0BDEA /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		3B9A749F13FEC993001001EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDPhotoViewController_iPad.xib; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 				3B73DA11134999450017A43A /* lend@2x.png */,
 				3B06FE1D134E08DE004398FD /* misc.png */,
 				3B06FE1E134E08DE004398FD /* misc@2x.png */,
+				3B82304413FFA0DA004993E3 /* money.png */,
+				3B82304513FFA0DA004993E3 /* money@2x.png */,
 				3B3427CD134DC3E400F22C98 /* movie.png */,
 				3B3427CE134DC3E400F22C98 /* movie@2x.png */,
 				3B06FE11134DFE11004398FD /* music.png */,
@@ -468,6 +474,8 @@
 				3B82303913FF95B8004993E3 /* IDDueDateViewController_iPad.xib in Resources */,
 				3B82304213FF9BE2004993E3 /* Default-Landscape~ipad.png in Resources */,
 				3B82304313FF9BE2004993E3 /* Default-Portrait~ipad.png in Resources */,
+				3B82304613FFA0DA004993E3 /* money.png in Resources */,
+				3B82304713FFA0DA004993E3 /* money@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -408,12 +408,19 @@ static NSString *const kClassesKey =  @"classes";
     return NO;
 }
 
+#pragma mark - UIPopoverControllerDelegate
+- (void)popoverControllerDidDismissPopover: (UIPopoverController *)p_popoverController {
+    // Force la mise à jour des données avant de rafraichir la vue courante
+    [p_popoverController.contentViewController viewWillDisappear:YES];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Misc. methods
 - (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame width:(float)aWidth height:(float)aHeight {
     if(![popoverController isPopoverVisible]){
         // Popover is not visible
         popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
+        popoverController.delegate = self;
         [popoverController setPopoverContentSize: CGSizeMake(aWidth, aHeight) animated:YES];
         [popoverController presentPopoverFromRect:aFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else {

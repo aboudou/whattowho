@@ -55,14 +55,14 @@ static NSString *const kDataKey =  @"data";
         _viewControllers = [[NSArray alloc] initWithObjects:
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSArray arrayWithObjects:
-                              @"animal", @"misc", @"movie", @"game", @"book", @"software", @"music", @"tool", @"clothing", nil], kDataKey,
+                              @"animal", @"money", @"misc", @"movie", @"game", @"book", @"software", @"music", @"tool", @"clothing", nil], kDataKey,
                              nil],
                             nil];
     } else {
         _viewControllers = [[NSArray alloc] initWithObjects:
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSArray arrayWithObjects:
-                              @"animal", @"book", @"clothing", @"game", @"misc", @"movie", @"music", @"software", @"tool", nil], kDataKey,
+                              @"animal", @"book", @"clothing", @"game", @"misc", @"money", @"movie", @"music", @"software", @"tool", nil], kDataKey,
                              nil],
                             nil];
     }

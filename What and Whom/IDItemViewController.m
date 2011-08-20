@@ -60,12 +60,10 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        if ([self.itemNameTextField.text length] == 0) {
-            data.itemName = NSLocalizedString(@"What ?", @"What ?");
-        } else {
-            data.itemName = self.itemNameTextField.text;
-        }
+    if ([self.itemNameTextField.text length] == 0) {
+        data.itemName = NSLocalizedString(@"What ?", @"What ?");
+    } else {
+        data.itemName = self.itemNameTextField.text;
     }
 }
 

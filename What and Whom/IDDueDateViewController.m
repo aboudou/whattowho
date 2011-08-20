@@ -64,10 +64,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
 #warning créer la notification
-        //data.startDate = self.datePicker.date;
-    }
+    //data.startDate = self.datePicker.date;
 }
 
 - (void)viewDidUnload
