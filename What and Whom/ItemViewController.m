@@ -238,7 +238,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 2.5];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -252,7 +252,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:480.0];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -266,7 +266,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 10.5];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -280,7 +280,7 @@ static NSString *const kClassesKey =  @"classes";
             detailViewController.data = data;
             detailViewController.parentView = self;
 
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:114.0];
 
             [detailViewController release];
         } else {
@@ -322,7 +322,7 @@ static NSString *const kClassesKey =  @"classes";
             detailViewController.data = data;
             detailViewController.parentView = self;
 
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:300.0];
 
             [detailViewController release];
         } else {
@@ -343,7 +343,7 @@ static NSString *const kClassesKey =  @"classes";
             detailViewController.data = data;
             detailViewController.parentView = self;
 
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:304.0];
 
             [detailViewController release];
         } else {
@@ -365,7 +365,7 @@ static NSString *const kClassesKey =  @"classes";
             detailViewController.data = data;
             detailViewController.parentView = self;
 
-            [self managePopover:detailViewController frame:aFrame];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:304.0];
 
             [detailViewController release];
         } else {
@@ -410,12 +410,11 @@ static NSString *const kClassesKey =  @"classes";
 
 
 #pragma mark - Misc. methods
-- (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame {
+- (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame width:(float)aWidth height:(float)aHeight {
     if(![popoverController isPopoverVisible]){
         // Popover is not visible
         popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
-        [popoverController setPopoverContentSize: CGSizeMake(320.0, 480.0) animated:YES];
-        popoverController.delegate = self;
+        [popoverController setPopoverContentSize: CGSizeMake(aWidth, aHeight) animated:YES];
         [popoverController presentPopoverFromRect:aFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else {
         [popoverController dismissPopoverAnimated:YES];

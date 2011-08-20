@@ -20,6 +20,6 @@
 
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
-- (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame;
+- (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame width:(float)aWidth height:(float)aHeight;
 
 @end
