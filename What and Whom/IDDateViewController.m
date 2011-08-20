@@ -61,7 +61,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    data.startDate = self.datePicker.date;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        data.startDate = self.datePicker.date;
+    }
 }
 
 - (void)viewDidUnload

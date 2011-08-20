@@ -60,7 +60,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    data.notes = self.notesTextView.text;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        data.notes = self.notesTextView.text;
+    }
 }
 
 - (void)viewDidUnload

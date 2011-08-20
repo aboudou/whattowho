@@ -411,8 +411,8 @@ static NSString *const kClassesKey =  @"classes";
 #pragma mark - UIPopoverControllerDelegate
 - (void)popoverControllerDidDismissPopover: (UIPopoverController *)p_popoverController {
     // Force la mise à jour des données avant de rafraichir la vue courante
-    [p_popoverController.contentViewController viewWillDisappear:YES];
-    [self.tableView reloadData];
+//    [p_popoverController.contentViewController viewWillDisappear:YES];
+//    [self.tableView reloadData];
 }
 
 #pragma mark - Misc. methods
