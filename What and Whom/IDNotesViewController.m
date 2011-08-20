@@ -11,7 +11,8 @@
 
 @implementation IDNotesViewController
 
-@synthesize data, notesTextView;
+@synthesize data, notesTextView, doneButton;
+@synthesize parentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +27,8 @@
 {
     [data release];
     [notesTextView release];
+    [parentView release];
+    [doneButton release];
     
     [super dealloc];
 }
@@ -56,8 +59,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    data.notes = self.notesTextView.text;
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        data.notes = self.notesTextView.text;
+    }
 }
 
 - (void)viewDidUnload
@@ -73,6 +78,17 @@
         return YES;
     }
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(IBAction) doneButtonPressed:(id)sender {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+        
+        data.notes = self.notesTextView.text;
+        
+        [parentView.tableView reloadData];
+    }
 }
 
 @end

@@ -14,6 +14,7 @@ static NSString *const kTitleKey =  @"title";
 @implementation MessageViewController
 
 @synthesize data;
+@synthesize parentView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,6 +29,7 @@ static NSString *const kTitleKey =  @"title";
 {
     [data release];
     [_viewControllers release];
+    [parentView release];
     
     [super dealloc];
 }
@@ -198,6 +200,11 @@ static NSString *const kTitleKey =  @"title";
 
     } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"phone")]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            [parentView.popoverController dismissPopoverAnimated:YES];
+            parentView.popoverController = nil;
+        }
     
     } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"email")]) {
         MFMailComposeViewController *controller = [[[MFMailComposeViewController alloc] init] autorelease];
@@ -236,6 +243,12 @@ static NSString *const kTitleKey =  @"title";
 	}
     
 	[self dismissModalViewControllerAnimated:YES];
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+    }
+
 }
 
 #pragma mark - Mail composer delegate
@@ -266,6 +279,12 @@ static NSString *const kTitleKey =  @"title";
     }
     
 	[self dismissModalViewControllerAnimated:YES];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+    }
+
 }
 
 @end

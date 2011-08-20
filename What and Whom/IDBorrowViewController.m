@@ -8,12 +8,14 @@
 
 #import "IDBorrowViewController.h"
 #import "ItemViewController.h"
+#import "ItemViewController.h"
 
 static NSString *const kDataKey =  @"data";
 
 @implementation IDBorrowViewController
 
 @synthesize data;
+@synthesize parentView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,6 +30,7 @@ static NSString *const kDataKey =  @"data";
 {
     [data release];
     [_viewControllers release];
+    [parentView release];
 
     [super dealloc];
 }
@@ -153,8 +156,14 @@ static NSString *const kDataKey =  @"data";
         
     }
     
-    
     [self.tableView reloadData];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+        [parentView.tableView reloadData];
+    }
+
 }
 
 @end

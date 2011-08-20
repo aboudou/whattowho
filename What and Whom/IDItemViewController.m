@@ -11,7 +11,8 @@
 
 @implementation IDItemViewController
 
-@synthesize data, itemNameTextField;
+@synthesize data, itemNameTextField, doneButton;
+@synthesize parentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +27,8 @@
 {
     [data release];
     [itemNameTextField release];
+    [parentView release];
+    [doneButton release];
     
     [super dealloc];
 }
@@ -57,10 +60,12 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if ([self.itemNameTextField.text length] == 0) {
-        data.itemName = NSLocalizedString(@"What ?", @"What ?");
-    } else {
-        data.itemName = self.itemNameTextField.text;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if ([self.itemNameTextField.text length] == 0) {
+            data.itemName = NSLocalizedString(@"What ?", @"What ?");
+        } else {
+            data.itemName = self.itemNameTextField.text;
+        }
     }
 }
 
@@ -77,6 +82,21 @@
         return YES;
     }
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(IBAction) doneButtonPressed:(id)sender {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+        
+        if ([self.itemNameTextField.text length] == 0) {
+            data.itemName = NSLocalizedString(@"What ?", @"What ?");
+        } else {
+            data.itemName = self.itemNameTextField.text;
+        }
+
+        [parentView.tableView reloadData];
+    }
 }
 
 @end

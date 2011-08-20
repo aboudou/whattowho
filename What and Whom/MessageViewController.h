@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Data.h"
 #import <MessageUI/MessageUI.h>
+#import "Data.h"
+#import "ItemViewController.h"
 
 @interface MessageViewController : UITableViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate> {
     Data *data;
@@ -16,5 +17,6 @@
 }
 
 @property(nonatomic, retain) Data *data;
+@property (nonatomic, retain) ItemViewController *parentView;
 
 @end

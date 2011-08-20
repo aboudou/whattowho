@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Data.h"
+#import "ItemViewController.h"
 
 @interface IDDateViewController : UIViewController {
     Data *data;
-    IBOutlet UIDatePicker *datePicker;
-    IBOutlet UIButton *todayButton;
 }
 
-@property(nonatomic, retain) Data *data;
-@property(nonatomic, retain) UIDatePicker *datePicker;
-@property(nonatomic, retain) UIButton *todayButton;
+@property (nonatomic, retain) Data *data;
+@property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *todayButton;
+@property (nonatomic, retain) ItemViewController *parentView;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 
+-(IBAction) doneButtonPressed:(id)sender;
 -(IBAction) todayButtonPressed:(id)sender;
 
 @end

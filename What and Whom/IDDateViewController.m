@@ -10,7 +10,8 @@
 
 @implementation IDDateViewController
 
-@synthesize data, datePicker, todayButton;
+@synthesize data, datePicker, todayButton, doneButton;
+@synthesize parentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +27,8 @@
     [data release];
     [datePicker release];
     [todayButton release];
+    [parentView release];
+    [doneButton release];
     
     [super dealloc];
 }
@@ -57,8 +60,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    data.startDate = self.datePicker.date;
+
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        data.startDate = self.datePicker.date;
+    }
 }
 
 - (void)viewDidUnload
@@ -80,6 +85,17 @@
 
 -(IBAction)todayButtonPressed:(id)sender {
     [self.datePicker setDate:[NSDate date] animated:YES];
+}
+
+-(IBAction) doneButtonPressed:(id)sender {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+        
+        data.startDate = self.datePicker.date;
+        
+        [parentView.tableView reloadData];
+    }
 }
 
 @end

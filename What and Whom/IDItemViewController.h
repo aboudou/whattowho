@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Data.h"
+#import "ItemViewController.h"
 
 @interface IDItemViewController : UIViewController {
     Data *data;
-    IBOutlet UITextField *itemNameTextField;
 }
 
-@property(nonatomic, retain) Data *data;
-@property(nonatomic, retain) UITextField *itemNameTextField;
+@property (nonatomic, retain) Data *data;
+@property (nonatomic, retain) IBOutlet UITextField *itemNameTextField;
+@property (nonatomic, retain) ItemViewController *parentView;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+
+-(IBAction) doneButtonPressed:(id)sender;
 
 @end

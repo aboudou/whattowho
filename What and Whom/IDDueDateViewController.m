@@ -11,7 +11,8 @@
 
 @implementation IDDueDateViewController
 
-@synthesize data, datePicker, todayButton, removeButton;
+@synthesize data, datePicker, todayButton, removeButton, doneButton;
+@synthesize parentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +29,8 @@
     [datePicker release];
     [todayButton release];
     [removeButton release];
+    [parentView release];
+    [doneButton release];
 
     [super dealloc];
 }
@@ -61,9 +64,10 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
 #warning créer la notification
-    
-    //data.startDate = self.datePicker.date;
+        //data.startDate = self.datePicker.date;
+    }
 }
 
 - (void)viewDidUnload
@@ -92,4 +96,17 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(IBAction) doneButtonPressed:(id)sender {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+        
+#warning créer la notification
+        //data.startDate = self.datePicker.date;
+        
+        [parentView.tableView reloadData];
+    }
+}
+
 @end

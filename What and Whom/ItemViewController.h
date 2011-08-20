@@ -10,7 +10,7 @@
 #import "Data.h"
 #import "DetailWrapperViewController.h"
 
-@interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate, UIPopoverControllerDelegate> {
+@interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate> {
     Data *data;
     
     UIPopoverController *popoverController;

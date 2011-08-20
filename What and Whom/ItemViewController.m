@@ -237,6 +237,7 @@ static NSString *const kClassesKey =  @"classes";
         detailViewController.data = data;
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            detailViewController.parentView = self;
             [self managePopover:detailViewController frame:aFrame];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
@@ -250,6 +251,7 @@ static NSString *const kClassesKey =  @"classes";
         detailViewController.data = data;
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            detailViewController.parentView = self;
             [self managePopover:detailViewController frame:aFrame];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
@@ -258,11 +260,12 @@ static NSString *const kClassesKey =  @"classes";
         
     } else if ([name isEqualToString:@"IDKindViewController"]) {
         // Type of item
-        IDKindViewController *detailViewController = [[IDKindViewController alloc] initWithNibName:@"IDBorrowViewController" bundle:nil];
+        IDKindViewController *detailViewController = [[IDKindViewController alloc] initWithNibName:@"IDKindViewController" bundle:nil];
         
         detailViewController.data = data;
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            detailViewController.parentView = self;
             [self managePopover:detailViewController frame:aFrame];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
@@ -271,16 +274,24 @@ static NSString *const kClassesKey =  @"classes";
         
     } else if ([name isEqualToString:@"IDItemViewController"]) {
         // Item
-        IDItemViewController *detailViewController = [[IDItemViewController alloc] initWithNibName:@"IDItemViewController" bundle:nil];
-        
-        detailViewController.data = data;
-        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            IDItemViewController *detailViewController = [[IDItemViewController alloc] initWithNibName:@"IDItemViewController_iPad" bundle:nil];
+            
+            detailViewController.data = data;
+            detailViewController.parentView = self;
+
             [self managePopover:detailViewController frame:aFrame];
+
+            [detailViewController release];
         } else {
+            IDItemViewController *detailViewController = [[IDItemViewController alloc] initWithNibName:@"IDItemViewController" bundle:nil];
+            
+            detailViewController.data = data;
+            
             [self.navigationController pushViewController:detailViewController animated:YES];
+
+            [detailViewController release];
         }
-        [detailViewController release];
         
     } else if ([name isEqualToString:@"IDPhotoViewController"]) {
         // Photo
@@ -305,43 +316,67 @@ static NSString *const kClassesKey =  @"classes";
         
     } else if ([name isEqualToString:@"IDNotesViewController"]) {
         // Notes
-        IDNotesViewController *detailViewController = [[IDNotesViewController alloc] initWithNibName:@"IDNotesViewController" bundle:nil];
-        
-        detailViewController.data = data;
-        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            IDNotesViewController *detailViewController = [[IDNotesViewController alloc] initWithNibName:@"IDNotesViewController_iPad" bundle:nil];
+            
+            detailViewController.data = data;
+            detailViewController.parentView = self;
+
             [self managePopover:detailViewController frame:aFrame];
+
+            [detailViewController release];
         } else {
+            IDNotesViewController *detailViewController = [[IDNotesViewController alloc] initWithNibName:@"IDNotesViewController" bundle:nil];
+            
+            detailViewController.data = data;
+            
             [self.navigationController pushViewController:detailViewController animated:YES];
+
+            [detailViewController release];
         }
-        [detailViewController release];
         
     } else if ([name isEqualToString:@"IDDateViewController"]) {
         // Date
-        IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController" bundle:nil];
-        
-        detailViewController.data = data;
-        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController_iPad" bundle:nil];
+            
+            detailViewController.data = data;
+            detailViewController.parentView = self;
+
             [self managePopover:detailViewController frame:aFrame];
+
+            [detailViewController release];
         } else {
+            IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController" bundle:nil];
+            
+            detailViewController.data = data;
+            
             [self.navigationController pushViewController:detailViewController animated:YES];
+
+            [detailViewController release];
         }
-        [detailViewController release];
         
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
         // Due date
 
-        IDDueDateViewController *detailViewController = [[IDDueDateViewController alloc] initWithNibName:@"IDDueDateViewController" bundle:nil];
-        
-        detailViewController.data = data;
-        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            IDDueDateViewController *detailViewController = [[IDDueDateViewController alloc] initWithNibName:@"IDDueDateViewController_iPad" bundle:nil];
+            
+            detailViewController.data = data;
+            detailViewController.parentView = self;
+
             [self managePopover:detailViewController frame:aFrame];
+
+            [detailViewController release];
         } else {
+            IDDueDateViewController *detailViewController = [[IDDueDateViewController alloc] initWithNibName:@"IDDueDateViewController" bundle:nil];
+            
+            detailViewController.data = data;
+            
             [self.navigationController pushViewController:detailViewController animated:YES];
+
+            [detailViewController release];
         }
-        [detailViewController release];
     }
 }
 
@@ -371,14 +406,6 @@ static NSString *const kClassesKey =  @"classes";
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier{
     return NO;
-}
-
-
-#pragma mark - UIPopoverControllerDelegate
-- (void)popoverControllerDidDismissPopover: (UIPopoverController *)p_popoverController {
-    // Force la mise à jour des données avant de rafraichir la vue courante
-    [p_popoverController.contentViewController viewWillDisappear:YES];
-    [self.tableView reloadData];
 }
 
 

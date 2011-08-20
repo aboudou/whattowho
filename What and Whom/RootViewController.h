@@ -14,7 +14,6 @@
 #import "ItemViewController.h"
 
 @interface RootViewController : UITableViewController <UISplitViewControllerDelegate, NSFetchedResultsControllerDelegate> {
-    UISplitViewController *splitViewController;
     UIBarButtonItem *rootPopoverButtonItem;
     UIPopoverController *popoverController;
 }
