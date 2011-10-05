@@ -64,7 +64,7 @@ static NSString *const kClassesKey =  @"classes";
         self.title = data.itemName;
     }
     
-    _viewControllers = [[NSArray alloc] initWithObjects:
+    _viewControllers = [[NSMutableArray alloc] initWithObjects:
 						[NSDictionary dictionaryWithObjectsAndKeys:
 						 [NSArray arrayWithObjects:
 						  @"IDContactViewController", @"IDBorrowViewController", nil], kClassesKey,

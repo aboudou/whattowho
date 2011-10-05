@@ -179,6 +179,7 @@ NSIndexPath *selectedIndexPath;
     [splitViewController release];
     [detailViewController release];
     [rootPopoverButtonItem release];
+    [selectedIndexPath release];
     
     [super dealloc];
 }
@@ -234,6 +235,7 @@ NSIndexPath *selectedIndexPath;
         [viewControllers release];
         
         // Select in tableview new created item
+        [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         
         // Hide popover if needed
@@ -340,7 +342,7 @@ NSIndexPath *selectedIndexPath;
             
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            selectedIndexPath = newIndexPath;
+            selectedIndexPath = [newIndexPath retain];
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -375,13 +377,13 @@ NSIndexPath *selectedIndexPath;
         case NSFetchedResultsChangeUpdate:
             [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            selectedIndexPath = indexPath;
+            selectedIndexPath = [indexPath retain];
             break;
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
-            selectedIndexPath = newIndexPath;
+            selectedIndexPath = [newIndexPath retain];
             break;
     }
 }
