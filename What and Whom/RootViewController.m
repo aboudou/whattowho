@@ -145,7 +145,7 @@ NSIndexPath *selectedIndexPath;
         [self.navigationController pushViewController:itemViewController animated:YES];
         [itemViewController release];
     }
-    selectedIndexPath = indexPath;
+    selectedIndexPath = [indexPath retain];
 
 }
 
