@@ -16,6 +16,14 @@
 @interface RootViewController : UITableViewController <UISplitViewControllerDelegate, NSFetchedResultsControllerDelegate> {
     UIBarButtonItem *rootPopoverButtonItem;
     UIPopoverController *popoverController;
+
+@private  
+    // because ivars should be private, and it is really important
+    // that all code always goes through the accessor methods to ensure that these
+    // are properly initialized.  Without the funny __ then KVC might "help" us too much
+    // With iCloud importing data asynchronously, there are more timing and multi-threading issues
+    NSFetchedResultsController *fetchedResultsController__ ;
+    NSManagedObjectContext *managedObjectContext__;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;

@@ -24,6 +24,27 @@
 
 NSIndexPath *selectedIndexPath;
 
+// because the app delegate now loads the NSPersistentStore into the NSPersistentStoreCoordinator asynchronously
+// we will see the NSManagedObjectContext set up before any persistent stores are registered
+// we will need to fetch again after the persistent store is loaded
+- (void)reloadFetchedResults:(NSNotification*)note {
+    NSError *error = nil;
+	if (![[self fetchedResultsController] performFetch:&error]) {
+		/*
+		 Replace this implementation with code to handle the error appropriately.
+		 
+		 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+		 */
+		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+	}		
+    
+    if (note) {
+        [self.tableView reloadData];
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,6 +62,8 @@ NSIndexPath *selectedIndexPath;
         self.clearsSelectionOnViewWillAppear = YES;
     }
     
+    // observe the app delegate telling us when it's finished asynchronously setting up the persistent store
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefetchAllDatabaseData" object:[[UIApplication sharedApplication] delegate]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -169,6 +192,8 @@ NSIndexPath *selectedIndexPath;
 
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc

@@ -176,6 +176,8 @@
 		3BAB7BD11382AD2C00722549 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		3BAB7BD21382AD2C00722549 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewController.xib; path = "What and Whom/MessageViewController.xib"; sourceTree = "<group>"; };
 		3BAB7BD51382B1D600722549 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3BD83736145451B900E025D6 /* What and Whom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "What and Whom.entitlements"; sourceTree = "<group>"; };
+		3BD8373714545FAE00E025D6 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBorrowViewController.h; sourceTree = "<group>"; };
 		3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDBorrowViewController.m; sourceTree = "<group>"; };
 		3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDBorrowViewController.xib; path = "What and Whom/IDBorrowViewController.xib"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		3B04C2A513479B6900A37E9A /* What and Whom */ = {
 			isa = PBXGroup;
 			children = (
+				3BD83736145451B900E025D6 /* What and Whom.entitlements */,
 				3B04C2CC13479E3100A37E9A /* Classes */,
 				3B04C2A613479B6900A37E9A /* Other Sources */,
 				3B04C2CB13479DBA00A37E9A /* Resources */,
@@ -298,6 +301,7 @@
 		3B04C2CC13479E3100A37E9A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3BD8373714545FAE00E025D6 /* Macros.h */,
 				3B0EB0811348D42C002C937F /* Data.h */,
 				3B0EB0821348D42C002C937F /* Data.m */,
 				3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */,
@@ -708,7 +712,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arnaud Boudou (RTC3674WRG)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -716,7 +721,7 @@
 				INFOPLIST_FILE = "What and Whom/What and Whom-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "EB97B56B-BFF0-45D9-BE42-D1A4F8D148FC";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -726,14 +731,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Arnaud Boudou";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What and Whom/What and Whom-Prefix.pch";
 				INFOPLIST_FILE = "What and Whom/What and Whom-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "AF87A836-1B02-4BB5-8C6B-228E2501AB49";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
