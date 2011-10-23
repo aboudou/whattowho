@@ -7,7 +7,7 @@
 //
 
 #import "IDNotesViewController.h"
-
+#import "Utils.h"
 
 @implementation IDNotesViewController
 
@@ -63,6 +63,8 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         data.notes = self.notesTextView.text;
     }
+
+    [Utils updateManagedContext];
 }
 
 - (void)viewDidUnload

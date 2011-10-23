@@ -7,7 +7,7 @@
 //
 
 #import "IDItemViewController.h"
-
+#import "Utils.h"
 
 @implementation IDItemViewController
 
@@ -67,6 +67,8 @@
             data.itemName = self.itemNameTextField.text;
         }
     }
+    [Utils updateManagedContext];
+
 }
 
 - (void)viewDidUnload

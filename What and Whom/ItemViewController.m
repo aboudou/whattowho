@@ -17,6 +17,7 @@
 #import "IDNotesViewController.h"
 #import "IDPhotoViewController.h"
 #import "MessageViewController.h"
+#import "Utils.h"
 
 static NSString *const kClassesKey =  @"classes";
 
@@ -107,6 +108,8 @@ static NSString *const kClassesKey =  @"classes";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+
+    [Utils updateManagedContext];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

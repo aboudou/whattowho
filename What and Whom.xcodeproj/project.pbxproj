@@ -71,6 +71,7 @@
 		3BAB7BD31382AD2C00722549 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB7BD11382AD2C00722549 /* MessageViewController.m */; };
 		3BAB7BD41382AD2C00722549 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB7BD21382AD2C00722549 /* MessageViewController.xib */; };
 		3BAB7BD61382B1D600722549 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAB7BD51382B1D600722549 /* MessageUI.framework */; };
+		3BCB16C7145476EF00222DF3 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB16C6145476EF00222DF3 /* Utils.m */; };
 		3BDA7FDA134D824B00E2C923 /* IDBorrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */; };
 		3BDA7FDB134D824B00E2C923 /* IDBorrowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */; };
 		3BDC2BD5139A1ED100AF05AC /* IDDueDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */; };
@@ -176,6 +177,8 @@
 		3BAB7BD11382AD2C00722549 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		3BAB7BD21382AD2C00722549 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewController.xib; path = "What and Whom/MessageViewController.xib"; sourceTree = "<group>"; };
 		3BAB7BD51382B1D600722549 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3BCB16C5145476EF00222DF3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		3BCB16C6145476EF00222DF3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		3BD83736145451B900E025D6 /* What and Whom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "What and Whom.entitlements"; sourceTree = "<group>"; };
 		3BD8373714545FAE00E025D6 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBorrowViewController.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				3BD8373714545FAE00E025D6 /* Macros.h */,
+				3BCB16C5145476EF00222DF3 /* Utils.h */,
+				3BCB16C6145476EF00222DF3 /* Utils.m */,
 				3B0EB0811348D42C002C937F /* Data.h */,
 				3B0EB0821348D42C002C937F /* Data.m */,
 				3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */,
@@ -505,6 +510,7 @@
 				3BDC2BD5139A1ED100AF05AC /* IDDueDateViewController.m in Sources */,
 				3B3FBA63139A2E1400146D7C /* IDPhotoViewController.m in Sources */,
 				3B2F5D2713FBF9CC009EC3FB /* DetailWrapperViewController.m in Sources */,
+				3BCB16C7145476EF00222DF3 /* Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

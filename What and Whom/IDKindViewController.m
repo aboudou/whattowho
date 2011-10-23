@@ -7,6 +7,7 @@
 //
 
 #import "IDKindViewController.h"
+#import "Utils.h"
 
 static NSString *const kDataKey =  @"data";
 
@@ -88,6 +89,8 @@ static NSString *const kDataKey =  @"data";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+
+    [Utils updateManagedContext];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

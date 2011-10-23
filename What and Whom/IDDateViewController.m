@@ -7,6 +7,7 @@
 //
 
 #import "IDDateViewController.h"
+#import "Utils.h"
 
 @implementation IDDateViewController
 
@@ -64,6 +65,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         data.startDate = self.datePicker.date;
     }
+    [Utils updateManagedContext];
 }
 
 - (void)viewDidUnload

@@ -8,7 +8,7 @@
 
 #import "IDPhotoViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "Utils.h"
 
 @implementation IDPhotoViewController
 
@@ -70,6 +70,8 @@
     } else {
         data.photo = nil;
     }
+
+    [Utils updateManagedContext];
 }
 
 - (void)viewDidUnload
