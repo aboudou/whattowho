@@ -11,23 +11,33 @@
 
 @class RootViewController;
 
-@interface What_and_WhomAppDelegate : NSObject <UIApplicationDelegate> {
+@interface What_and_WhomAppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
 
+@private  
+    // because ivars should be private, and it is really important
+    // that all code always goes through the accessor methods to ensure that these
+    // are properly initialized.  Without the funny __ then KVC might "help" us too much
+    // With iCloud importing data asynchronously, there are more timing and multi-threading issues
+
+    NSManagedObjectModel *managedObjectModel__;
+    NSManagedObjectContext *managedObjectContext__;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator__;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, weak) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, weak) IBOutlet UISplitViewController *splitViewController;
+@property (nonatomic, weak) IBOutlet RootViewController *rootViewController;
+@property (nonatomic, weak) IBOutlet ItemViewController *detailViewController;
 
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
-@property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
-@property (nonatomic, retain) IBOutlet ItemViewController *detailViewController;
-
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong ,readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+- (NSString *)applicationDocumentsDirectory;
+
+- (void)resetStore;
+- (void)resetiCloudSyncforCloudUrl:(NSURL*) cloudURL;
 
 @end

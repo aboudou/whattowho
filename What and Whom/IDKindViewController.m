@@ -15,6 +15,7 @@ static NSString *const kDataKey =  @"data";
 
 @synthesize data;
 @synthesize parentView;
+@synthesize viewControllers;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,14 +26,6 @@ static NSString *const kDataKey =  @"data";
     return self;
 }
 
-- (void)dealloc
-{
-    [data release];
-    [_viewControllers release];
-    [parentView release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,14 +46,14 @@ static NSString *const kDataKey =  @"data";
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     
     if ([language isEqualToString:@"fr"]) {
-        _viewControllers = [[NSArray alloc] initWithObjects:
+        viewControllers = [[NSArray alloc] initWithObjects:
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSArray arrayWithObjects:
                               @"animal", @"money", @"misc", @"movie", @"game", @"book", @"software", @"music", @"tool", @"clothing", nil], kDataKey,
                              nil],
                             nil];
     } else {
-        _viewControllers = [[NSArray alloc] initWithObjects:
+        viewControllers = [[NSArray alloc] initWithObjects:
                             [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSArray arrayWithObjects:
                               @"animal", @"book", @"clothing", @"game", @"misc", @"money", @"movie", @"music", @"software", @"tool", nil], kDataKey,
@@ -110,12 +103,12 @@ static NSString *const kDataKey =  @"data";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_viewControllers count];
+    return [viewControllers count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[_viewControllers objectAtIndex:section] objectForKey:kDataKey] count];
+    return [[[viewControllers objectAtIndex:section] objectForKey:kDataKey] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,10 +117,10 @@ static NSString *const kDataKey =  @"data";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kDataKey] objectAtIndex:indexPath.row];
+    NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kDataKey] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = NSLocalizedString(name, name);
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", name, @".png"]];
@@ -145,7 +138,7 @@ static NSString *const kDataKey =  @"data";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kDataKey] objectAtIndex:indexPath.row];
+    NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kDataKey] objectAtIndex:indexPath.row];
     
     data.itemType = name;
     

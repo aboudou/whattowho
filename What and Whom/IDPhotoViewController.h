@@ -10,16 +10,16 @@
 #import "Data.h"
 
 @interface IDPhotoViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
-    Data *data;
+
 }
 
-@property (nonatomic, retain) Data *data;
-@property (nonatomic, retain) IBOutlet UIImageView *imageView;
-@property (nonatomic, retain) IBOutlet UIButton *photoBg;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UIButton *photoBg;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *addButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
 
-@property (nonatomic, retain) UIPopoverController *popoverController;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *addButton;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) Data *data;
 
 -(IBAction) addButtonPressed:(id)sender;
 -(IBAction) removeButtonPressed:(id)sender;

@@ -139,6 +139,7 @@
 		3B3FBA69139A312800146D7C /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDPhotoViewController.xib; sourceTree = "<group>"; };
 		3B43309213FC0A01005D02F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailWrapperViewController.xib; sourceTree = "<group>"; };
 		3B43309413FC0A09005D02F3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/DetailWrapperViewController.xib; sourceTree = "<group>"; };
+		3B4449CA145FFC9100E896F3 /* What and Whom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "What and Whom.entitlements"; sourceTree = "<group>"; };
 		3B64A64813FB9F8B00593F6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		3B64A64913FB9F8B00593F6A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = "iPad/fr.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		3B6A6B2D134A00DE00AC3394 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
@@ -168,22 +169,21 @@
 		3B9A74A113FEC999001001EA /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDPhotoViewController_iPad.xib; sourceTree = "<group>"; };
 		3BA9249F1350C56E003B8F84 /* IDNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDNotesViewController.h; sourceTree = "<group>"; };
 		3BA924A01350C56E003B8F84 /* IDNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDNotesViewController.m; sourceTree = "<group>"; };
-		3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDNotesViewController.xib; path = "What and Whom/IDNotesViewController.xib"; sourceTree = "<group>"; };
+		3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDNotesViewController.xib; sourceTree = "<group>"; };
 		3BA924A51350C8F8003B8F84 /* IDDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDDateViewController.h; sourceTree = "<group>"; };
 		3BA924A61350C8F8003B8F84 /* IDDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDDateViewController.m; sourceTree = "<group>"; };
 		3BA924AB1350CB41003B8F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDDateViewController.xib; sourceTree = "<group>"; };
 		3BA924AD1350CB46003B8F84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDDateViewController.xib; sourceTree = "<group>"; };
 		3BAB7BD01382AD2C00722549 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		3BAB7BD11382AD2C00722549 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
-		3BAB7BD21382AD2C00722549 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageViewController.xib; path = "What and Whom/MessageViewController.xib"; sourceTree = "<group>"; };
+		3BAB7BD21382AD2C00722549 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
 		3BAB7BD51382B1D600722549 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3BCB16C5145476EF00222DF3 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		3BCB16C6145476EF00222DF3 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
-		3BD83736145451B900E025D6 /* What and Whom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "What and Whom.entitlements"; sourceTree = "<group>"; };
 		3BD8373714545FAE00E025D6 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDBorrowViewController.h; sourceTree = "<group>"; };
 		3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDBorrowViewController.m; sourceTree = "<group>"; };
-		3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDBorrowViewController.xib; path = "What and Whom/IDBorrowViewController.xib"; sourceTree = "<group>"; };
+		3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDBorrowViewController.xib; sourceTree = "<group>"; };
 		3BDC2BD2139A1ED100AF05AC /* IDDueDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDDueDateViewController.h; sourceTree = "<group>"; };
 		3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDDueDateViewController.m; sourceTree = "<group>"; };
 		3BDC2BD9139A23D800AF05AC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDDueDateViewController.xib; sourceTree = "<group>"; };
@@ -192,9 +192,10 @@
 		3BE7CE26134E16E800D2E250 /* IDItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDItemViewController.m; sourceTree = "<group>"; };
 		3BE7CE2C134E174000D2E250 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IDItemViewController.xib; sourceTree = "<group>"; };
 		3BE7CE2E134E174B00D2E250 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/IDItemViewController.xib; sourceTree = "<group>"; };
+		3BEBC333145FD4DE00C67F94 /* What_and_Whom 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "What_and_Whom 4.xcdatamodel"; sourceTree = "<group>"; };
 		3BEDDC46134DB554003E72E1 /* IDKindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDKindViewController.h; sourceTree = "<group>"; };
 		3BEDDC47134DB554003E72E1 /* IDKindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDKindViewController.m; sourceTree = "<group>"; };
-		3BEDDC48134DB554003E72E1 /* IDKindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IDKindViewController.xib; path = "What and Whom/IDKindViewController.xib"; sourceTree = "<group>"; };
+		3BEDDC48134DB554003E72E1 /* IDKindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDKindViewController.xib; sourceTree = "<group>"; };
 		3BEDDC4E134DBC1D003E72E1 /* animal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = animal.png; path = "What and Whom/animal.png"; sourceTree = "<group>"; };
 		3BEDDC4F134DBC1D003E72E1 /* animal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "animal@2x.png"; path = "What and Whom/animal@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,11 +252,10 @@
 		3B04C2A513479B6900A37E9A /* What and Whom */ = {
 			isa = PBXGroup;
 			children = (
-				3BD83736145451B900E025D6 /* What and Whom.entitlements */,
+				3B4449CA145FFC9100E896F3 /* What and Whom.entitlements */,
 				3B04C2CC13479E3100A37E9A /* Classes */,
 				3B04C2A613479B6900A37E9A /* Other Sources */,
 				3B04C2CB13479DBA00A37E9A /* Resources */,
-				3B64A64613FB9F8600593F6A /* iPad */,
 			);
 			path = "What and Whom";
 			sourceTree = "<group>";
@@ -273,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				3B73DA08134993C80017A43A /* Images */,
+				3B3A9D981350A2B500569D04 /* iTunesArtwork */,
 				3B0EB08A1348E206002C937F /* Default.png */,
 				3B0EB08B1348E206002C937F /* Default@2x.png */,
 				3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */,
@@ -280,21 +281,8 @@
 				3B3A9D9B1350A2BE00569D04 /* Icon-72.png */,
 				3B3A9D9C1350A2BE00569D04 /* Icon.png */,
 				3B3A9D9D1350A2BE00569D04 /* Icon@2x.png */,
-				3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */,
-				3BA924AC1350CB41003B8F84 /* IDDateViewController.xib */,
-				3BDC2BDA139A23D800AF05AC /* IDDueDateViewController.xib */,
-				3BE7CE2D134E174000D2E250 /* IDItemViewController.xib */,
-				3BEDDC48134DB554003E72E1 /* IDKindViewController.xib */,
-				3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */,
-				3B3FBA68139A312300146D7C /* IDPhotoViewController.xib */,
 				3B04C2A813479B6900A37E9A /* InfoPlist.strings */,
 				3B04C2CD13479F8D00A37E9A /* Localizable.strings */,
-				3B6A6B35134A016100AC3394 /* ItemViewController.xib */,
-				3B3A9D981350A2B500569D04 /* iTunesArtwork */,
-				3B04C2B413479B6900A37E9A /* MainWindow.xib */,
-				3BAB7BD21382AD2C00722549 /* MessageViewController.xib */,
-				3B04C2BA13479B6900A37E9A /* RootViewController.xib */,
-				3B04C2B113479B6900A37E9A /* What_and_Whom.xcdatamodeld */,
 				3B04C2A713479B6900A37E9A /* What and Whom-Info.plist */,
 			);
 			name = Resources;
@@ -304,35 +292,72 @@
 		3B04C2CC13479E3100A37E9A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3BD8373714545FAE00E025D6 /* Macros.h */,
-				3BCB16C5145476EF00222DF3 /* Utils.h */,
-				3BCB16C6145476EF00222DF3 /* Utils.m */,
-				3B0EB0811348D42C002C937F /* Data.h */,
-				3B0EB0821348D42C002C937F /* Data.m */,
-				3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */,
-				3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */,
-				3BA924A51350C8F8003B8F84 /* IDDateViewController.h */,
-				3BA924A61350C8F8003B8F84 /* IDDateViewController.m */,
-				3BDC2BD2139A1ED100AF05AC /* IDDueDateViewController.h */,
-				3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */,
-				3BE7CE25134E16E800D2E250 /* IDItemViewController.h */,
-				3BE7CE26134E16E800D2E250 /* IDItemViewController.m */,
-				3BEDDC46134DB554003E72E1 /* IDKindViewController.h */,
-				3BEDDC47134DB554003E72E1 /* IDKindViewController.m */,
-				3BA9249F1350C56E003B8F84 /* IDNotesViewController.h */,
-				3BA924A01350C56E003B8F84 /* IDNotesViewController.m */,
-				3B3FBA60139A2E1400146D7C /* IDPhotoViewController.h */,
-				3B3FBA61139A2E1400146D7C /* IDPhotoViewController.m */,
-				3B6A6B2D134A00DE00AC3394 /* ItemViewController.h */,
-				3B6A6B2E134A00DE00AC3394 /* ItemViewController.m */,
-				3BAB7BD01382AD2C00722549 /* MessageViewController.h */,
-				3BAB7BD11382AD2C00722549 /* MessageViewController.m */,
-				3B04C2B713479B6900A37E9A /* RootViewController.h */,
-				3B04C2B813479B6900A37E9A /* RootViewController.m */,
+				3B58C778150E672000D38CBB /* Utils */,
+				3B58C777150E670E00D38CBB /* Data Model */,
+				3B58C776150E66FE00D38CBB /* Controllers */,
 				3B04C2AE13479B6900A37E9A /* What_and_WhomAppDelegate.h */,
 				3B04C2AF13479B6900A37E9A /* What_and_WhomAppDelegate.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		3B58C776150E66FE00D38CBB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */,
+				3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */,
+				3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */,
+				3BA924A51350C8F8003B8F84 /* IDDateViewController.h */,
+				3BA924A61350C8F8003B8F84 /* IDDateViewController.m */,
+				3BA924AC1350CB41003B8F84 /* IDDateViewController.xib */,
+				3BDC2BD2139A1ED100AF05AC /* IDDueDateViewController.h */,
+				3BDC2BD3139A1ED100AF05AC /* IDDueDateViewController.m */,
+				3BDC2BDA139A23D800AF05AC /* IDDueDateViewController.xib */,
+				3BE7CE25134E16E800D2E250 /* IDItemViewController.h */,
+				3BE7CE26134E16E800D2E250 /* IDItemViewController.m */,
+				3BE7CE2D134E174000D2E250 /* IDItemViewController.xib */,
+				3BEDDC46134DB554003E72E1 /* IDKindViewController.h */,
+				3BEDDC47134DB554003E72E1 /* IDKindViewController.m */,
+				3BEDDC48134DB554003E72E1 /* IDKindViewController.xib */,
+				3BA9249F1350C56E003B8F84 /* IDNotesViewController.h */,
+				3BA924A01350C56E003B8F84 /* IDNotesViewController.m */,
+				3BA924A11350C56E003B8F84 /* IDNotesViewController.xib */,
+				3B3FBA60139A2E1400146D7C /* IDPhotoViewController.h */,
+				3B3FBA61139A2E1400146D7C /* IDPhotoViewController.m */,
+				3B3FBA68139A312300146D7C /* IDPhotoViewController.xib */,
+				3B6A6B2D134A00DE00AC3394 /* ItemViewController.h */,
+				3B6A6B2E134A00DE00AC3394 /* ItemViewController.m */,
+				3B6A6B35134A016100AC3394 /* ItemViewController.xib */,
+				3BAB7BD01382AD2C00722549 /* MessageViewController.h */,
+				3BAB7BD11382AD2C00722549 /* MessageViewController.m */,
+				3BAB7BD21382AD2C00722549 /* MessageViewController.xib */,
+				3B04C2B713479B6900A37E9A /* RootViewController.h */,
+				3B04C2B813479B6900A37E9A /* RootViewController.m */,
+				3B04C2BA13479B6900A37E9A /* RootViewController.xib */,
+				3B04C2B413479B6900A37E9A /* MainWindow.xib */,
+				3B64A64613FB9F8600593F6A /* iPad */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3B58C777150E670E00D38CBB /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B0EB0811348D42C002C937F /* Data.h */,
+				3B0EB0821348D42C002C937F /* Data.m */,
+				3B04C2B113479B6900A37E9A /* What_and_Whom.xcdatamodeld */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		3B58C778150E672000D38CBB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3BD8373714545FAE00E025D6 /* Macros.h */,
+				3BCB16C5145476EF00222DF3 /* Utils.h */,
+				3BCB16C6145476EF00222DF3 /* Utils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		3B64A64613FB9F8600593F6A /* iPad */ = {
@@ -408,7 +433,7 @@
 		3B04C29013479B6800A37E9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 3B04C29313479B6800A37E9A /* Build configuration list for PBXProject "What and Whom" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -534,7 +559,6 @@
 				3B04C2CA13479C3A00A37E9A /* fr */,
 			);
 			name = MainWindow.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 		3B04C2BA13479B6900A37E9A /* RootViewController.xib */ = {
@@ -544,7 +568,6 @@
 				3B04C2C813479C3A00A37E9A /* fr */,
 			);
 			name = RootViewController.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 		3B04C2CD13479F8D00A37E9A /* Localizable.strings */ = {
@@ -563,7 +586,6 @@
 				3B3FBA69139A312800146D7C /* fr */,
 			);
 			name = IDPhotoViewController.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 		3B43309313FC0A01005D02F3 /* DetailWrapperViewController.xib */ = {
@@ -591,7 +613,6 @@
 				3B6A6B36134A016B00AC3394 /* fr */,
 			);
 			name = ItemViewController.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 		3B82302713FF8EFD004993E3 /* IDItemViewController_iPad.xib */ = {
@@ -646,7 +667,6 @@
 				3BA924AD1350CB46003B8F84 /* fr */,
 			);
 			name = IDDateViewController.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 		3BDC2BDA139A23D800AF05AC /* IDDueDateViewController.xib */ = {
@@ -656,7 +676,6 @@
 				3BDC2BDB139A23DF00AF05AC /* fr */,
 			);
 			name = IDDueDateViewController.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 		3BE7CE2D134E174000D2E250 /* IDItemViewController.xib */ = {
@@ -666,7 +685,6 @@
 				3BE7CE2E134E174B00D2E250 /* fr */,
 			);
 			name = IDItemViewController.xib;
-			path = "What and Whom";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -675,10 +693,7 @@
 		3B04C2BD13479B6900A37E9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arnaud Boudou (RTC3674WRG)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -688,8 +703,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "F54AFBA7-8B64-449E-B183-E0FA9B7DEBBB";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "7249FC04-6BE9-404B-93C9-122EBFF46304";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -697,19 +712,16 @@
 		3B04C2BE13479B6900A37E9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					armv6,
-					armv7,
-				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arnaud Boudou";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "AF87A836-1B02-4BB5-8C6B-228E2501AB49";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -718,6 +730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arnaud Boudou (RTC3674WRG)";
 				COPY_PHASE_STRIP = NO;
@@ -725,10 +738,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What and Whom/What and Whom-Prefix.pch";
 				INFOPLIST_FILE = "What and Whom/What and Whom-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EB97B56B-BFF0-45D9-BE42-D1A4F8D148FC";
+				PROVISIONING_PROFILE = "7249FC04-6BE9-404B-93C9-122EBFF46304";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -737,15 +751,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arnaud Boudou";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What and Whom/What and Whom-Prefix.pch";
 				INFOPLIST_FILE = "What and Whom/What and Whom-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AF87A836-1B02-4BB5-8C6B-228E2501AB49";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -779,13 +794,13 @@
 		3B04C2B113479B6900A37E9A /* What_and_Whom.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3BEBC333145FD4DE00C67F94 /* What_and_Whom 4.xcdatamodel */,
 				3B6DCBEA13FE66DA00698C97 /* What_and_Whom 3.xcdatamodel */,
 				3B2FDB781389001B0036B5F9 /* What_and_Whom 2.xcdatamodel */,
 				3B04C2B213479B6900A37E9A /* What_and_Whom.xcdatamodel */,
 			);
-			currentVersion = 3B2FDB781389001B0036B5F9 /* What_and_Whom 2.xcdatamodel */;
-			name = What_and_Whom.xcdatamodeld;
-			path = "What and Whom/What_and_Whom.xcdatamodeld";
+			currentVersion = 3BEBC333145FD4DE00C67F94 /* What_and_Whom 4.xcdatamodel */;
+			path = What_and_Whom.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

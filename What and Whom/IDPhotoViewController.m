@@ -24,17 +24,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [data release];
-    [imageView release];
-    [photoBg release];
-    [popoverController release];
-    [addButton release];
-    [doneButton release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -57,7 +46,7 @@
     self.title = NSLocalizedString(@"Photo", @"Photo");
     
     if (data.photo != nil) {
-        self.imageView.image = [[[UIImage alloc] initWithData:data.photo] autorelease];
+        self.imageView.image = [[UIImage alloc] initWithData:data.photo];
         self.imageView.backgroundColor = [UIColor blackColor];
     }
 }
@@ -113,7 +102,6 @@
         } else {
             [photoSourceSheet showInView:self.view];
         }
-        [photoSourceSheet release];
     } else {
         // Pas d'appareil photo, on va directement dans la bibliothèque d'images
         
@@ -163,14 +151,13 @@
         self.imageView.image = image;
         
         if (data.photo != nil) {
-            self.imageView.image = [[[UIImage alloc] initWithData:data.photo] autorelease];
+            self.imageView.image = [[UIImage alloc] initWithData:data.photo];
             self.imageView.backgroundColor = [UIColor blackColor];
         }
 
     } else {
         [self dismissModalViewControllerAnimated:YES];
     }
-    [picker release];
 }
 
 #pragma mark -
@@ -189,7 +176,6 @@
             picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             break;
         default:
-            [picker release];
             return;
     }
     
@@ -209,7 +195,7 @@
         }
         
         if (data.photo != nil) {
-            self.imageView.image = [[[UIImage alloc] initWithData:data.photo] autorelease];
+            self.imageView.image = [[UIImage alloc] initWithData:data.photo];
             self.imageView.backgroundColor = [UIColor blackColor];
         }
 

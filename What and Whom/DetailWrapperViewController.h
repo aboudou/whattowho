@@ -10,11 +10,9 @@
 
 @interface DetailWrapperViewController : UITableViewController {
     NSMutableArray *_viewControllers;
-
-    UINavigationItem *navItem;
 }
 
-@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
+@property (nonatomic, weak) IBOutlet UINavigationItem *navItem;
 
 - (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
 - (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;

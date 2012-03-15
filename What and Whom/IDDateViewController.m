@@ -23,16 +23,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [data release];
-    [datePicker release];
-    [todayButton release];
-    [parentView release];
-    [doneButton release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {

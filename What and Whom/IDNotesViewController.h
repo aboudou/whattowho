@@ -11,13 +11,14 @@
 #import "ItemViewController.h"
 
 @interface IDNotesViewController : UIViewController {
-    Data *data;
+
 }
 
-@property (nonatomic, retain) Data *data;
-@property (nonatomic, retain) IBOutlet UITextView *notesTextView;
-@property (nonatomic, retain) ItemViewController *parentView;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic, weak) IBOutlet UITextView *notesTextView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
+
+@property (nonatomic, strong) Data *data;
+@property (nonatomic, strong) ItemViewController *parentView;
 
 -(IBAction) doneButtonPressed:(id)sender;
 

@@ -11,14 +11,12 @@
 #import "DetailWrapperViewController.h"
 
 @interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate, UIPopoverControllerDelegate> {
-    Data *data;
-    
-    UIPopoverController *popoverController;
+
 }
 
-@property (nonatomic, retain) Data *data;
+@property (nonatomic, strong) Data *data;
 
-@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIPopoverController *popoverController;
 
 - (void)managePopover:(UIViewController *)controller frame:(CGRect)aFrame width:(float)aWidth height:(float)aHeight;
 

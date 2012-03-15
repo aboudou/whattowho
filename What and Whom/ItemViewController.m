@@ -35,14 +35,6 @@ static NSString *const kClassesKey =  @"classes";
     return self;
 }
 
-- (void)dealloc
-{
-    [data release];
-    [_viewControllers release];
-    [popoverController release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -135,7 +127,7 @@ static NSString *const kClassesKey =  @"classes";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
 
     NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
@@ -193,7 +185,6 @@ static NSString *const kClassesKey =  @"classes";
         [dateFormat setDateFormat:@"dd MMMM yyyy"];
         cell.detailTextLabel.text = [dateFormat stringFromDate:data.startDate];
         cell.textLabel.text = NSLocalizedString(@"Date", @"Date");
-        [dateFormat release];
         cell.imageView.image = nil;
         
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
@@ -231,7 +222,6 @@ static NSString *const kClassesKey =  @"classes";
         picker.peoplePickerDelegate = self;
         
         [self presentModalViewController:picker animated:YES];
-        [picker release];
         
     } else if ([name isEqualToString:@"IDBorrowViewController"]) {
         // Borrowed / Lent
@@ -245,7 +235,6 @@ static NSString *const kClassesKey =  @"classes";
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
-        [detailViewController release];
         
     } else if ([name isEqualToString:@"MessageViewController"]) {
         // Message / Call
@@ -259,7 +248,6 @@ static NSString *const kClassesKey =  @"classes";
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
-        [detailViewController release];
         
     } else if ([name isEqualToString:@"IDKindViewController"]) {
         // Type of item
@@ -273,7 +261,6 @@ static NSString *const kClassesKey =  @"classes";
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
-        [detailViewController release];
         
     } else if ([name isEqualToString:@"IDItemViewController"]) {
         // Item
@@ -285,7 +272,6 @@ static NSString *const kClassesKey =  @"classes";
 
             [self managePopover:detailViewController frame:aFrame width:320.0 height:114.0];
 
-            [detailViewController release];
         } else {
             IDItemViewController *detailViewController = [[IDItemViewController alloc] initWithNibName:@"IDItemViewController" bundle:nil];
             
@@ -293,7 +279,6 @@ static NSString *const kClassesKey =  @"classes";
             
             [self.navigationController pushViewController:detailViewController animated:YES];
 
-            [detailViewController release];
         }
         
     } else if ([name isEqualToString:@"IDPhotoViewController"]) {
@@ -306,7 +291,6 @@ static NSString *const kClassesKey =  @"classes";
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentModalViewController:detailViewController animated:YES];
 
-            [detailViewController release];
         } else {
             IDPhotoViewController *detailViewController = [[IDPhotoViewController alloc] initWithNibName:@"IDPhotoViewController" bundle:nil];
             
@@ -314,7 +298,6 @@ static NSString *const kClassesKey =  @"classes";
             
             [self.navigationController pushViewController:detailViewController animated:YES];
 
-            [detailViewController release];
         }
         
     } else if ([name isEqualToString:@"IDNotesViewController"]) {
@@ -327,7 +310,6 @@ static NSString *const kClassesKey =  @"classes";
 
             [self managePopover:detailViewController frame:aFrame width:320.0 height:300.0];
 
-            [detailViewController release];
         } else {
             IDNotesViewController *detailViewController = [[IDNotesViewController alloc] initWithNibName:@"IDNotesViewController" bundle:nil];
             
@@ -335,7 +317,6 @@ static NSString *const kClassesKey =  @"classes";
             
             [self.navigationController pushViewController:detailViewController animated:YES];
 
-            [detailViewController release];
         }
         
     } else if ([name isEqualToString:@"IDDateViewController"]) {
@@ -348,7 +329,6 @@ static NSString *const kClassesKey =  @"classes";
 
             [self managePopover:detailViewController frame:aFrame width:320.0 height:304.0];
 
-            [detailViewController release];
         } else {
             IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController" bundle:nil];
             
@@ -356,7 +336,6 @@ static NSString *const kClassesKey =  @"classes";
             
             [self.navigationController pushViewController:detailViewController animated:YES];
 
-            [detailViewController release];
         }
         
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
@@ -370,7 +349,6 @@ static NSString *const kClassesKey =  @"classes";
 
             [self managePopover:detailViewController frame:aFrame width:320.0 height:304.0];
 
-            [detailViewController release];
         } else {
             IDDueDateViewController *detailViewController = [[IDDueDateViewController alloc] initWithNibName:@"IDDueDateViewController" bundle:nil];
             
@@ -378,7 +356,6 @@ static NSString *const kClassesKey =  @"classes";
             
             [self.navigationController pushViewController:detailViewController animated:YES];
 
-            [detailViewController release];
         }
     }
 }
@@ -395,10 +372,13 @@ static NSString *const kClassesKey =  @"classes";
 (ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
-    NSNumber *idPerson = [NSNumber numberWithInteger: ABRecordGetRecordID(person)];
-    data.idAddressBook = idPerson;
+    data.whoName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    data.whoFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    data.displayName = (__bridge_transfer NSString *)ABRecordCopyCompositeName(person);
     
     [self dismissModalViewControllerAnimated:YES];
+    
+    [Utils updateManagedContext];
     
     return NO;
 }

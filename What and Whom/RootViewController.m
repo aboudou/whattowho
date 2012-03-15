@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "Macros.h"
 
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -14,22 +15,43 @@
 
 @implementation RootViewController
 
-@synthesize fetchedResultsController=__fetchedResultsController;
+@synthesize fetchedResultsController=fetchedResultsController__;
 
-@synthesize managedObjectContext=__managedObjectContext;
+@synthesize managedObjectContext=managedObjectContext__;
 
 @synthesize detailViewController;
 
 @synthesize splitViewController, rootPopoverButtonItem, popoverController;
 
-NSIndexPath *selectedIndexPath;
+@synthesize selectedIndexPath;
 
 // because the app delegate now loads the NSPersistentStore into the NSPersistentStoreCoordinator asynchronously
 // we will see the NSManagedObjectContext set up before any persistent stores are registered
 // we will need to fetch again after the persistent store is loaded
 - (void)reloadFetchedResults:(NSNotification*)note {
     NSError *error = nil;
-	if (![[self fetchedResultsController] performFetch:&error]) {
+
+    // Migrate data to new datamodel
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Data" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (int i = 0; i < [result count]; i++) {
+        Data *data = [result objectAtIndex:i];
+        [data migrateContactWithId:data.idAddressBook];
+    }
+
+    // La sauvegarde à ce moment fait planter l'application. À voir pourquoi ?
+//    if ([self.managedObjectContext hasChanges]) {
+//        [self.managedObjectContext save:&error];
+//    }
+    
+    if (![[self fetchedResultsController] performFetch:&error]) {
 		/*
 		 Replace this implementation with code to handle the error appropriately.
 		 
@@ -37,7 +59,7 @@ NSIndexPath *selectedIndexPath;
 		 */
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
-	}		
+	}
     
     if (note) {
         [self.tableView reloadData];
@@ -53,7 +75,6 @@ NSIndexPath *selectedIndexPath;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
-    [addButton release];
 
     // Do not unselect items on viewWillAppear for iPad
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -64,6 +85,7 @@ NSIndexPath *selectedIndexPath;
     
     // observe the app delegate telling us when it's finished asynchronously setting up the persistent store
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadFetchedResults:) name:@"RefetchAllDatabaseData" object:[[UIApplication sharedApplication] delegate]];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,7 +129,7 @@ NSIndexPath *selectedIndexPath;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
     // Configure the cell.
@@ -125,10 +147,12 @@ NSIndexPath *selectedIndexPath;
         
         // Save the context.
         NSError *error = nil;
-        if (![context save:&error])
-        {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+        if ([[[context persistentStoreCoordinator] persistentStores] count] > 0) {
+            if (![context save:&error])
+            {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
         }
     }   
 }
@@ -147,7 +171,6 @@ NSIndexPath *selectedIndexPath;
         itemViewController.data = [self.fetchedResultsController objectAtIndexPath:indexPath];
         NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], itemViewController, nil];
         self.splitViewController.viewControllers = viewControllers;
-        [viewControllers release];
         
         if (popoverController != nil) {
             [popoverController dismissPopoverAnimated:YES];
@@ -158,7 +181,6 @@ NSIndexPath *selectedIndexPath;
             [itemViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
         }
 
-        [itemViewController release];
 
     } else {
         ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
@@ -166,14 +188,12 @@ NSIndexPath *selectedIndexPath;
         itemViewController.data = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
         [self.navigationController pushViewController:itemViewController animated:YES];
-        [itemViewController release];
     }
-    selectedIndexPath = [indexPath retain];
+    selectedIndexPath = indexPath;
 
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo name];
 }
@@ -196,18 +216,6 @@ NSIndexPath *selectedIndexPath;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)dealloc
-{
-    [__fetchedResultsController release];
-    [__managedObjectContext release];
-    [popoverController release];
-    [splitViewController release];
-    [detailViewController release];
-    [rootPopoverButtonItem release];
-    [selectedIndexPath release];
-    
-    [super dealloc];
-}
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -232,7 +240,8 @@ NSIndexPath *selectedIndexPath;
 {
     
     // Create a new instance of the entity managed by the fetched results controller.
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+//    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+    NSManagedObjectContext *context = self.managedObjectContext;
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
     Data *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
@@ -241,7 +250,10 @@ NSIndexPath *selectedIndexPath;
     [newManagedObject setValue:NSLocalizedString(@"What ?", @"Default object name") forKey:@"itemName"];
     [newManagedObject setValue:[NSDate date] forKey:@"startDate"];
     [newManagedObject setValue:[NSNumber numberWithInt:0] forKey:@"borrow"];
-    
+    [newManagedObject setValue:[NSNumber numberWithInt:0] forKey:@"borrow"];
+    [newManagedObject setValue:NSLocalizedString(@"Unknown", @"Unknown contact") forKey:@"whoName"];
+    [newManagedObject setValue:NSLocalizedString(@"Unknown", @"Unknown contact") forKey:@"displayName"];
+
     // Save the context.
     NSError *error = nil;
     if (![context save:&error])
@@ -257,7 +269,6 @@ NSIndexPath *selectedIndexPath;
         itemViewController.data = newManagedObject;
         NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], itemViewController, nil];
         self.splitViewController.viewControllers = viewControllers;
-        [viewControllers release];
         
         // Select in tableview new created item
         [self.tableView reloadData];
@@ -273,14 +284,12 @@ NSIndexPath *selectedIndexPath;
             [itemViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
         }
 
-        [itemViewController release];
     } else {
         ItemViewController *itemViewController = [[ItemViewController alloc] initWithNibName:@"ItemViewController" bundle:nil];
     
         itemViewController.data = newManagedObject;
     
         [self.navigationController pushViewController:itemViewController animated:YES];
-        [itemViewController release];
     }
 
 }
@@ -289,9 +298,9 @@ NSIndexPath *selectedIndexPath;
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (__fetchedResultsController != nil)
+    if (fetchedResultsController__ != nil)
     {
-        return __fetchedResultsController;
+        return fetchedResultsController__;
     }
     
     /*
@@ -307,8 +316,8 @@ NSIndexPath *selectedIndexPath;
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"idAddressBook" ascending:NO];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    NSSortDescriptor *sortDescriptorName = [[NSSortDescriptor alloc] initWithKey:@"whoName" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptorName, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -318,20 +327,8 @@ NSIndexPath *selectedIndexPath;
     aFetchedResultsController.delegate = self;
     
     self.fetchedResultsController = aFetchedResultsController;
-    
-    [aFetchedResultsController release];
-    [fetchRequest release];
-    [sortDescriptor release];
-    [sortDescriptors release];
 
-	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
-        {
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return __fetchedResultsController;
+    return fetchedResultsController__;
 }    
 
 #pragma mark - Fetched results controller delegate
@@ -367,7 +364,7 @@ NSIndexPath *selectedIndexPath;
             
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            selectedIndexPath = [newIndexPath retain];
+            selectedIndexPath = newIndexPath;
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -380,13 +377,11 @@ NSIndexPath *selectedIndexPath;
                 
                     NSArray *viewControllers = [[NSArray alloc] initWithObjects:[self.splitViewController.viewControllers objectAtIndex:0], detailWrapperViewController, nil];
                     self.splitViewController.viewControllers = viewControllers;
-                    [viewControllers release];
 
                     if (rootPopoverButtonItem != nil) {
                         [detailWrapperViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
                     }
                     
-                    [detailWrapperViewController release];
                 }
                 
                 if (popoverController != nil) {
@@ -402,13 +397,13 @@ NSIndexPath *selectedIndexPath;
         case NSFetchedResultsChangeUpdate:
             [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            selectedIndexPath = [indexPath retain];
+            selectedIndexPath = indexPath;
             break;
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
-            selectedIndexPath = [newIndexPath retain];
+            selectedIndexPath = newIndexPath;
             break;
     }
 }

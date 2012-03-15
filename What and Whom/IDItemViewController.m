@@ -23,15 +23,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [data release];
-    [itemNameTextField release];
-    [parentView release];
-    [doneButton release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {

@@ -12,11 +12,11 @@
 #import "ItemViewController.h"
 
 @interface MessageViewController : UITableViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate> {
-    Data *data;
-    NSMutableArray *_viewControllers;
 }
 
-@property(nonatomic, retain) Data *data;
-@property (nonatomic, retain) ItemViewController *parentView;
+@property (nonatomic, strong) Data *data;
+@property (nonatomic, strong) ItemViewController *parentView;
+@property (nonatomic, strong) NSMutableArray *viewControllers;
+
 
 @end

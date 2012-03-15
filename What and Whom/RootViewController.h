@@ -14,8 +14,6 @@
 #import "ItemViewController.h"
 
 @interface RootViewController : UITableViewController <UISplitViewControllerDelegate, NSFetchedResultsControllerDelegate> {
-    UIBarButtonItem *rootPopoverButtonItem;
-    UIPopoverController *popoverController;
 
 @private  
     // because ivars should be private, and it is really important
@@ -26,13 +24,13 @@
     NSManagedObjectContext *managedObjectContext__;
 }
 
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) IBOutlet ItemViewController *detailViewController;
+@property (nonatomic, weak) IBOutlet ItemViewController *detailViewController;
+@property (nonatomic, weak) IBOutlet UISplitViewController *splitViewController;
 
-
-@property (nonatomic, retain) UIPopoverController *popoverController;
-@property (nonatomic, assign) IBOutlet UISplitViewController *splitViewController;
-@property (nonatomic, retain) UIBarButtonItem *rootPopoverButtonItem;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 
 @end

@@ -15,6 +15,7 @@ static NSString *const kTitleKey =  @"title";
 
 @synthesize data;
 @synthesize parentView;
+@synthesize viewControllers;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -25,14 +26,6 @@ static NSString *const kTitleKey =  @"title";
     return self;
 }
 
-- (void)dealloc
-{
-    [data release];
-    [_viewControllers release];
-    [parentView release];
-    
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,61 +43,61 @@ static NSString *const kTitleKey =  @"title";
 
     self.title = NSLocalizedString(@"Contact", @"Contact");
     
-    _viewControllers = [[NSMutableArray alloc] initWithCapacity:1];
+    viewControllers = [[NSMutableArray alloc] initWithCapacity:1];
 
     // Get contact from Address Book
-    if (data.idAddressBook != nil) {
-        ABAddressBookRef addressBook = ABAddressBookCreate();
-        ABRecordID abId = (ABRecordID)[data.idAddressBook intValue];
-        ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook, abId);
-
+    ABAddressBookRef addressBook = ABAddressBookCreate();
+    CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", data.whoFirstName, data.whoName]);
+    if ((people != nil) && (CFArrayGetCount(people) > 0)) {
+        ABRecordRef person = CFArrayGetValueAtIndex(people, 0);
+        
         if (person != nil) {
             ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(person, kABPersonPhoneProperty);
-            NSArray* phoneNumbers = (NSArray*)ABMultiValueCopyArrayOfAllValues(phoneNumberProperty);
+            NSArray* phoneNumbers = (__bridge_transfer NSArray*)ABMultiValueCopyArrayOfAllValues(phoneNumberProperty);
             CFRelease(phoneNumberProperty);
 
             if ([phoneNumbers count] != 0) {
                 // Add phone numbers if the device can send text messages
                 if([MFMessageComposeViewController canSendText]) {
-                    [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                    [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  phoneNumbers, kClassesKey, NSLocalizedString(@"text", @"text"), kTitleKey,
                                                  nil]];
                 }
     
                 // Add phone numbers if the device can make phone calls
                 if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://+11111"]]) {
-                    [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                    [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  phoneNumbers, kClassesKey, NSLocalizedString(@"phone", @"phone"), kTitleKey,
                                                  nil]];
                 }
             }
         
-            [phoneNumbers release];
             
             // Add emails
             if([MFMailComposeViewController canSendMail]) {
                 ABMutableMultiValueRef multiEmail = ABRecordCopyValue(person, kABPersonEmailProperty);
                 NSMutableArray *emails = [[NSMutableArray alloc] init];
                 for (int i = 0; i < ABMultiValueGetCount(multiEmail); i++) {
-                    NSString *anEmail = [(NSString*)ABMultiValueCopyValueAtIndex(multiEmail, i) autorelease];
+                    NSString *anEmail = (__bridge_transfer NSString*)ABMultiValueCopyValueAtIndex(multiEmail, i);
                     [emails addObject:anEmail];
                 }
                 CFRelease(multiEmail);
                 if ([emails count] != 0) {
-                    [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                    [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                                  emails, kClassesKey, NSLocalizedString(@"email", @"email"), kTitleKey,
                                                  nil]];
                 }
-                [emails release];
             }
         }
-        
-        CFRelease(addressBook);
     }
+    if (people != nil) {
+        CFRelease(people);
+    }
+    CFRelease(addressBook);
     
     // Case of an empty list
-    if ([_viewControllers count] == 0) {
-        [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+    if ([viewControllers count] == 0) {
+        [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSArray arrayWithObjects:
                                       NSLocalizedString(@"No contact info", @"No contact info"), nil], kClassesKey, @"", kTitleKey,
                                       nil]];
@@ -151,12 +144,12 @@ static NSString *const kTitleKey =  @"title";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_viewControllers count];
+    return [viewControllers count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[_viewControllers objectAtIndex:section] objectForKey:kClassesKey] count];
+    return [[[viewControllers objectAtIndex:section] objectForKey:kClassesKey] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,15 +158,15 @@ static NSString *const kTitleKey =  @"title";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
+    NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = name;
     cell.textLabel.textAlignment = UITextAlignmentCenter;
     
-    if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:@""]) {
+    if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:@""]) {
         cell.userInteractionEnabled = NO;
     }
     
@@ -181,7 +174,7 @@ static NSString *const kTitleKey =  @"title";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return [[_viewControllers objectAtIndex:section] objectForKey:kTitleKey];
+	return [[viewControllers objectAtIndex:section] objectForKey:kTitleKey];
 }
 
 #pragma mark - Table view delegate
@@ -189,16 +182,16 @@ static NSString *const kTitleKey =  @"title";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
+    NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
 
-    if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"text", @"text")]) {
-        MFMessageComposeViewController *controller = [[[MFMessageComposeViewController alloc] init] autorelease];
+    if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"text", @"text")]) {
+        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
         controller.body = @"";
 		controller.recipients = [NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil];
 		controller.messageComposeDelegate = self;
 		[self presentModalViewController:controller animated:YES];
 
-    } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"phone")]) {
+    } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"phone")]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -206,8 +199,8 @@ static NSString *const kTitleKey =  @"title";
             parentView.popoverController = nil;
         }
     
-    } else if ([[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"email")]) {
-        MFMailComposeViewController *controller = [[[MFMailComposeViewController alloc] init] autorelease];
+    } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"email")]) {
+        MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMessageBody:@"" isHTML:NO];
 		[controller setToRecipients:[NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil]];
 		controller.mailComposeDelegate = self;
@@ -225,7 +218,6 @@ static NSString *const kTitleKey =  @"title";
 		case MessageComposeResultFailed:
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"What to Who") message:NSLocalizedString(@"Unknown error", @"Unknown error") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
-			[alert release];
 			
             break;
 
@@ -272,7 +264,6 @@ static NSString *const kTitleKey =  @"title";
             
             alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"What to Who") message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
-			[alert release];
 			
             break;
             

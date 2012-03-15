@@ -12,9 +12,7 @@
 @implementation Utils
 
 + (void) updateManagedContext {
-    
     What_and_WhomAppDelegate *appDelegate = (What_and_WhomAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate saveContext];
-    
 }
 @end

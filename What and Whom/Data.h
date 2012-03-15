@@ -13,17 +13,22 @@
 
 
 @interface Data : NSManagedObject {
-@private
+
 }
-@property (nonatomic, retain) NSDate * startDate;
-@property (nonatomic, retain) NSData * dueDate;
-@property (nonatomic, retain) NSString * itemName;
-@property (nonatomic, retain) NSString * itemType;
-@property (nonatomic, retain) NSString * notes;
-@property (nonatomic, retain) NSNumber * borrow;
-@property (nonatomic, retain) NSNumber * idAddressBook;
-@property (nonatomic, retain) NSString * displayName;
-@property (nonatomic, retain) UIImage * contactPicture;
-@property (nonatomic, retain) NSData * photo;
+
+@property (nonatomic, strong) NSDate * startDate;
+@property (nonatomic, strong) NSData * dueDate;
+@property (nonatomic, strong) NSString * itemName;
+@property (nonatomic, strong) NSString * itemType;
+@property (nonatomic, strong) NSString * notes;
+@property (nonatomic, strong) NSNumber * borrow;
+@property (nonatomic, strong) NSNumber * idAddressBook;
+@property (nonatomic, strong) NSString * displayName;
+@property (nonatomic, strong) UIImage * contactPicture;
+@property (nonatomic, strong) NSData * photo;
+@property (nonatomic, strong) NSString *whoName;
+@property (nonatomic, strong) NSString *whoFirstName;
+
+- (void) migrateContactWithId:(NSNumber *)abId;
 
 @end

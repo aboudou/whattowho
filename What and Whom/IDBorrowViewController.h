@@ -11,11 +11,11 @@
 #import "ItemViewController.h"
 
 @interface IDBorrowViewController : UITableViewController {
-    Data *data;
-    NSArray *_viewControllers;
+
 }
 
-@property (nonatomic, retain) Data *data;
-@property (nonatomic, retain) ItemViewController *parentView;
+@property (nonatomic, strong) NSArray *viewControllers;
+@property (nonatomic, strong) Data *data;
+@property (nonatomic, strong) ItemViewController *parentView;
 
 @end
