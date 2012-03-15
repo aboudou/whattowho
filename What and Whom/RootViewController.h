@@ -33,4 +33,6 @@
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 
+@property (nonatomic, assign) BOOL afterFetch;
+
 @end

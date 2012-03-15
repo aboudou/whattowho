@@ -16,19 +16,17 @@
 @implementation RootViewController
 
 @synthesize fetchedResultsController=fetchedResultsController__;
-
 @synthesize managedObjectContext=managedObjectContext__;
-
 @synthesize detailViewController;
-
 @synthesize splitViewController, rootPopoverButtonItem, popoverController;
-
 @synthesize selectedIndexPath;
+@synthesize afterFetch;
 
 // because the app delegate now loads the NSPersistentStore into the NSPersistentStoreCoordinator asynchronously
 // we will see the NSManagedObjectContext set up before any persistent stores are registered
 // we will need to fetch again after the persistent store is loaded
 - (void)reloadFetchedResults:(NSNotification*)note {
+    afterFetch = YES;
     NSError *error = nil;
 
     // Migrate data to new datamodel
@@ -412,7 +410,12 @@
 {
     [self.tableView endUpdates];
 
-    [self.tableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    if (afterFetch) {
+        afterFetch = NO;
+        [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
+    } else {
+        [self.tableView selectRowAtIndexPath:selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 /*

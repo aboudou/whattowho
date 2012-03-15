@@ -42,7 +42,7 @@
             self.idAddressBook = nil;
         }
     }
-    if (abId == nil && [self.whoName length] == 0 && [self.whoFirstName length] == 0) {
+    if ((abId == nil || [abId intValue] == 0) && [self.whoName length] == 0 && [self.whoFirstName length] == 0) {
         self.whoName = NSLocalizedString(@"Unknown", @"Unknown contact");
     }
     
@@ -70,62 +70,6 @@
 
     CFRelease(addressBook);
 }
-
-// Remet comme avant
-//- (void) migrateContactWithId:(NSNumber *)abId {
-//    ABAddressBookRef addressBook = ABAddressBookCreate();
-//    
-//    CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName]);
-//    if ((people != nil) && (CFArrayGetCount(people) > 0)) {
-//        ABRecordRef person = CFArrayGetValueAtIndex(people, 0);
-//        if (person != nil) {
-//            self.whoName = nil;
-//            self.whoFirstName = nil;
-//            self.idAddressBook = [NSNumber numberWithInteger: ABRecordGetRecordID(person)];
-//        }
-//    } else {
-//        self.whoName = nil;
-//        self.whoFirstName = nil;
-//        self.idAddressBook = [NSNumber numberWithInteger: 0];
-//    }
-//    if (people != nil) {
-//        CFRelease(people);
-//    }
-//    CFRelease(addressBook);
-//}
-//
-//- (NSString *) displayName {
-//    // Get contact from Address Book
-//    NSLog(@"%@ %@ %@ %@", self.idAddressBook, self.whoName, self.whoFirstName, self.itemName);
-//    
-//    ABAddressBookRef addressBook = ABAddressBookCreate();
-//    CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName]);
-//    if ((people != nil) && (CFArrayGetCount(people) > 0)) {
-//        ABRecordRef person = CFArrayGetValueAtIndex(people, 0);
-//        if (person != nil) {
-//            NSString *name = (__bridge_transfer NSString *)ABRecordCopyCompositeName(person);
-//            CFRelease(addressBook);
-//            CFRelease(people);
-//            return name;
-//        } else { 
-//            CFRelease(addressBook);
-//            CFRelease(people);
-//            return NSLocalizedString(@"Unknown", @"Unknown contact");
-//        }
-//    } else {
-//        if (people != nil) {
-//            CFRelease(people);
-//        }
-//        NSString *nameToDisplay = [NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName];
-//        if ([nameToDisplay isEqualToString:@" "] || [nameToDisplay isEqualToString:@"(null) (null)"]) {
-//            CFRelease(addressBook);
-//            return NSLocalizedString(@"Unknown", @"Unknown contact");
-//        } else {
-//            CFRelease(addressBook);
-//            return [NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName];
-//        }
-//    }
-//}
 
 - (UIImage *) contactPicture {
     // Get contact from Address Book
