@@ -45,7 +45,6 @@
     
     self.title = NSLocalizedString(@"Date", @"Date");
     
-    self.datePicker.locale = [NSLocale currentLocale];
     [self.datePicker setDate:data.startDate animated:YES];
 }
 

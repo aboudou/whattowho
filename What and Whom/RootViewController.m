@@ -219,7 +219,7 @@
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = (NSString *)[[managedObject valueForKey:@"itemName"] description];
+    [cell.textLabel setText:(NSString *)[[managedObject valueForKey:@"itemName"] description]];
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }

@@ -45,7 +45,6 @@
     
     self.title = NSLocalizedString(@"Due date", @"Due date");
     
-    self.datePicker.locale = [NSLocale currentLocale];
 #warning récupérer la date de la notification
     //[self.datePicker setDate:data.startDate animated:YES];
 }
