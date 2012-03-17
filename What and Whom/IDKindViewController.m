@@ -41,7 +41,7 @@ static NSString *const kDataKey =  @"data";
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"Kind of item", @"Kind of item");
+    self.title = NSLocalizedString(@"Kind of item", @"");
     
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     
@@ -122,7 +122,7 @@ static NSString *const kDataKey =  @"data";
     
     NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kDataKey] objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = NSLocalizedString(name, name);
+    cell.textLabel.text = NSLocalizedString(name, @"");
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", name, @".png"]];
     if ([data.itemType isEqualToString:name]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

@@ -47,7 +47,7 @@ static NSString *const kTitleKey =  @"title";
         _viewControllers = [[NSMutableArray alloc] initWithCapacity:1];
         [_viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSArray arrayWithObjects:
-                                      NSLocalizedString(@"No selected item", @"No selected item"), nil], kClassesKey, @"", kTitleKey,
+                                      NSLocalizedString(@"No selected item", @""), nil], kClassesKey, @"", kTitleKey,
                                      nil]];
     }
 }

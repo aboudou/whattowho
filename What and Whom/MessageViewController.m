@@ -41,7 +41,7 @@ static NSString *const kTitleKey =  @"title";
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"Contact", @"Contact");
+    self.title = NSLocalizedString(@"Contact", @"");
     
     viewControllers = [[NSMutableArray alloc] initWithCapacity:1];
 
@@ -60,14 +60,14 @@ static NSString *const kTitleKey =  @"title";
                 // Add phone numbers if the device can send text messages
                 if([MFMessageComposeViewController canSendText]) {
                     [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                 phoneNumbers, kClassesKey, NSLocalizedString(@"text", @"text"), kTitleKey,
+                                                 phoneNumbers, kClassesKey, NSLocalizedString(@"text", @""), kTitleKey,
                                                  nil]];
                 }
     
                 // Add phone numbers if the device can make phone calls
                 if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://+11111"]]) {
                     [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                 phoneNumbers, kClassesKey, NSLocalizedString(@"phone", @"phone"), kTitleKey,
+                                                 phoneNumbers, kClassesKey, NSLocalizedString(@"phone", @""), kTitleKey,
                                                  nil]];
                 }
             }
@@ -84,7 +84,7 @@ static NSString *const kTitleKey =  @"title";
                 CFRelease(multiEmail);
                 if ([emails count] != 0) {
                     [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                 emails, kClassesKey, NSLocalizedString(@"email", @"email"), kTitleKey,
+                                                 emails, kClassesKey, NSLocalizedString(@"email", @""), kTitleKey,
                                                  nil]];
                 }
             }
@@ -99,7 +99,7 @@ static NSString *const kTitleKey =  @"title";
     if ([viewControllers count] == 0) {
         [viewControllers addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSArray arrayWithObjects:
-                                      NSLocalizedString(@"No contact info", @"No contact info"), nil], kClassesKey, @"", kTitleKey,
+                                      NSLocalizedString(@"No contact info", @""), nil], kClassesKey, @"", kTitleKey,
                                       nil]];
     }
     
@@ -184,14 +184,14 @@ static NSString *const kTitleKey =  @"title";
     // Navigation logic may go here. Create and push another view controller.
     NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
 
-    if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"text", @"text")]) {
+    if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"text", @"")]) {
         MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
         controller.body = @"";
 		controller.recipients = [NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil];
 		controller.messageComposeDelegate = self;
 		[self presentModalViewController:controller animated:YES];
 
-    } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"phone")]) {
+    } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"")]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -199,7 +199,7 @@ static NSString *const kTitleKey =  @"title";
             parentView.popoverController = nil;
         }
     
-    } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"email")]) {
+    } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"email", @"")]) {
         MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
         [controller setMessageBody:@"" isHTML:NO];
 		[controller setToRecipients:[NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil]];
@@ -216,7 +216,7 @@ static NSString *const kTitleKey =  @"title";
     
 	switch (result) {
 		case MessageComposeResultFailed:
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"What to Who") message:NSLocalizedString(@"Unknown error", @"Unknown error") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"") message:NSLocalizedString(@"Unknown error", @"") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
 			
             break;
@@ -262,7 +262,7 @@ static NSString *const kTitleKey =  @"title";
             
         case MFMailComposeResultFailed:
             
-            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"What to Who") message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"What to Who", @"") message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
 			
             break;

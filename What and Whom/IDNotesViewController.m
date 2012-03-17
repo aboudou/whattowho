@@ -43,9 +43,11 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"Notes", @"Notes");
-    
-    self.notesTextView.text = data.notes;
+    // Localisation
+    [self setTitle:NSLocalizedString(@"Notes", @"")];
+    [self.doneButton setTitle:NSLocalizedString(@"doneButton", @"")];
+
+    [self.notesTextView setText:data.notes];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

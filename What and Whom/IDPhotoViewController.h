@@ -16,6 +16,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UIButton *photoBg;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *addButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *deleteButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
 
 @property (nonatomic, strong) UIPopoverController *popoverController;

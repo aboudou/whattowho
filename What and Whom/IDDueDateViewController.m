@@ -43,7 +43,11 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"Due date", @"Due date");
+    // Localisation
+    [self setTitle:NSLocalizedString(@"Due date", @"")];
+    [self.todayButton setTitle:NSLocalizedString(@"todayButton", @"")];
+    [self.doneButton setTitle:NSLocalizedString(@"doneButton", @"")];
+    [self.removeButton setTitle:NSLocalizedString(@"deleteDueDateButton", @"")];
     
 #warning récupérer la date de la notification
     //[self.datePicker setDate:data.startDate animated:YES];

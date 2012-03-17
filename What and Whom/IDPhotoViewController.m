@@ -12,7 +12,7 @@
 
 @implementation IDPhotoViewController
 
-@synthesize data, imageView, photoBg, addButton, doneButton;
+@synthesize data, imageView, photoBg, addButton, deleteButton, doneButton;
 @synthesize popoverController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,11 +43,16 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"Photo", @"Photo");
+    // Localisation
+    [self setTitle:NSLocalizedString(@"Photo", @"")];
+    [self.doneButton setTitle:NSLocalizedString(@"doneButton", @"")];
+    [self.photoBg setTitle:NSLocalizedString(@"noPhotoButton", @"") forState:UIControlStateNormal];
+    [self.addButton setTitle:NSLocalizedString(@"addPhotoButton", @"")];
+    [self.deleteButton setTitle:NSLocalizedString(@"deletePhotoButton", @"")];
     
     if (data.photo != nil) {
-        self.imageView.image = [[UIImage alloc] initWithData:data.photo];
-        self.imageView.backgroundColor = [UIColor blackColor];
+        [self.imageView setImage:[[UIImage alloc] initWithData:data.photo]];
+        [self.imageView setBackgroundColor:[UIColor blackColor]];
     }
 }
 
@@ -90,12 +95,12 @@
         }
         
         // Un appareil photo est disponible, on laisse le choix de la source
-        UIActionSheet *photoSourceSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Add a photo", @"Title for photo source sheet") 
+        UIActionSheet *photoSourceSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Add a photo", @"") 
                                                                       delegate:self 
-                                                             cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel button on photo source sheet") 
+                                                             cancelButtonTitle:NSLocalizedString(@"Cancel", @"") 
                                                         destructiveButtonTitle:nil 
-                                                             otherButtonTitles:NSLocalizedString(@"Take new photo", "Photo from camera button on photo source sheet"), 
-                                           NSLocalizedString(@"Choose existing photo", "Photo from library on photo source sheet"), 
+                                                             otherButtonTitles:NSLocalizedString(@"Take new photo", @""), 
+                                           NSLocalizedString(@"Choose existing photo", @""), 
                                            nil, nil];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [photoSourceSheet showFromBarButtonItem:sender animated:YES];
@@ -140,15 +145,15 @@
 #pragma mark UIImagePickerControllerDelegate functions
 
 
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo {
-    self.data.photo = UIImagePNGRepresentation(image);
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    self.data.photo = UIImagePNGRepresentation((UIImage *)[info objectForKey:@"UIImagePickerControllerEditedImage"]);
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
             [self dismissModalViewControllerAnimated:YES];
         } else {
             [popoverController dismissPopoverAnimated:YES];
         }
-        self.imageView.image = image;
+        self.imageView.image = (UIImage *)[info objectForKey:@"UIImagePickerControllerEditedImage"];
         
         if (data.photo != nil) {
             self.imageView.image = [[UIImage alloc] initWithData:data.photo];

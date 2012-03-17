@@ -37,13 +37,13 @@
             self.whoFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
             self.idAddressBook = nil;
         } else {
-            self.whoName = NSLocalizedString(@"Unknown", @"Unknown contact");
+            self.whoName = NSLocalizedString(@"Unknown", @"");
             self.whoFirstName = @"";
             self.idAddressBook = nil;
         }
     }
     if ((abId == nil || [abId intValue] == 0) && [self.whoName length] == 0 && [self.whoFirstName length] == 0) {
-        self.whoName = NSLocalizedString(@"Unknown", @"Unknown contact");
+        self.whoName = NSLocalizedString(@"Unknown", @"");
     }
     
     // Update displayName

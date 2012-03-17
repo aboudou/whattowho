@@ -42,9 +42,12 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.title = NSLocalizedString(@"Date", @"Date");
-    
+
+    // Localisation
+    [self setTitle:NSLocalizedString(@"Date", @"")];
+    [self.todayButton setTitle:NSLocalizedString(@"todayButton", @"")];
+    [self.doneButton setTitle:NSLocalizedString(@"doneButton", @"")];
+
     [self.datePicker setDate:data.startDate animated:YES];
 }
 

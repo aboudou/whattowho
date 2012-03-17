@@ -134,7 +134,7 @@ static NSString *const kClassesKey =  @"classes";
     
     if ([name isEqualToString:@"IDContactViewController"]) {
         // Whom
-        cell.textLabel.text = NSLocalizedString(@"Who", @"Who");
+        cell.textLabel.text = NSLocalizedString(@"Who", @"");
         cell.detailTextLabel.text = data.displayName;
         cell.imageView.image = data.contactPicture;
         cell.imageView.layer.cornerRadius = 9.0;
@@ -143,39 +143,39 @@ static NSString *const kClassesKey =  @"classes";
         
     } else if ([name isEqualToString:@"IDBorrowViewController"]) {
         // Borrowed / Lent
-        cell.textLabel.text = NSLocalizedString(@"Borrowed / Lent", @"Borrowed / Lent");
+        cell.textLabel.text = NSLocalizedString(@"Borrowed / Lent", @"");
         if ([data.borrow intValue] == 1) {
-            cell.detailTextLabel.text = NSLocalizedString(@"Borrowed", @"Borrowed");
+            cell.detailTextLabel.text = NSLocalizedString(@"Borrowed", @"");
             cell.imageView.image = [UIImage imageNamed:@"borrow.png"];
         } else {
-            cell.detailTextLabel.text = NSLocalizedString(@"Lent", @"Lent");
+            cell.detailTextLabel.text = NSLocalizedString(@"Lent", @"");
             cell.imageView.image = [UIImage imageNamed:@"lend.png"];
         }
     
     } else if ([name isEqualToString:@"MessageViewController"]) {
         // Contact the contact
-        cell.textLabel.text = NSLocalizedString(@"Send a message / Call", @"Send a message / Call");
+        cell.textLabel.text = NSLocalizedString(@"Send a message / Call", @"");
         
     } else if ([name isEqualToString:@"IDKindViewController"]) {
         // Type of item
-        cell.textLabel.text = NSLocalizedString(@"Kind of item", @"Kind of item");
-        cell.detailTextLabel.text = NSLocalizedString(data.itemType, data.itemType);
+        cell.textLabel.text = NSLocalizedString(@"Kind of item", @"");
+        cell.detailTextLabel.text = NSLocalizedString(data.itemType, @"");
         cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", data.itemType, @".png"]];;
         
     } else if ([name isEqualToString:@"IDItemViewController"]) {
         // Item
-        cell.textLabel.text = NSLocalizedString(@"Item", @"Item");
+        cell.textLabel.text = NSLocalizedString(@"Item", @"");
         cell.detailTextLabel.text = data.itemName;
         cell.imageView.image = nil;
 
     } else if ([name isEqualToString:@"IDPhotoViewController"]) {
         // Photo
-        cell.textLabel.text = NSLocalizedString(@"Photo", @"Photo");
+        cell.textLabel.text = NSLocalizedString(@"Photo", @"");
         cell.imageView.image = nil;
         
     } else if ([name isEqualToString:@"IDNotesViewController"]) {
         // Notes
-        cell.textLabel.text = NSLocalizedString(@"Notes", @"Notes");
+        cell.textLabel.text = NSLocalizedString(@"Notes", @"");
         cell.detailTextLabel.text = data.notes;
         cell.imageView.image = nil;
     
@@ -184,7 +184,7 @@ static NSString *const kClassesKey =  @"classes";
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd MMMM yyyy"];
         cell.detailTextLabel.text = [dateFormat stringFromDate:data.startDate];
-        cell.textLabel.text = NSLocalizedString(@"Date", @"Date");
+        cell.textLabel.text = NSLocalizedString(@"Date", @"");
         cell.imageView.image = nil;
         
     } else if ([name isEqualToString:@"IDDueDateViewController"]) {
@@ -196,7 +196,7 @@ static NSString *const kClassesKey =  @"classes";
         cell.detailTextLabel.text = [dateFormat stringFromDate:data.startDate];
          [dateFormat release];
          */
-        cell.textLabel.text = NSLocalizedString(@"Due date", @"Due date");
+        cell.textLabel.text = NSLocalizedString(@"Due date", @"");
         cell.imageView.image = nil;
     }
     

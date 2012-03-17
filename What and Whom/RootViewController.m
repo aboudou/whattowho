@@ -90,7 +90,9 @@
 {
     [super viewWillAppear:animated];
     
-    //[self.tableView reloadData];
+    // Localisation
+    [self.navigationItem setTitle:NSLocalizedString(@"Items", @"")];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -245,12 +247,12 @@
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:NSLocalizedString(@"What ?", @"Default object name") forKey:@"itemName"];
+    [newManagedObject setValue:NSLocalizedString(@"What ?", @"") forKey:@"itemName"];
     [newManagedObject setValue:[NSDate date] forKey:@"startDate"];
     [newManagedObject setValue:[NSNumber numberWithInt:0] forKey:@"borrow"];
     [newManagedObject setValue:[NSNumber numberWithInt:0] forKey:@"borrow"];
-    [newManagedObject setValue:NSLocalizedString(@"Unknown", @"Unknown contact") forKey:@"whoName"];
-    [newManagedObject setValue:NSLocalizedString(@"Unknown", @"Unknown contact") forKey:@"displayName"];
+    [newManagedObject setValue:NSLocalizedString(@"Unknown", @"") forKey:@"whoName"];
+    [newManagedObject setValue:NSLocalizedString(@"Unknown", @"") forKey:@"displayName"];
 
     // Save the context.
     NSError *error = nil;
@@ -436,7 +438,7 @@
 }
 
 - (void)splitViewController:(UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController:(UIPopoverController*)pc {
-    barButtonItem.title = NSLocalizedString(@"Items", @"Items");
+    barButtonItem.title = NSLocalizedString(@"Items", @"s");
     popoverController = pc;
     self.rootPopoverButtonItem = barButtonItem;
     DetailWrapperViewController *detailWrapperViewController = [splitViewController.viewControllers objectAtIndex:1];

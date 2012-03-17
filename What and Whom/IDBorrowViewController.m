@@ -43,7 +43,7 @@ static NSString *const kDataKey =  @"data";
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"Borrowed / Lent", @"Borrowed / Lent");
+    self.title = NSLocalizedString(@"Borrowed / Lent", @"");
     
     viewControllers = [[NSArray alloc] initWithObjects:
 						[NSDictionary dictionaryWithObjectsAndKeys:
@@ -115,7 +115,7 @@ static NSString *const kDataKey =  @"data";
     
     if ([name isEqualToString:@"borrowed"]) {
         // Borrowed
-        cell.textLabel.text = NSLocalizedString(@"Borrowed", @"Borrowed");
+        cell.textLabel.text = NSLocalizedString(@"Borrowed", @"");
         cell.imageView.image = [UIImage imageNamed:@"borrow.png"];
         if ([data.borrow intValue] == 1) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -125,7 +125,7 @@ static NSString *const kDataKey =  @"data";
         
     } else if ([name isEqualToString:@"lent"]) {
         // Lent
-        cell.textLabel.text = NSLocalizedString(@"Lent", @"Lent");
+        cell.textLabel.text = NSLocalizedString(@"Lent", @"");
         cell.imageView.image = [UIImage imageNamed:@"lend.png"];
         if ([data.borrow intValue] == 0) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

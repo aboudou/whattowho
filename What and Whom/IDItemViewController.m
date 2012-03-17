@@ -42,9 +42,12 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.title = NSLocalizedString(@"What ?", @"What ?");
+    // Localisation
+    [self setTitle:NSLocalizedString(@"What ?", @"")];
+    [self.doneButton setTitle:NSLocalizedString(@"doneButton", @"")];
+    [self.itemNameTextField setPlaceholder:NSLocalizedString(@"What ?", @"")];
     
-    self.itemNameTextField.text = data.itemName;
+    [self.itemNameTextField setText:data.itemName];
     [self.itemNameTextField becomeFirstResponder];
 }
 
@@ -53,7 +56,7 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         if ([self.itemNameTextField.text length] == 0) {
-            data.itemName = NSLocalizedString(@"What ?", @"What ?");
+            data.itemName = NSLocalizedString(@"What ?", @"");
         } else {
             data.itemName = self.itemNameTextField.text;
         }
@@ -83,7 +86,7 @@
         parentView.popoverController = nil;
         
         if ([self.itemNameTextField.text length] == 0) {
-            data.itemName = NSLocalizedString(@"What ?", @"What ?");
+            data.itemName = NSLocalizedString(@"What ?", @"");
         } else {
             data.itemName = self.itemNameTextField.text;
         }
