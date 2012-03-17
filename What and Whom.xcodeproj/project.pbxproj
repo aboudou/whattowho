@@ -60,6 +60,7 @@
 		3B88E2341514B29700055D6A /* IDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E2331514B29600055D6A /* IDContactViewController.xib */; };
 		3B88E2351514B69900055D6A /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E2361514B69900055D6A /* MainWindow-iPad.xib */; };
 		3B88E2381514B6BE00055D6A /* IDContactViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E2371514B6BE00055D6A /* IDContactViewController_iPad.xib */; };
+		3B88E24115151B2000055D6A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B88E24015151B2000055D6A /* MBProgressHUD.m */; };
 		3B94D8481348521C00D0BDEA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8461348521C00D0BDEA /* AddressBook.framework */; };
 		3B94D8491348521C00D0BDEA /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8471348521C00D0BDEA /* AddressBookUI.framework */; };
 		3BA924A21350C56E003B8F84 /* IDNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA924A01350C56E003B8F84 /* IDNotesViewController.m */; };
@@ -159,6 +160,8 @@
 		3B88E2331514B29600055D6A /* IDContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDContactViewController.xib; sourceTree = "<group>"; };
 		3B88E2361514B69900055D6A /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		3B88E2371514B6BE00055D6A /* IDContactViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDContactViewController_iPad.xib; sourceTree = "<group>"; };
+		3B88E23F15151B2000055D6A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		3B88E24015151B2000055D6A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		3B94D8461348521C00D0BDEA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3B94D8471348521C00D0BDEA /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		3BA9249F1350C56E003B8F84 /* IDNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDNotesViewController.h; sourceTree = "<group>"; };
@@ -221,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				3B04C2A513479B6900A37E9A /* What and Whom */,
+				3B88E23D15151B1F00055D6A /* External */,
 				3B04C29C13479B6900A37E9A /* Frameworks */,
 				3B04C29A13479B6900A37E9A /* Products */,
 			);
@@ -413,6 +417,23 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		3B88E23D15151B1F00055D6A /* External */ = {
+			isa = PBXGroup;
+			children = (
+				3B88E23E15151B2000055D6A /* MBProgressHUD */,
+			);
+			path = External;
+			sourceTree = SOURCE_ROOT;
+		};
+		3B88E23E15151B2000055D6A /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				3B88E23F15151B2000055D6A /* MBProgressHUD.h */,
+				3B88E24015151B2000055D6A /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -548,6 +569,7 @@
 				3B2F5D2713FBF9CC009EC3FB /* DetailWrapperViewController.m in Sources */,
 				3BCB16C7145476EF00222DF3 /* Utils.m in Sources */,
 				3B88E2321514B27400055D6A /* IDContactViewController.m in Sources */,
+				3B88E24115151B2000055D6A /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

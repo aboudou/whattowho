@@ -9,6 +9,7 @@
 #import "What_and_WhomAppDelegate.h"
 #import "RootViewController.h"
 #import "Macros.h"
+#import "MBProgressHUD.h"
 
 @implementation What_and_WhomAppDelegate
 
@@ -161,6 +162,8 @@
     NSPersistentStoreCoordinator* psc = persistentStoreCoordinator__;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [MBProgressHUD  showHUDAddedTo:self.window  animated:YES];
+        
         NSFileManager *fileManager = [NSFileManager defaultManager];
 
         NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
@@ -199,6 +202,7 @@
         if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error])
         {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            [MBProgressHUD hideHUDForView:self.window animated:YES];
             [self resetiCloudSyncforCloudUrl:cloudURL];
         } else {
             NSLog(@"Après ajout du store");
@@ -207,6 +211,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSLog(@"asynchronously added persistent store!");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"RefetchAllDatabaseData" object:self userInfo:nil];
+                [MBProgressHUD hideHUDForView:self.window animated:YES];
             });
         }
 
