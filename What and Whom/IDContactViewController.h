@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Data.h"
+#import "ItemViewController.h"
 
-@interface IDContactViewController : UIView
+@interface IDContactViewController : UIViewController {
+    
+}
+
+
+@property (nonatomic, weak) IBOutlet UITextField *firstNameTextField;
+@property (nonatomic, weak) IBOutlet UITextField *lastNameTextField;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
+
+@property (nonatomic, strong) Data *data;
+@property (nonatomic, strong) ItemViewController *parentView;
+
+-(IBAction) doneButtonPressed:(id)sender;
 
 @end

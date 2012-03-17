@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "IDBorrowViewController.h"
+#import "IDContactViewController.h"
 #import "IDDateViewController.h"
 #import "IDDueDateViewController.h"
 #import "IDItemViewController.h"
@@ -25,6 +26,7 @@ static NSString *const kClassesKey =  @"classes";
 
 @synthesize data;
 @synthesize popoverController;
+@synthesize contactButtonFrame;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -218,11 +220,20 @@ static NSString *const kClassesKey =  @"classes";
     
     if ([name isEqualToString:@"IDContactViewController"]) {
         // Whom
-        ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-        picker.peoplePickerDelegate = self;
-        
-        [self presentModalViewController:picker animated:YES];
-        
+        UIActionSheet *contactSourceSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"contactPickerTitle", @"") 
+                                                                      delegate:self 
+                                                             cancelButtonTitle:NSLocalizedString(@"contactPickerCancel", @"") 
+                                                        destructiveButtonTitle:nil 
+                                                             otherButtonTitles:NSLocalizedString(@"contactPickerFromAB", @""), 
+                                           NSLocalizedString(@"contactPickerOther", @""), 
+                                           nil, nil];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            contactButtonFrame = aFrame;
+            [contactSourceSheet showFromRect:contactButtonFrame inView:self.view animated:YES];
+        } else {
+            [contactSourceSheet showInView:self.view];
+        }
+
     } else if ([name isEqualToString:@"IDBorrowViewController"]) {
         // Borrowed / Lent
         IDBorrowViewController *detailViewController = [[IDBorrowViewController alloc] initWithNibName:@"IDBorrowViewController" bundle:nil];
@@ -396,6 +407,45 @@ static NSString *const kClassesKey =  @"classes";
     // Force la mise à jour des données avant de rafraichir la vue courante
 //    [p_popoverController.contentViewController viewWillDisappear:YES];
 //    [self.tableView reloadData];
+}
+
+
+#pragma mark - UIActionSheetDelegate functions
+
+-(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+
+    ABPeoplePickerNavigationController *picker = nil;
+    
+    switch (buttonIndex) {
+        case 0:
+            picker = [[ABPeoplePickerNavigationController alloc] init];
+            picker.peoplePickerDelegate = self;
+                  
+            [self presentModalViewController:picker animated:YES];
+            break;
+        case 1:
+
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                IDContactViewController *detailViewController = [[IDContactViewController alloc] initWithNibName:@"IDContactViewController_iPad" bundle:nil];
+                
+                detailViewController.data = data;
+                detailViewController.parentView = self;
+                
+                [self managePopover:detailViewController frame:contactButtonFrame width:320.0 height:153.0];
+                
+            } else {
+                IDContactViewController *detailViewController = [[IDContactViewController alloc] initWithNibName:@"IDContactViewController" bundle:nil];
+                
+                detailViewController.data = data;
+                
+                [self.navigationController pushViewController:detailViewController animated:YES];
+                
+            }
+            
+            break;
+        default:
+            return;
+    }
 }
 
 #pragma mark - Misc. methods

@@ -42,7 +42,6 @@
 		3B3A9D9F1350A2BE00569D04 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A9D9C1350A2BE00569D04 /* Icon.png */; };
 		3B3A9DA01350A2BE00569D04 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A9D9D1350A2BE00569D04 /* Icon@2x.png */; };
 		3B3FBA63139A2E1400146D7C /* IDPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FBA61139A2E1400146D7C /* IDPhotoViewController.m */; };
-		3B64A64A13FB9F8B00593F6A /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B64A64713FB9F8B00593F6A /* MainWindow-iPad.xib */; };
 		3B6A6B30134A00DE00AC3394 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6A6B2E134A00DE00AC3394 /* ItemViewController.m */; };
 		3B73DA0E1349983E0017A43A /* borrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA0C1349983E0017A43A /* borrow.png */; };
 		3B73DA0F1349983E0017A43A /* lend.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA0D1349983E0017A43A /* lend.png */; };
@@ -57,6 +56,10 @@
 		3B88E229151491A100055D6A /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E228151491A100055D6A /* Icon-72@2x.png */; };
 		3B88E22C1514963F00055D6A /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E22A1514963F00055D6A /* Default-Landscape@2x~ipad.png */; };
 		3B88E22D1514963F00055D6A /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E22B1514963F00055D6A /* Default-Portrait@2x~ipad.png */; };
+		3B88E2321514B27400055D6A /* IDContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B88E2311514B27300055D6A /* IDContactViewController.m */; };
+		3B88E2341514B29700055D6A /* IDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E2331514B29600055D6A /* IDContactViewController.xib */; };
+		3B88E2351514B69900055D6A /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E2361514B69900055D6A /* MainWindow-iPad.xib */; };
+		3B88E2381514B6BE00055D6A /* IDContactViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B88E2371514B6BE00055D6A /* IDContactViewController_iPad.xib */; };
 		3B94D8481348521C00D0BDEA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8461348521C00D0BDEA /* AddressBook.framework */; };
 		3B94D8491348521C00D0BDEA /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94D8471348521C00D0BDEA /* AddressBookUI.framework */; };
 		3BA924A21350C56E003B8F84 /* IDNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA924A01350C56E003B8F84 /* IDNotesViewController.m */; };
@@ -135,8 +138,6 @@
 		3B3FBA60139A2E1400146D7C /* IDPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPhotoViewController.h; sourceTree = "<group>"; };
 		3B3FBA61139A2E1400146D7C /* IDPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPhotoViewController.m; sourceTree = "<group>"; };
 		3B4449CA145FFC9100E896F3 /* What and Whom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "What and Whom.entitlements"; sourceTree = "<group>"; };
-		3B64A64813FB9F8B00593F6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		3B64A64913FB9F8B00593F6A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = "iPad/fr.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		3B6A6B2D134A00DE00AC3394 /* ItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewController.h; sourceTree = "<group>"; };
 		3B6A6B2E134A00DE00AC3394 /* ItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewController.m; sourceTree = "<group>"; };
 		3B6DCBEA13FE66DA00698C97 /* What_and_Whom 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "What_and_Whom 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -153,6 +154,11 @@
 		3B88E228151491A100055D6A /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "What and Whom/Icon-72@2x.png"; sourceTree = "<group>"; };
 		3B88E22A1514963F00055D6A /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "What and Whom/Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		3B88E22B1514963F00055D6A /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "What and Whom/Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		3B88E2301514B27300055D6A /* IDContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDContactViewController.h; sourceTree = "<group>"; };
+		3B88E2311514B27300055D6A /* IDContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDContactViewController.m; sourceTree = "<group>"; };
+		3B88E2331514B29600055D6A /* IDContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDContactViewController.xib; sourceTree = "<group>"; };
+		3B88E2361514B69900055D6A /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		3B88E2371514B6BE00055D6A /* IDContactViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDContactViewController_iPad.xib; sourceTree = "<group>"; };
 		3B94D8461348521C00D0BDEA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3B94D8471348521C00D0BDEA /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		3BA9249F1350C56E003B8F84 /* IDNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDNotesViewController.h; sourceTree = "<group>"; };
@@ -303,6 +309,9 @@
 				3BDA7FD7134D824B00E2C923 /* IDBorrowViewController.h */,
 				3BDA7FD8134D824B00E2C923 /* IDBorrowViewController.m */,
 				3BDA7FD9134D824B00E2C923 /* IDBorrowViewController.xib */,
+				3B88E2301514B27300055D6A /* IDContactViewController.h */,
+				3B88E2311514B27300055D6A /* IDContactViewController.m */,
+				3B88E2331514B29600055D6A /* IDContactViewController.xib */,
 				3BA924A51350C8F8003B8F84 /* IDDateViewController.h */,
 				3BA924A61350C8F8003B8F84 /* IDDateViewController.m */,
 				3BBC3E7B1514701900C2D9BA /* IDDateViewController.xib */,
@@ -359,15 +368,16 @@
 		3B64A64613FB9F8600593F6A /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				3B64A64713FB9F8B00593F6A /* MainWindow-iPad.xib */,
+				3B88E2361514B69900055D6A /* MainWindow-iPad.xib */,
 				3B2F5D2413FBF9CC009EC3FB /* DetailWrapperViewController.h */,
 				3B2F5D2513FBF9CC009EC3FB /* DetailWrapperViewController.m */,
 				3B88E21D15147BF000055D6A /* DetailWrapperViewController.xib */,
-				3BBC3E8B1514786200C2D9BA /* IDPhotoViewController_iPad.xib */,
-				3BBC3E851514752B00C2D9BA /* IDItemViewController_iPad.xib */,
-				3BBC3E87151476B900C2D9BA /* IDNotesViewController_iPad.xib */,
 				3BBC3E7D1514713F00C2D9BA /* IDDateViewController_iPad.xib */,
 				3BBC3E81151474D700C2D9BA /* IDDueDateViewController_iPad.xib */,
+				3BBC3E851514752B00C2D9BA /* IDItemViewController_iPad.xib */,
+				3B88E2371514B6BE00055D6A /* IDContactViewController_iPad.xib */,
+				3BBC3E87151476B900C2D9BA /* IDNotesViewController_iPad.xib */,
+				3BBC3E8B1514786200C2D9BA /* IDPhotoViewController_iPad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -495,7 +505,7 @@
 				3BAB7BD41382AD2C00722549 /* MessageViewController.xib in Resources */,
 				3BBC3E7E1514747400C2D9BA /* IDDueDateViewController.xib in Resources */,
 				3BBC3E881514784600C2D9BA /* IDPhotoViewController.xib in Resources */,
-				3B64A64A13FB9F8B00593F6A /* MainWindow-iPad.xib in Resources */,
+				3B88E2351514B69900055D6A /* MainWindow-iPad.xib in Resources */,
 				3B88E21C15147BF000055D6A /* DetailWrapperViewController.xib in Resources */,
 				3BBC3E8A1514786200C2D9BA /* IDPhotoViewController_iPad.xib in Resources */,
 				3BBC3E841514752B00C2D9BA /* IDItemViewController_iPad.xib in Resources */,
@@ -509,6 +519,8 @@
 				3B88E229151491A100055D6A /* Icon-72@2x.png in Resources */,
 				3B88E22C1514963F00055D6A /* Default-Landscape@2x~ipad.png in Resources */,
 				3B88E22D1514963F00055D6A /* Default-Portrait@2x~ipad.png in Resources */,
+				3B88E2341514B29700055D6A /* IDContactViewController.xib in Resources */,
+				3B88E2381514B6BE00055D6A /* IDContactViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +547,7 @@
 				3B3FBA63139A2E1400146D7C /* IDPhotoViewController.m in Sources */,
 				3B2F5D2713FBF9CC009EC3FB /* DetailWrapperViewController.m in Sources */,
 				3BCB16C7145476EF00222DF3 /* Utils.m in Sources */,
+				3B88E2321514B27400055D6A /* IDContactViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,15 +571,6 @@
 				3B04C2D013479FA700A37E9A /* fr */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		3B64A64713FB9F8B00593F6A /* MainWindow-iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3B64A64813FB9F8B00593F6A /* en */,
-				3B64A64913FB9F8B00593F6A /* fr */,
-			);
-			name = "MainWindow-iPad.xib";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
