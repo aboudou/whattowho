@@ -93,7 +93,9 @@ static NSString *const kTitleKey =  @"title";
     if (people != nil) {
         CFRelease(people);
     }
-    CFRelease(addressBook);
+    if (addressBook != nil) {
+        CFRelease(addressBook);
+    }
     
     // Case of an empty list
     if ([viewControllers count] == 0) {

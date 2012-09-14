@@ -68,7 +68,9 @@
         CFRelease(people);
     }
 
-    CFRelease(addressBook);
+    if (addressBook != nil) {
+        CFRelease(addressBook);
+    }
 }
 
 - (UIImage *) contactPicture {
@@ -81,24 +83,32 @@
             if ( &ABPersonCopyImageDataWithFormat != nil ) {
                 UIImage *image = [UIImage imageWithData:(__bridge_transfer NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
                 CFRelease(people);
-                CFRelease(addressBook);
+                if (addressBook != nil) {
+                    CFRelease(addressBook);
+                }
                 return image;
             } else { 
                 UIImage *image = [UIImage imageWithData:(NSData *)(__bridge_transfer NSData *)ABPersonCopyImageData(person)];
                 CFRelease(people);
-                CFRelease(addressBook);
+                if (addressBook != nil) {
+                    CFRelease(addressBook);
+                }
                 return image;
             }
         } else { 
             CFRelease(people);
-            CFRelease(addressBook);
+            if (addressBook != nil) {
+                CFRelease(addressBook);
+            }
             return nil;
         }
     } else {
         if (people != nil) {
             CFRelease(people);
         }
-        CFRelease(addressBook);
+        if (addressBook != nil) {
+            CFRelease(addressBook);
+        }
         return nil;
     }
 }
