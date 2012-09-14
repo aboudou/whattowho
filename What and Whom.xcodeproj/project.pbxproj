@@ -49,6 +49,7 @@
 		3B73DA0F1349983E0017A43A /* lend.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA0D1349983E0017A43A /* lend.png */; };
 		3B73DA12134999450017A43A /* borrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA10134999450017A43A /* borrow@2x.png */; };
 		3B73DA13134999450017A43A /* lend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA11134999450017A43A /* lend@2x.png */; };
+		3B79962816035AC0009EBFA3 /* IDDateViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B79962716035AC0009EBFA3 /* IDDateViewController_iPad.m */; };
 		3B82304213FF9BE2004993E3 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */; };
 		3B82304313FF9BE2004993E3 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */; };
 		3B82304613FFA0DA004993E3 /* money.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304413FFA0DA004993E3 /* money.png */; };
@@ -151,6 +152,8 @@
 		3B73DA0D1349983E0017A43A /* lend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lend.png; path = "What and Whom/lend.png"; sourceTree = "<group>"; };
 		3B73DA10134999450017A43A /* borrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "borrow@2x.png"; path = "What and Whom/borrow@2x.png"; sourceTree = "<group>"; };
 		3B73DA11134999450017A43A /* lend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lend@2x.png"; path = "What and Whom/lend@2x.png"; sourceTree = "<group>"; };
+		3B79962616035AC0009EBFA3 /* IDDateViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDDateViewController_iPad.h; sourceTree = "<group>"; };
+		3B79962716035AC0009EBFA3 /* IDDateViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDDateViewController_iPad.m; sourceTree = "<group>"; };
 		3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "What and Whom/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "What and Whom/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3B82304413FFA0DA004993E3 /* money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = money.png; path = "What and Whom/money.png"; sourceTree = "<group>"; };
@@ -383,6 +386,8 @@
 				3B2F5D2413FBF9CC009EC3FB /* DetailWrapperViewController.h */,
 				3B2F5D2513FBF9CC009EC3FB /* DetailWrapperViewController.m */,
 				3B88E21D15147BF000055D6A /* DetailWrapperViewController.xib */,
+				3B79962616035AC0009EBFA3 /* IDDateViewController_iPad.h */,
+				3B79962716035AC0009EBFA3 /* IDDateViewController_iPad.m */,
 				3BBC3E7D1514713F00C2D9BA /* IDDateViewController_iPad.xib */,
 				3BBC3E81151474D700C2D9BA /* IDDueDateViewController_iPad.xib */,
 				3BBC3E851514752B00C2D9BA /* IDItemViewController_iPad.xib */,
@@ -582,6 +587,7 @@
 				3BCB16C7145476EF00222DF3 /* Utils.m in Sources */,
 				3B88E2321514B27400055D6A /* IDContactViewController.m in Sources */,
 				3B88E24115151B2000055D6A /* MBProgressHUD.m in Sources */,
+				3B79962816035AC0009EBFA3 /* IDDateViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Data.h"
 #import "DetailWrapperViewController.h"
+#import "IDDateViewController.h"
 
 @interface ItemViewController : DetailWrapperViewController <ABPeoplePickerNavigationControllerDelegate, UIPopoverControllerDelegate, UIActionSheetDelegate> {
 
@@ -16,6 +17,11 @@
 
 @property (nonatomic, strong) Data *data;
 @property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) IDDateViewController *dateViewController;
+
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) IBOutlet UIView *overView;
+
 
 @property (nonatomic, assign) CGRect contactButtonFrame;
 

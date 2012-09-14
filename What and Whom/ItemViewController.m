@@ -11,7 +11,7 @@
 
 #import "IDBorrowViewController.h"
 #import "IDContactViewController.h"
-#import "IDDateViewController.h"
+#import "IDDateViewController_iPad.h"
 #import "IDDueDateViewController.h"
 #import "IDItemViewController.h"
 #import "IDKindViewController.h"
@@ -25,7 +25,9 @@ static NSString *const kClassesKey =  @"classes";
 
 @synthesize data;
 @synthesize popoverController;
+@synthesize dateViewController;
 @synthesize contactButtonFrame;
+@synthesize maskView, overView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -332,7 +334,7 @@ static NSString *const kClassesKey =  @"classes";
     } else if ([name isEqualToString:@"IDDateViewController"]) {
         // Date
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController_iPad" bundle:nil];
+            IDDateViewController_iPad *detailViewController = [[IDDateViewController_iPad alloc] initWithNibName:@"IDDateViewController_iPad" bundle:nil];
             
             detailViewController.data = data;
             detailViewController.parentView = self;
@@ -340,11 +342,42 @@ static NSString *const kClassesKey =  @"classes";
             [self managePopover:detailViewController frame:aFrame width:320.0 height:304.0];
 
         } else {
-            IDDateViewController *detailViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController" bundle:nil];
+            dateViewController = [[IDDateViewController alloc] initWithNibName:@"IDDateViewController_iPad" bundle:nil];
             
-            detailViewController.data = data;
-            
-            [self.navigationController pushViewController:detailViewController animated:YES];
+            dateViewController.data = data;
+
+            [UIView animateWithDuration:0.3f animations:^{
+                overView = [[UIView alloc] initWithFrame:self.view.frame];
+                if (self.tableView.contentSize.height > self.view.frame.size.height) {
+                    overView.frame = (CGRect) {0, 0, self.tableView.contentSize};
+                } else {
+                    overView.frame = (CGRect) {0, 0, self.view.frame.size};
+                }
+                overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
+                overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
+                
+                [self.view addSubview:overView];
+                
+                dateViewController.view.frame = CGRectMake(
+                                                             0,
+                                                             overView.frame.size.height,
+                                                             overView.frame.size.width,
+                                                             304);
+
+                [overView addSubview:dateViewController.view];
+                dateViewController.todayButton.target = self;
+                dateViewController.todayButton.action = @selector(todayButtonPressed);
+                
+                dateViewController.doneButton.target = self;
+                dateViewController.doneButton.action = @selector(doneButtonPressed);
+
+                dateViewController.view.frame = CGRectMake(
+                                                             0,
+                                                             overView.frame.size.height - 304,
+                                                             overView.frame.size.width,
+                                                             304);
+
+            }];
 
         }
         
@@ -459,6 +492,30 @@ static NSString *const kClassesKey =  @"classes";
         [popoverController dismissPopoverAnimated:YES];
         popoverController = nil;
     }
+}
+
+- (void) todayButtonPressed {
+    [dateViewController.datePicker setDate:[NSDate date] animated:YES];
+}
+
+- (void) doneButtonPressed {
+    data.startDate = dateViewController.datePicker.date;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        dateViewController.view.frame = CGRectMake(
+                                                   0,
+                                                   self.view.frame.size.height,
+                                                   self.view.frame.size.width,
+                                                   304);
+        
+        overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
+
+        [self.tableView reloadData];
+    } completion:^(BOOL finished){
+        [overView removeFromSuperview];
+        [dateViewController.view removeFromSuperview];
+    }];
+
 }
 
 @end

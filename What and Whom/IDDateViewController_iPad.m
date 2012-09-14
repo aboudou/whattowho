@@ -6,11 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "IDDateViewController.h"
+#import "IDDateViewController_iPad.h"
 
-@implementation IDDateViewController
+@implementation IDDateViewController_iPad
 
 @synthesize data, datePicker, todayButton, doneButton;
+@synthesize parentView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +74,23 @@
         return YES;
     }
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - UI management functions
+
+-(IBAction)todayButtonPressed:(id)sender {
+    [self.datePicker setDate:[NSDate date] animated:YES];
+}
+
+-(IBAction) doneButtonPressed:(id)sender {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [parentView.popoverController dismissPopoverAnimated:YES];
+        parentView.popoverController = nil;
+        
+        data.startDate = self.datePicker.date;
+        
+        [parentView.tableView reloadData];
+    }
 }
 
 @end

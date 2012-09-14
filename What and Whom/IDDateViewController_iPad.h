@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Data.h"
+#import "ItemViewController.h"
 
-@interface IDDateViewController : UIViewController {
+@interface IDDateViewController_iPad : UIViewController {
 
 }
 
@@ -18,5 +19,9 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *doneButton;
 
 @property (nonatomic, strong) Data *data;
+@property (nonatomic, strong) ItemViewController *parentView;
+
+-(IBAction) doneButtonPressed:(id)sender;
+-(IBAction) todayButtonPressed:(id)sender;
 
 @end
