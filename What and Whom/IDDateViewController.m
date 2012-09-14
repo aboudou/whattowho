@@ -7,7 +7,6 @@
 //
 
 #import "IDDateViewController.h"
-#import "Utils.h"
 
 @implementation IDDateViewController
 
@@ -38,6 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    self.view.backgroundColor = [Utils defaultBgColor];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

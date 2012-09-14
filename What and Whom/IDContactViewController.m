@@ -7,7 +7,6 @@
 //
 
 #import "IDContactViewController.h"
-#import "Utils.h"
 
 @implementation IDContactViewController
 
@@ -36,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [Utils defaultBgColor];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

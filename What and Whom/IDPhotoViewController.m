@@ -8,7 +8,6 @@
 
 #import "IDPhotoViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Utils.h"
 
 @implementation IDPhotoViewController
 
@@ -38,6 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [Utils defaultBgColor];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

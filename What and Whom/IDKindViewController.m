@@ -7,7 +7,6 @@
 //
 
 #import "IDKindViewController.h"
-#import "Utils.h"
 
 static NSString *const kDataKey =  @"data";
 

@@ -7,7 +7,6 @@
 //
 
 #import "IDItemViewController.h"
-#import "Utils.h"
 
 @implementation IDItemViewController
 
@@ -37,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [Utils defaultBgColor];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

@@ -18,7 +18,6 @@
 #import "IDNotesViewController.h"
 #import "IDPhotoViewController.h"
 #import "MessageViewController.h"
-#import "Utils.h"
 
 static NSString *const kClassesKey =  @"classes";
 

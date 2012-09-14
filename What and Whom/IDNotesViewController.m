@@ -7,7 +7,6 @@
 //
 
 #import "IDNotesViewController.h"
-#import "Utils.h"
 
 @implementation IDNotesViewController
 
@@ -38,6 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
+    self.view.backgroundColor = [Utils defaultBgColor];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

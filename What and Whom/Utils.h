@@ -12,5 +12,6 @@
 
 
 + (void) updateManagedContext;
++ (UIColor *) defaultBgColor;
 
 @end
