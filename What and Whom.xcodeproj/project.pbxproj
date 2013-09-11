@@ -34,6 +34,7 @@
 		3B0EB0831348D42C002C937F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0EB0821348D42C002C937F /* Data.m */; };
 		3B0EB08D1348E206002C937F /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EB08A1348E206002C937F /* Default~iphone.png */; };
 		3B0EB08E1348E206002C937F /* Default@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EB08B1348E206002C937F /* Default@2x~iphone.png */; };
+		3B26E52717E06A6C00E7FD9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B26E52617E06A6C00E7FD9D /* Images.xcassets */; };
 		3B2F5D2713FBF9CC009EC3FB /* DetailWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F5D2513FBF9CC009EC3FB /* DetailWrapperViewController.m */; };
 		3B3427CF134DC3E400F22C98 /* movie.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3427CD134DC3E400F22C98 /* movie.png */; };
 		3B3427D0134DC3E400F22C98 /* movie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3427CE134DC3E400F22C98 /* movie@2x.png */; };
@@ -134,6 +135,7 @@
 		3B0EB0821348D42C002C937F /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		3B0EB08A1348E206002C937F /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~iphone.png"; path = "What and Whom/Default~iphone.png"; sourceTree = "<group>"; };
 		3B0EB08B1348E206002C937F /* Default@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x~iphone.png"; path = "What and Whom/Default@2x~iphone.png"; sourceTree = "<group>"; };
+		3B26E52617E06A6C00E7FD9D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3B2F5D2413FBF9CC009EC3FB /* DetailWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailWrapperViewController.h; sourceTree = "<group>"; };
 		3B2F5D2513FBF9CC009EC3FB /* DetailWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailWrapperViewController.m; sourceTree = "<group>"; };
 		3B2FDB781389001B0036B5F9 /* What_and_Whom 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "What_and_Whom 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				3B04C2A613479B6900A37E9A /* Other Sources */,
 				3B04C2CB13479DBA00A37E9A /* Resources */,
 				3B88E23D15151B1F00055D6A /* External */,
+				3B26E52617E06A6C00E7FD9D /* Images.xcassets */,
 			);
 			path = "What and Whom";
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B04C2AA13479B6900A37E9A /* InfoPlist.strings in Resources */,
+				3B26E52717E06A6C00E7FD9D /* Images.xcassets in Resources */,
 				3B88E21A15147BD200055D6A /* MainWindow.xib in Resources */,
 				3BBC3E7815146D5400C2D9BA /* RootViewController.xib in Resources */,
 				3B04C2CF13479F8D00A37E9A /* Localizable.strings in Resources */,
@@ -672,6 +676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -693,6 +698,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
