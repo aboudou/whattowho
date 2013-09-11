@@ -50,6 +50,9 @@
 		3B73DA12134999450017A43A /* borrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA10134999450017A43A /* borrow@2x.png */; };
 		3B73DA13134999450017A43A /* lend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B73DA11134999450017A43A /* lend@2x.png */; };
 		3B79962816035AC0009EBFA3 /* IDDateViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B79962716035AC0009EBFA3 /* IDDateViewController_iPad.m */; };
+		3B7F9B79178D4511007FCFBC /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7F9B66178D3E37007FCFBC /* Icon-60@2x.png */; };
+		3B7F9B7A178D4518007FCFBC /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7F9B67178D3EFB007FCFBC /* Icon-76.png */; };
+		3B7F9B7B178D451B007FCFBC /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7F9B68178D3EFB007FCFBC /* Icon-76@2x.png */; };
 		3B82304213FF9BE2004993E3 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */; };
 		3B82304313FF9BE2004993E3 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */; };
 		3B82304613FFA0DA004993E3 /* money.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B82304413FFA0DA004993E3 /* money.png */; };
@@ -154,6 +157,9 @@
 		3B73DA11134999450017A43A /* lend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lend@2x.png"; path = "What and Whom/lend@2x.png"; sourceTree = "<group>"; };
 		3B79962616035AC0009EBFA3 /* IDDateViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDDateViewController_iPad.h; sourceTree = "<group>"; };
 		3B79962716035AC0009EBFA3 /* IDDateViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDDateViewController_iPad.m; sourceTree = "<group>"; };
+		3B7F9B66178D3E37007FCFBC /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "What and Whom/Icon-60@2x.png"; sourceTree = "<group>"; };
+		3B7F9B67178D3EFB007FCFBC /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "What and Whom/Icon-76.png"; sourceTree = "<group>"; };
+		3B7F9B68178D3EFB007FCFBC /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x.png"; path = "What and Whom/Icon-76@2x.png"; sourceTree = "<group>"; };
 		3B82304013FF9BE2004993E3 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "What and Whom/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "What and Whom/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3B82304413FFA0DA004993E3 /* money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = money.png; path = "What and Whom/money.png"; sourceTree = "<group>"; };
@@ -293,8 +299,11 @@
 				3B88E22A1514963F00055D6A /* Default-Landscape@2x~ipad.png */,
 				3B82304113FF9BE2004993E3 /* Default-Portrait~ipad.png */,
 				3B88E22B1514963F00055D6A /* Default-Portrait@2x~ipad.png */,
+				3B7F9B66178D3E37007FCFBC /* Icon-60@2x.png */,
 				3B3A9D9B1350A2BE00569D04 /* Icon-72.png */,
 				3B88E228151491A100055D6A /* Icon-72@2x.png */,
+				3B7F9B67178D3EFB007FCFBC /* Icon-76.png */,
+				3B7F9B68178D3EFB007FCFBC /* Icon-76@2x.png */,
 				3B3A9D9C1350A2BE00569D04 /* Icon.png */,
 				3B3A9D9D1350A2BE00569D04 /* Icon@2x.png */,
 				3B04C2A813479B6900A37E9A /* InfoPlist.strings */,
@@ -474,7 +483,12 @@
 		3B04C29013479B6800A37E9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					3B04C29813479B6900A37E9A = {
+						DevelopmentTeam = GBBYECNDQ9;
+					};
+				};
 			};
 			buildConfigurationList = 3B04C29313479B6800A37E9A /* Build configuration list for PBXProject "What and Whom" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -510,6 +524,7 @@
 				3B73DA12134999450017A43A /* borrow@2x.png in Resources */,
 				3B73DA13134999450017A43A /* lend@2x.png in Resources */,
 				3BBC3E8C15147AA700C2D9BA /* ItemViewController.xib in Resources */,
+				3B7F9B7A178D4518007FCFBC /* Icon-76.png in Resources */,
 				3BDA7FDB134D824B00E2C923 /* IDBorrowViewController.xib in Resources */,
 				3BEDDC4A134DB554003E72E1 /* IDKindViewController.xib in Resources */,
 				3BEDDC50134DBC1D003E72E1 /* animal.png in Resources */,
@@ -529,6 +544,7 @@
 				3B06FE1B134E0739004398FD /* clothing.png in Resources */,
 				3B06FE1C134E0739004398FD /* clothing@2x.png in Resources */,
 				3B06FE1F134E08DE004398FD /* misc.png in Resources */,
+				3B7F9B79178D4511007FCFBC /* Icon-60@2x.png in Resources */,
 				3B06FE20134E08DE004398FD /* misc@2x.png in Resources */,
 				3BBC3E821514750100C2D9BA /* IDItemViewController.xib in Resources */,
 				3B3A9D991350A2B500569D04 /* iTunesArtwork in Resources */,
@@ -543,6 +559,7 @@
 				3B88E2351514B69900055D6A /* MainWindow-iPad.xib in Resources */,
 				3B88E21C15147BF000055D6A /* DetailWrapperViewController.xib in Resources */,
 				3BBC3E8A1514786200C2D9BA /* IDPhotoViewController_iPad.xib in Resources */,
+				3B7F9B7B178D451B007FCFBC /* Icon-76@2x.png in Resources */,
 				3BBC3E841514752B00C2D9BA /* IDItemViewController_iPad.xib in Resources */,
 				3BBC3E86151476B900C2D9BA /* IDNotesViewController_iPad.xib in Resources */,
 				3BBC3E7C1514713F00C2D9BA /* IDDateViewController_iPad.xib in Resources */,
@@ -619,7 +636,6 @@
 		3B04C2BD13479B6900A37E9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arnaud Boudou (RTC3674WRG)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -630,7 +646,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "E091C5F8-BDCF-4D10-9C85-A19BDBC82BF3";
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3CC79526-A3EE-4B1A-BF5B-B4821177712B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -638,7 +655,6 @@
 		3B04C2BE13479B6900A37E9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Arnaud Boudou";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -647,7 +663,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "2D12DFB9-EB7E-4C2F-ABC8-2D7B493212A3";
+				PROVISIONING_PROFILE = "3CC79526-A3EE-4B1A-BF5B-B4821177712B";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -658,13 +674,13 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arnaud Boudou (RTC3674WRG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What and Whom/What and Whom-Prefix.pch";
 				INFOPLIST_FILE = "What and Whom/What and Whom-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3CC79526-A3EE-4B1A-BF5B-B4821177712B";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -679,12 +695,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "What and Whom/What and Whom.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Arnaud Boudou";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What and Whom/What and Whom-Prefix.pch";
 				INFOPLIST_FILE = "What and Whom/What and Whom-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "74E6B0E9-D7A4-4161-B574-DBC67A1AF849";
 				TARGETED_DEVICE_FAMILY = "1,2";

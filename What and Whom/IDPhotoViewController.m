@@ -126,7 +126,7 @@
                 popoverController = nil;
             }
         } else {
-            [self presentModalViewController:picker animated:YES];
+            [self presentViewController:picker animated:YES completion:NULL];
         }
     }
 }
@@ -138,7 +138,7 @@
 }
 
 -(IBAction)doneButtonPressed:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
@@ -150,7 +150,7 @@
     self.data.photo = UIImagePNGRepresentation((UIImage *)[info objectForKey:@"UIImagePickerControllerEditedImage"]);
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:NULL];
         } else {
             [popoverController dismissPopoverAnimated:YES];
         }
@@ -162,7 +162,7 @@
         }
 
     } else {
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:NULL];
     }
 }
 
@@ -187,7 +187,7 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-            [self presentModalViewController:picker animated:YES];
+            [self presentViewController:picker animated:YES completion:NULL];
         } else {
             if(![popoverController isPopoverVisible]){
                 // Popover is not visible
@@ -206,7 +206,7 @@
         }
 
     } else {
-        [self presentModalViewController:picker animated:YES];
+        [self presentViewController:picker animated:YES completion:NULL];
     }
 
 }

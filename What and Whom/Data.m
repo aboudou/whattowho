@@ -27,7 +27,7 @@
 
 // Migre les données vers le nouveau datamodel
 - (void) migrateContactWithId:(NSNumber *)abId {
-    ABAddressBookRef addressBook = ABAddressBookCreate();
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
     if (abId != nil && [abId intValue] != 0) {
         ABRecordID abId = (ABRecordID)[self.idAddressBook intValue];
         ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,abId);
@@ -75,7 +75,7 @@
 
 - (UIImage *) contactPicture {
     // Get contact from Address Book
-    ABAddressBookRef addressBook = ABAddressBookCreate();
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
     CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName]);
     if ((people != nil) && (CFArrayGetCount(people) > 0)) {
         ABRecordRef person = CFArrayGetValueAtIndex(people, 0);

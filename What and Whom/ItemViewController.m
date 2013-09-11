@@ -243,7 +243,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 2.5];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 2];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -269,7 +269,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 10.5];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 10];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -301,7 +301,7 @@ static NSString *const kClassesKey =  @"classes";
             detailViewController.data = data;
             
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-            [self presentModalViewController:detailViewController animated:YES];
+            [self presentViewController:detailViewController animated:YES completion:NULL];
 
         } else {
             IDPhotoViewController *detailViewController = [[IDPhotoViewController alloc] initWithNibName:@"IDPhotoViewController" bundle:nil];
@@ -348,10 +348,15 @@ static NSString *const kClassesKey =  @"classes";
 
             [UIView animateWithDuration:0.3f animations:^{
                 overView = [[UIView alloc] initWithFrame:self.view.frame];
+                
+                float compensation = 0.0f;
+                
                 if (self.tableView.contentSize.height > self.view.frame.size.height) {
                     overView.frame = (CGRect) {0, 0, self.tableView.contentSize};
                 } else {
-                    overView.frame = (CGRect) {0, 0, self.view.frame.size};
+                    overView.frame = (CGRect) {0, 0, [[UIScreen mainScreen] bounds].size};
+                    // Issue with iPhone 5, we need to add compensation : navbar height + status bar height
+                    compensation = self.navigationController.navigationBar.frame.size.height + 22;
                 }
                 overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
                 overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
@@ -362,7 +367,8 @@ static NSString *const kClassesKey =  @"classes";
                                                              0,
                                                              overView.frame.size.height,
                                                              overView.frame.size.width,
-                                                             304);
+                                                             dateViewController.view.frame.size.height
+                                                           );
 
                 [overView addSubview:dateViewController.view];
                 dateViewController.todayButton.target = self;
@@ -373,10 +379,11 @@ static NSString *const kClassesKey =  @"classes";
 
                 dateViewController.view.frame = CGRectMake(
                                                              0,
-                                                             overView.frame.size.height - 304,
+                                                             overView.frame.size.height - dateViewController.view.frame.size.height - compensation,
                                                              overView.frame.size.width,
-                                                             304);
-
+                                                             dateViewController.view.frame.size.height
+                                                           );
+                
             }];
 
         }
@@ -407,7 +414,7 @@ static NSString *const kClassesKey =  @"classes";
 
 - (void)peoplePickerNavigationControllerDidCancel:
 (ABPeoplePickerNavigationController *)peoplePicker {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
@@ -419,7 +426,7 @@ static NSString *const kClassesKey =  @"classes";
     data.whoFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
     data.displayName = (__bridge_transfer NSString *)ABRecordCopyCompositeName(person);
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
     
     [Utils updateManagedContext];
     
@@ -453,7 +460,7 @@ static NSString *const kClassesKey =  @"classes";
             picker = [[ABPeoplePickerNavigationController alloc] init];
             picker.peoplePickerDelegate = self;
                   
-            [self presentModalViewController:picker animated:YES];
+            [self presentViewController:picker animated:YES completion:NULL];
             break;
         case 1:
 

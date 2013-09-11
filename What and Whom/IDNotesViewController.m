@@ -38,6 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    [self registerForKeyboardNotifications];
+    
     self.view.backgroundColor = [Utils defaultBgColor];
 }
 
@@ -86,5 +88,26 @@
         [parentView.tableView reloadData];
     }
 }
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        
+        NSDictionary* info = [aNotification userInfo];
+        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        [self.notesTextView setFrame:CGRectMake(self.notesTextView.frame.origin.x, self.notesTextView.frame.origin.y, self.notesTextView.frame.size.width, self.notesTextView.frame.size.height-kbSize.height)];
+        
+        [UIView commitAnimations];
+    }
+}
+
 
 @end

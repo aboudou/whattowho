@@ -38,7 +38,7 @@ static NSString *const kTitleKey =  @"title";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         NSArray *nibObjs = [[NSBundle mainBundle] loadNibNamed:@"DetailWrapperViewController" owner:self options:nil];
         UIView *aView = [nibObjs objectAtIndex:0];
@@ -131,7 +131,7 @@ static NSString *const kTitleKey =  @"title";
     NSString *name = [[[_viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = name;
-    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     cell.userInteractionEnabled = NO;
     

@@ -18,9 +18,9 @@
 
 + (UIColor *) defaultBgColor {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        return [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg.png"]];
+        return [[UIColor alloc] initWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
     } else {
-        return [[UIColor alloc] initWithRed:220.0f/255.0f green:223.0f/255.0f blue:228.0f/255.0f alpha:1.0f];
+        return [[UIColor alloc] initWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
     }
 }
 

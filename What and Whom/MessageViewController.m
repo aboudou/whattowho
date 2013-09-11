@@ -46,7 +46,8 @@ static NSString *const kTitleKey =  @"title";
     viewControllers = [[NSMutableArray alloc] initWithCapacity:1];
 
     // Get contact from Address Book
-    ABAddressBookRef addressBook = ABAddressBookCreate();
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
+    
     CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", data.whoFirstName, data.whoName]);
     if ((people != nil) && (CFArrayGetCount(people) > 0)) {
         ABRecordRef person = CFArrayGetValueAtIndex(people, 0);
@@ -166,7 +167,7 @@ static NSString *const kTitleKey =  @"title";
     NSString *name = [[[viewControllers objectAtIndex:indexPath.section] objectForKey:kClassesKey] objectAtIndex:indexPath.row];
     
     cell.textLabel.text = name;
-    cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:@""]) {
         cell.userInteractionEnabled = NO;
@@ -191,7 +192,7 @@ static NSString *const kTitleKey =  @"title";
         controller.body = @"";
 		controller.recipients = [NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil];
 		controller.messageComposeDelegate = self;
-		[self presentModalViewController:controller animated:YES];
+		[self presentViewController:controller animated:YES completion:NULL];
 
     } else if ([[[viewControllers objectAtIndex:indexPath.section] objectForKey:kTitleKey] isEqualToString:NSLocalizedString(@"phone", @"")]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", [name stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
@@ -206,7 +207,7 @@ static NSString *const kTitleKey =  @"title";
         [controller setMessageBody:@"" isHTML:NO];
 		[controller setToRecipients:[NSArray arrayWithObjects:[name stringByReplacingOccurrencesOfString:@" " withString:@""], nil]];
 		controller.mailComposeDelegate = self;
-		[self presentModalViewController:controller animated:YES];
+		[self presentViewController:controller animated:YES completion:NULL];
         
     }
         
@@ -236,7 +237,7 @@ static NSString *const kTitleKey =  @"title";
 			break;
 	}
     
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:NULL];
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [parentView.popoverController dismissPopoverAnimated:YES];
@@ -271,7 +272,7 @@ static NSString *const kTitleKey =  @"title";
             
     }
     
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:NULL];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [parentView.popoverController dismissPopoverAnimated:YES];
