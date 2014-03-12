@@ -186,7 +186,7 @@
             options = [NSDictionary dictionaryWithObjectsAndKeys:
                        [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                        [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-                       @"whatAndWhom.store", NSPersistentStoreUbiquitousContentNameKey,
+                       @"whatAndWhomStore", NSPersistentStoreUbiquitousContentNameKey,
                        cloudURL, NSPersistentStoreUbiquitousContentURLKey,
                        nil];
         } else {
