@@ -243,7 +243,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 2];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:44.0f*2.0f];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -269,7 +269,7 @@ static NSString *const kClassesKey =  @"classes";
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             detailViewController.parentView = self;
-            [self managePopover:detailViewController frame:aFrame width:320.0 height:detailViewController.tableView.rowHeight * 10];
+            [self managePopover:detailViewController frame:aFrame width:320.0 height:44.0f * 10.0f];
         } else {
             [self.navigationController pushViewController:detailViewController animated:YES];
         }
@@ -356,7 +356,7 @@ static NSString *const kClassesKey =  @"classes";
                 } else {
                     overView.frame = (CGRect) {0, 0, [[UIScreen mainScreen] bounds].size};
                     // Issue with iPhone 5, we need to add compensation : navbar height + status bar height
-                    compensation = self.navigationController.navigationBar.frame.size.height + 22;
+                    compensation = self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
                 }
                 overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
                 overView.backgroundColor = [[UIColor alloc] initWithRed:0.0f green:0.0f blue:0.0f alpha:0.8f];
