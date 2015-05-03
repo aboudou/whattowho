@@ -24,23 +24,20 @@
    xml:space="preserve"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.1 r9760"
-   sodipodi:docname="clothes_02.svg"
-   style="overflow:visible"><defs
-     id="defs87">
-		<foreignObject
-   id="foreignObject8"
-   height="1"
-   width="1"
-   y="0"
-   x="0"
-   requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/">
-			<i:pgfRef
-   xlink:href="#adobe_illustrator_pgf">
-			</i:pgfRef>
-		</foreignObject>
-		
-	</defs><sodipodi:namedview
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="clothing.svg"
+   style="overflow:visible"
+   inkscape:export-filename="/Users/aboudou/Desktop/clothing@3x.png"
+   inkscape:export-xdpi="135"
+   inkscape:export-ydpi="135"><defs
+     id="defs87"><foreignObject
+       id="foreignObject8"
+       height="1"
+       width="1"
+       y="0"
+       x="0"
+       requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/"><i:pgfRef
+         xlink:href="#adobe_illustrator_pgf" /></foreignObject></defs><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1"
@@ -49,70 +46,35 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="1002"
+     inkscape:window-width="1440"
+     inkscape:window-height="855"
      id="namedview85"
      showgrid="false"
      inkscape:zoom="13.083333"
-     inkscape:cx="15.210191"
-     inkscape:cy="30"
+     inkscape:cx="35.312102"
+     inkscape:cy="8.5987256"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2" /><metadata
-     id="metadata4">
-<rdf:RDF>
-      <cc:Work
-   rdf:about="">
-         <dc:title>Clothing Item</dc:title>
-         <dc:description>Clothing Item</dc:description>
-         <dc:subject>
-          <rdf:Bag>
-            <rdf:li>clothing</rdf:li>
-            <rdf:li>fashion</rdf:li>
-          </rdf:Bag>
-         </dc:subject>
-         <dc:publisher><cc:Agent
-     rdf:about="http://www.openclipart.org/"><dc:title>Open Clip Art Project</dc:title></cc:Agent></dc:publisher>
-         <dc:creator><cc:Agent
-     rdf:about=""><dc:title>ArtFavor</dc:title></cc:Agent></dc:creator>
-         <dc:rights><cc:Agent
-     rdf:about="http://web.resource.org/cc/PublicDomain"><dc:title>Public Domain</dc:title></cc:Agent></dc:rights>
-         <dc:date>2005/10/03</dc:date>
-         <dc:format>image/svg+xml</dc:format>
-         <dc:type
-   rdf:resource="http://purl.org/dc/dcmitype/StillImage">http://purl.org/dc/dcmitype/StillImage</dc:type>
-         <cc:license
-   rdf:resource="http://web.resource.org/cc/PublicDomain" />
-      </cc:Work>
-      <cc:License
-   rdf:about="http://web.resource.org/cc/PublicDomain">
-         <cc:permits
-   rdf:resource="http://web.resource.org/cc/Reproduction" />
-         <cc:permits
-   rdf:resource="http://web.resource.org/cc/Distribution" />
-         <cc:permits
-   rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
-      </cc:License>
-   </rdf:RDF>
-		<ns:variableSets>
-			<ns:variableSet
-   varSetName="binding1"
-   locked="none">
-				<ns:variables />
-				<ns:sampleDataSets />
-			</ns:variableSet>
-		</ns:variableSets>
-		<ns0:sfw>
-			<ns0:slices />
-			<ns0:sliceSourceBounds
-   y="472.21"
-   x="182.542"
-   width="248.889"
-   height="210.027"
-   bottomLeftOrigin="true" />
-		</ns0:sfw>
-	</metadata><path
+     id="metadata4"><rdf:RDF><cc:Work
+         rdf:about=""><dc:title>Clothing Item</dc:title><dc:description>Clothing Item</dc:description><dc:subject><rdf:Bag><rdf:li>clothing</rdf:li><rdf:li>fashion</rdf:li></rdf:Bag></dc:subject><dc:publisher><cc:Agent
+             rdf:about="http://www.openclipart.org/"><dc:title>Open Clip Art Project</dc:title></cc:Agent></dc:publisher><dc:creator><cc:Agent
+             rdf:about=""><dc:title>ArtFavor</dc:title></cc:Agent></dc:creator><dc:rights><cc:Agent
+             rdf:about="http://web.resource.org/cc/PublicDomain"><dc:title>Public Domain</dc:title></cc:Agent></dc:rights><dc:date>2005/10/03</dc:date><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage">http://purl.org/dc/dcmitype/StillImage</dc:type><cc:license
+           rdf:resource="http://web.resource.org/cc/PublicDomain" /></cc:Work><cc:License
+         rdf:about="http://web.resource.org/cc/PublicDomain"><cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" /><cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" /><cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" /></cc:License></rdf:RDF><ns:variableSets><ns:variableSet
+         varSetName="binding1"
+         locked="none"><ns:variables /><ns:sampleDataSets /></ns:variableSet></ns:variableSets><ns0:sfw><ns0:slices /><ns0:sliceSourceBounds
+         y="472.21"
+         x="182.542"
+         width="248.889"
+         height="210.027"
+         bottomLeftOrigin="true" /></ns0:sfw></metadata><path
      style="fill-rule:evenodd;fill-opacity:1;fill:#ffffff;stroke:#000000;stroke-opacity:1;stroke-width:6.222225;stroke-miterlimit:4;stroke-dasharray:none"
      inkscape:connector-curvature="0"
      id="path65"

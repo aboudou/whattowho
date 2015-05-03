@@ -14,12 +14,12 @@
    height="60"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.1 r9760"
+   inkscape:version="0.91 r13725"
    version="1.0"
    sodipodi:docname="software.svg"
-   inkscape:export-filename="/home/jimmac/gfx/ximian/tango-icon-theme/scalable/devices/media-floppy.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
+   inkscape:export-filename="/Users/aboudou/Desktop/software@3x.png"
+   inkscape:export-xdpi="135"
+   inkscape:export-ydpi="135"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs4">
@@ -189,7 +189,7 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="13.083333"
-     inkscape:cx="21.821656"
+     inkscape:cx="-11.350319"
      inkscape:cy="30.190526"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -198,8 +198,8 @@
      borderlayer="top"
      showgrid="false"
      inkscape:grid-points="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1002"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1">
@@ -248,10 +248,10 @@
           </cc:Agent>
         </dc:contributor>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
       </cc:Work>
       <cc:License
-         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits

@@ -11,14 +11,14 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    sodipodi:docname="lend.svg"
-   inkscape:version="0.48.1 r9760"
+   inkscape:version="0.91 r13725"
    sodipodi:version="0.32"
    id="svg11300"
    height="60"
    width="60"
-   inkscape:export-filename="/home/jimmac/Desktop/wi-fi.png"
-   inkscape:export-xdpi="90.000000"
-   inkscape:export-ydpi="90.000000"
+   inkscape:export-filename="/Users/aboudou/Desktop/lend@3x.png"
+   inkscape:export-xdpi="135"
+   inkscape:export-ydpi="135"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0">
   <defs
@@ -1097,7 +1097,7 @@
      showgrid="false"
      inkscape:current-layer="layer1"
      inkscape:cy="30"
-     inkscape:cx="30"
+     inkscape:cx="6.7914439"
      inkscape:zoom="9.35"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -1128,7 +1128,7 @@
         </dc:creator>
         <dc:source>http://jimmac.musichall.cz</dc:source>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
         <dc:title>Go Down</dc:title>
         <dc:subject>
           <rdf:Bag>

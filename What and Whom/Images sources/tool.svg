@@ -10,15 +10,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:export-ydpi="90.000000"
-   inkscape:export-xdpi="90.000000"
-   inkscape:export-filename="/home/jimmac/Desktop/wi-fi.png"
+   inkscape:export-ydpi="135"
+   inkscape:export-xdpi="135"
+   inkscape:export-filename="/Users/aboudou/Desktop/tool@3x.png"
    width="60"
    height="60"
    id="svg11300"
    sodipodi:version="0.32"
-   inkscape:version="0.48.1 r9760"
-   sodipodi:docname="preferences-system.svg"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="tool.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.1">
   <defs
@@ -133,15 +133,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="13.083333"
-     inkscape:cx="30"
+     inkscape:cx="13.414012"
      inkscape:cy="30"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
      inkscape:showpageshadow="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="1002"
+     inkscape:window-width="1440"
+     inkscape:window-height="855"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0" />
@@ -160,7 +160,7 @@
         </dc:creator>
         <dc:source>http://jimmac.musichall.cz</dc:source>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
         <dc:title>Preferences System</dc:title>
         <dc:subject>
           <rdf:Bag>
