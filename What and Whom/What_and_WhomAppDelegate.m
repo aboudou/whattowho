@@ -110,18 +110,14 @@
 
     if (coordinator != nil) {
         NSManagedObjectContext* moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-//        [moc setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
         
         [moc performBlockAndWait:^{
             [moc setPersistentStoreCoordinator: coordinator];
-            
-            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(mergeChangesFrom_iCloud:) name:NSPersistentStoreDidImportUbiquitousContentChangesNotification object:coordinator];
         }];
         managedObjectContext__ = moc;
         
     }
 
-//    [__managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     return managedObjectContext__;
 }
 
@@ -164,56 +160,28 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [MBProgressHUD  showHUDAddedTo:self.window  animated:YES];
         
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-
         NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
         
         // Migrate datamodel
         NSDictionary *options = nil;
-        NSError *error = nil;
+        NSError __block *error = nil;
 
-        // this needs to match the entitlements and provisioning profile
-        NSURL *cloudURL = [fileManager URLForUbiquityContainerIdentifier:nil];
-
-#warning Modifier pour activer iCloud
-//        NSString* coreDataCloudContent = [[cloudURL path] stringByAppendingPathComponent:@"data"];
-        NSString* coreDataCloudContent = @"";
+        options = [NSDictionary dictionaryWithObjectsAndKeys:
+                   [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                   [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+                   nil];
         
-        if ([coreDataCloudContent length] != 0) {
-            NSLog(@"iCloud enabled");
-            cloudURL = [NSURL fileURLWithPath:coreDataCloudContent];
-
-            options = [NSDictionary dictionaryWithObjectsAndKeys:
-                       [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                       [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-                       @"whatAndWhomStore", NSPersistentStoreUbiquitousContentNameKey,
-                       cloudURL, NSPersistentStoreUbiquitousContentURLKey,
-                       nil];
-        } else {
-            NSLog(@"iCloud disabled");
-            options = [NSDictionary dictionaryWithObjectsAndKeys:
-                       [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                       [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-                       nil];
-        }
-        
-        [psc lock];
-        NSLog(@"Avant ajout du store");
-        if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error])
-        {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            [MBProgressHUD hideHUDForView:self.window animated:YES];
-            [self resetiCloudSyncforCloudUrl:cloudURL];
-        } else {
-            NSLog(@"Après ajout du store");
-            [psc unlock];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"asynchronously added persistent store!");
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefetchAllDatabaseData" object:self userInfo:nil];
+        [psc performBlockAndWait:^{
+            if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
                 [MBProgressHUD hideHUDForView:self.window animated:YES];
-            });
-        }
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefetchAllDatabaseData" object:self userInfo:nil];
+                    [MBProgressHUD hideHUDForView:self.window animated:YES];
+                });
+            }
+        }];
 
     });
     
@@ -227,53 +195,6 @@
  */
 - (NSString *)applicationDocumentsDirectory {
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-}
-
-
-#pragma mark - Gestion notifications iCloud
-- (void)mergeiCloudChanges:(NSNotification*)note forContext:(NSManagedObjectContext*)moc {
-    [moc mergeChangesFromContextDidSaveNotification:note]; 
-    
-//    NSNotification* refreshNotification = [NSNotification notificationWithName:@"RefreshAllViews" object:self  userInfo:[note userInfo]];
-//    [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
-
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefetchAllDatabaseData" object:self userInfo:nil];
-    NSNotification* refreshNotification = [NSNotification notificationWithName:@"RefetchAllDatabaseData" object:self  userInfo:[note userInfo]];
-    [[NSNotificationCenter defaultCenter] postNotification:refreshNotification];
-    
-}
-
-// NSNotifications are posted synchronously on the caller's thread
-// make sure to vector this back to the thread we want, in this case
-// the main thread for our views & controller
-- (void)mergeChangesFrom_iCloud:(NSNotification *)notification {
-	NSManagedObjectContext* moc = [self managedObjectContext];
-    
-    // this only works if you used NSMainQueueConcurrencyType
-    // otherwise use a dispatch_async back to the main thread yourself
-    [moc performBlock:^{
-        [self mergeiCloudChanges:notification forContext:moc];
-    }];
-}
-
-
-- (void)resetStore {
-    [self saveContext];
-    persistentStoreCoordinator__ = nil;
-    managedObjectContext__ = nil;
-}
-
-- (void)resetiCloudSyncforCloudUrl:(NSURL*) cloudURL {
-    NSString *coreDataCloudContent = [[cloudURL path] stringByAppendingPathComponent:@"data"];
-    cloudURL = [NSURL fileURLWithPath:coreDataCloudContent];
-    
-    NSError *error = nil;
-    [[NSFileManager defaultManager] removeItemAtURL:cloudURL error:&error];
-    
-    [self resetStore];
-    
-    [[[UIAlertView alloc] initWithTitle:@"Sync has been reset" message:@"What to Who will be closed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 

@@ -37,7 +37,4 @@
 - (void)saveContext;
 - (NSString *)applicationDocumentsDirectory;
 
-- (void)resetStore;
-- (void)resetiCloudSyncforCloudUrl:(NSURL*) cloudURL;
-
 @end
