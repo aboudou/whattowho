@@ -221,13 +221,13 @@ static NSString *const kClassesKey =  @"classes";
     
     if ([name isEqualToString:@"IDContactViewController"]) {
         // Whom
-        UIActionSheet *contactSourceSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"contactPickerTitle", @"") 
-                                                                      delegate:self 
-                                                             cancelButtonTitle:NSLocalizedString(@"contactPickerCancel", @"") 
-                                                        destructiveButtonTitle:nil 
-                                                             otherButtonTitles:NSLocalizedString(@"contactPickerFromAB", @""), 
-                                           NSLocalizedString(@"contactPickerOther", @""), 
-                                           nil, nil];
+        UIActionSheet *contactSourceSheet = [[UIActionSheet alloc]
+                                             initWithTitle:NSLocalizedString(@"contactPickerTitle", @"")
+                                             delegate:self
+                                             cancelButtonTitle:NSLocalizedString(@"contactPickerCancel", @"")
+                                             destructiveButtonTitle:nil
+                                             otherButtonTitles:NSLocalizedString(@"contactPickerFromAB", @""),NSLocalizedString(@"contactPickerOther", @""),
+                                             nil, nil];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             contactButtonFrame = aFrame;
             [contactSourceSheet showFromRect:contactButtonFrame inView:self.view animated:YES];
@@ -412,15 +412,13 @@ static NSString *const kClassesKey =  @"classes";
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 
-- (void)peoplePickerNavigationControllerDidCancel:
-(ABPeoplePickerNavigationController *)peoplePicker {
+- (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+
     
     data.whoName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
     data.whoFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
@@ -430,15 +428,6 @@ static NSString *const kClassesKey =  @"classes";
     
     [Utils updateManagedContext];
     
-    return NO;
-}
-
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person
-                                property:(ABPropertyID)property
-                              identifier:(ABMultiValueIdentifier)identifier{
-    return NO;
 }
 
 #pragma mark - UIPopoverControllerDelegate
@@ -453,17 +442,32 @@ static NSString *const kClassesKey =  @"classes";
 
 -(void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
 
-    ABPeoplePickerNavigationController *picker = nil;
+    ABPeoplePickerNavigationController __block *picker = nil;
     
     switch (buttonIndex) {
         case 0:
-            picker = [[ABPeoplePickerNavigationController alloc] init];
-            picker.peoplePickerDelegate = self;
-                  
-            [self presentViewController:picker animated:YES completion:NULL];
+        {
+            ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+                if (!granted){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                                        message:@"You must be connected to the internet to use this app."
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"OK"
+                                                              otherButtonTitles:nil];
+                        [alert show];
+                    });
+                    return;
+                }
+                picker = [[ABPeoplePickerNavigationController alloc] init];
+                picker.peoplePickerDelegate = self;
+                
+                [self presentViewController:picker animated:YES completion:NULL];
+            });
             break;
+        }
         case 1:
-
+        {
             if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
                 IDContactViewController *detailViewController = [[IDContactViewController alloc] initWithNibName:@"IDContactViewController_iPad" bundle:nil];
                 
@@ -482,8 +486,11 @@ static NSString *const kClassesKey =  @"classes";
             }
             
             break;
+        }
         default:
+        {
             return;
+        }
     }
 }
 
