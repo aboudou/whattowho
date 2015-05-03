@@ -34,8 +34,6 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="5" secondAttribute="height" multiplier="80:77" id="Yn5-gH-YvC"/>
-                        <constraint firstAttribute="width" secondItem="5" secondAttribute="height" multiplier="80:77" id="Zgz-FZ-chZ"/>
-                        <constraint firstAttribute="height" constant="308" id="qvb-5L-Ge6"/>
                     </constraints>
                 </imageView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14">
