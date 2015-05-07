@@ -322,7 +322,8 @@
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptorName = [[NSSortDescriptor alloc] initWithKey:@"whoName" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptorName, nil];
+    NSSortDescriptor *sortDescriptorItem = [[NSSortDescriptor alloc] initWithKey:@"itemName" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptorName, sortDescriptorItem, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
