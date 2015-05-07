@@ -27,50 +27,54 @@
 
 // Migre les données vers le nouveau datamodel
 - (void) migrateContactWithId:(NSNumber *)abId {
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
-    if (abId != nil && [abId intValue] != 0) {
-        ABRecordID abId = (ABRecordID)[self.idAddressBook intValue];
-        ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,abId);
-        
-        if (person != nil) {
-            self.whoName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
-            self.whoFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-            self.idAddressBook = nil;
-        } else {
-            self.whoName = NSLocalizedString(@"Unknown", @"");
-            self.whoFirstName = @"";
-            self.idAddressBook = nil;
-        }
-    }
-    if ((abId == nil || [abId intValue] == 0) && [self.whoName length] == 0 && [self.whoFirstName length] == 0) {
-        self.whoName = NSLocalizedString(@"Unknown", @"");
-    }
-    
-    // Update displayName
-    CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName]);
-    if (self.whoFirstName == nil) {
-        self.whoFirstName = @"";
-    }
-    if (self.whoName == nil) {
-        self.whoName = @"";
-    }
-    if ((people != nil) && (CFArrayGetCount(people) > 0)) {
-        ABRecordRef person = CFArrayGetValueAtIndex(people, 0);
-        if (person != nil) {
-            self.displayName = (__bridge_transfer NSString *)ABRecordCopyCompositeName(person);
-        } else { 
-            self.displayName = [NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName];
-        }
-    } else {
-        self.displayName = [NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName];
-    }
-    if (people != nil) {
-        CFRelease(people);
-    }
+    ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+        if (granted) {
+            ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
+            if (abId != nil && [abId intValue] != 0) {
+                ABRecordID abId = (ABRecordID)[self.idAddressBook intValue];
+                ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,abId);
+                
+                if (person != nil) {
+                    self.whoName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
+                    self.whoFirstName = (__bridge_transfer NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+                    self.idAddressBook = nil;
+                } else {
+                    self.whoName = NSLocalizedString(@"Unknown", @"");
+                    self.whoFirstName = @"";
+                    self.idAddressBook = nil;
+                }
+            }
+            if ((abId == nil || [abId intValue] == 0) && [self.whoName length] == 0 && [self.whoFirstName length] == 0) {
+                self.whoName = NSLocalizedString(@"Unknown", @"");
+            }
+            
+            // Update displayName
+            CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)[NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName]);
+            if (self.whoFirstName == nil) {
+                self.whoFirstName = @"";
+            }
+            if (self.whoName == nil) {
+                self.whoName = @"";
+            }
+            if ((people != nil) && (CFArrayGetCount(people) > 0)) {
+                ABRecordRef person = CFArrayGetValueAtIndex(people, 0);
+                if (person != nil) {
+                    self.displayName = (__bridge_transfer NSString *)ABRecordCopyCompositeName(person);
+                } else { 
+                    self.displayName = [NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName];
+                }
+            } else {
+                self.displayName = [NSString stringWithFormat:@"%@ %@", self.whoFirstName, self.whoName];
+            }
+            if (people != nil) {
+                CFRelease(people);
+            }
 
-    if (addressBook != nil) {
-        CFRelease(addressBook);
-    }
+            if (addressBook != nil) {
+                CFRelease(addressBook);
+            }
+        }
+    });
 }
 
 - (UIImage *) contactPicture {
